@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		32CE041F19EADAFD00BE3D56 /* SwiftDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CE041E19EADAFD00BE3D56 /* SwiftDialog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32CE042919EADAFD00BE3D56 /* SwiftDialogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CE042819EADAFD00BE3D56 /* SwiftDialogTests.swift */; };
+		32CE043419EADB4600BE3D56 /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CE043219EADB4600BE3D56 /* DialogViewController.swift */; };
+		32CE043519EADB4600BE3D56 /* Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CE043319EADB4600BE3D56 /* Elements.swift */; };
+		32CE043719EADB7E00BE3D56 /* DialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CE043619EADB7E00BE3D56 /* DialogController.swift */; };
+		32CE043919EADBAF00BE3D56 /* ModalDialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CE043819EADBAF00BE3D56 /* ModalDialogViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +22,10 @@
 		32CE042419EADAFD00BE3D56 /* SwiftDialogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftDialogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32CE042719EADAFD00BE3D56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32CE042819EADAFD00BE3D56 /* SwiftDialogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDialogTests.swift; sourceTree = "<group>"; };
+		32CE043219EADB4600BE3D56 /* DialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
+		32CE043319EADB4600BE3D56 /* Elements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Elements.swift; sourceTree = "<group>"; };
+		32CE043619EADB7E00BE3D56 /* DialogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogController.swift; sourceTree = "<group>"; };
+		32CE043819EADBAF00BE3D56 /* ModalDialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalDialogViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +67,10 @@
 		32CE041B19EADAFD00BE3D56 /* SwiftDialog */ = {
 			isa = PBXGroup;
 			children = (
+				32CE043619EADB7E00BE3D56 /* DialogController.swift */,
+				32CE043219EADB4600BE3D56 /* DialogViewController.swift */,
+				32CE043319EADB4600BE3D56 /* Elements.swift */,
+				32CE043819EADBAF00BE3D56 /* ModalDialogViewController.swift */,
 				32CE041E19EADAFD00BE3D56 /* SwiftDialog.h */,
 				32CE041C19EADAFD00BE3D56 /* Supporting Files */,
 			);
@@ -196,6 +208,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32CE043719EADB7E00BE3D56 /* DialogController.swift in Sources */,
+				32CE043519EADB4600BE3D56 /* Elements.swift in Sources */,
+				32CE043919EADBAF00BE3D56 /* ModalDialogViewController.swift in Sources */,
+				32CE043419EADB4600BE3D56 /* DialogViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +320,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SwiftDialog/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -319,6 +336,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SwiftDialog/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
