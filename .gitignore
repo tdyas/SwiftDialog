@@ -1,0 +1,9 @@
+# Ignore Xcode-related files.
+build/*
+*.pbxuser
+*.mode1v3
+*xcuserdata*
+
+# Ignore Mac OS X noise
+.DS_Store
+profile
