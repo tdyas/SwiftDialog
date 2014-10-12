@@ -71,27 +71,6 @@ public class SectionElement : Element {
     }
 }
 
-public class LabelElement : Element {
-    var text: String?
-    
-    public init(_ text: String) {
-        self.text = text
-    }
-    
-    public override func getCell(tableView: UITableView) -> UITableViewCell! {
-        let cellKey = "label"
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as UITableViewCell!
-        if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellKey)
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
-        }
-        
-        cell.textLabel?.text = self.text
-        
-        return cell
-    }
-}
-
 class TextEntryCell : UITableViewCell {
     weak var tableView: UITableView!
     var textField: UITextField?

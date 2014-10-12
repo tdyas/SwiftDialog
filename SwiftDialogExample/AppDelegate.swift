@@ -23,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 SectionElement(
                     elements: [
                         LabelElement("Label"),
+                        Value1LabelElement(text: "Value1", detailText: "Detail Text"),
+                        Value2LabelElement(text: "Value2", detailText: "Detail Text"),
+                        SubtitleLabelElement(text: "Subtitle", detailText: "Detail Text"),
                         BoolElement(caption: "Switch", value: false),
                         
                     ],
