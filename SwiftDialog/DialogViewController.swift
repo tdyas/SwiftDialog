@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class DialogViewController : UITableViewController {
+public class DialogViewController : UITableViewController {
     let style: UITableViewStyle = .Grouped
     var rootElement: RootElement!
     var dialogController: DialogController!
@@ -14,19 +14,19 @@ class DialogViewController : UITableViewController {
         self.rootElement.dialogController = self.dialogController
     }
     
-    convenience init(root: RootElement!) {
+    public convenience init(root: RootElement!) {
         self.init(root: root, style: .Grouped)
     }
     
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+    public override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
-    required init(coder aDecoder: NSCoder) {
+    public required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self.dialogController
         self.tableView.delegate = self.dialogController

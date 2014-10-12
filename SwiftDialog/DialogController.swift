@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class DialogController : NSObject, UITableViewDataSource, UITableViewDelegate {
+public class DialogController : NSObject, UITableViewDataSource, UITableViewDelegate {
     var rootElement: RootElement!
     
     init(_ rootElement: RootElement!) {
@@ -15,16 +15,16 @@ class DialogController : NSObject, UITableViewDataSource, UITableViewDelegate {
     
     // UITableViewDataSource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return self.rootElement.sections.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let element = elementAtIndexPath(indexPath)
         return element.getCell(tableView)
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection sectionIndex: Int) -> Int {
+    public func tableView(tableView: UITableView, numberOfRowsInSection sectionIndex: Int) -> Int {
         let section = self.rootElement.sections[sectionIndex]
         return section.elements.count
     }
@@ -41,12 +41,12 @@ class DialogController : NSObject, UITableViewDataSource, UITableViewDelegate {
     
     // UITableViewDelegate
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let element = self.elementAtIndexPath(indexPath)
         element.elementSelected(self, tableView: tableView, atPath: indexPath)
     }
     
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    public func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         let element = self.elementAtIndexPath(indexPath)
         element.elementDeselected(self, tableView: tableView, atPath: indexPath)
     }

@@ -1,11 +1,11 @@
 import Foundation
 import UIKit
 
-protocol ModalDialogViewControllerDelegate {
+public protocol ModalDialogViewControllerDelegate {
     func dismissModalDialogViewController(modalDialogViewController: ModalDialogViewController) -> Void
 }
 
-class ModalDialogViewController : UIViewController {
+public class ModalDialogViewController : UIViewController {
     var style: UITableViewStyle = .Grouped
     var delegate: ModalDialogViewControllerDelegate?
     var dialogViewController: DialogViewController!
@@ -13,22 +13,22 @@ class ModalDialogViewController : UIViewController {
     
     var context: AnyObject?
     
-    init(root: RootElement!, style: UITableViewStyle) {
+    public init(root: RootElement!, style: UITableViewStyle) {
         super.init(nibName: nil, bundle: nil)
         self.style = style
         self.dialogViewController = DialogViewController(root: root, style: self.style)
         self.childNavigationController = UINavigationController(rootViewController: self.dialogViewController)
     }
     
-    convenience init(root: RootElement!) {
+    public convenience init(root: RootElement!) {
         self.init(root: root, style: .Grouped)
     }
     
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+    public override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    public required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -36,7 +36,7 @@ class ModalDialogViewController : UIViewController {
         self.delegate?.dismissModalDialogViewController(self)
     }
     
-    override func loadView() {
+    public override func loadView() {
         let bounds = UIScreen.mainScreen().bounds
         
         self.view = UIView(frame: bounds)

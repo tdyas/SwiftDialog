@@ -13,7 +13,22 @@
 		32CE043519EADB4600BE3D56 /* Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CE043319EADB4600BE3D56 /* Elements.swift */; };
 		32CE043719EADB7E00BE3D56 /* DialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CE043619EADB7E00BE3D56 /* DialogController.swift */; };
 		32CE043919EADBAF00BE3D56 /* ModalDialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CE043819EADBAF00BE3D56 /* ModalDialogViewController.swift */; };
+		32CE044319EADD7200BE3D56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CE044219EADD7200BE3D56 /* AppDelegate.swift */; };
+		32CE044A19EADD7200BE3D56 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32CE044919EADD7200BE3D56 /* Images.xcassets */; };
+		32CE044D19EADD7200BE3D56 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32CE044B19EADD7200BE3D56 /* LaunchScreen.xib */; };
+		32CE045919EADD7200BE3D56 /* SwiftDialogExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CE045819EADD7200BE3D56 /* SwiftDialogExampleTests.swift */; };
+		32CE046019EADD9400BE3D56 /* SwiftDialog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CE041919EADAFD00BE3D56 /* SwiftDialog.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		32CE045319EADD7200BE3D56 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32CE041019EADAFD00BE3D56 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 32CE043D19EADD7200BE3D56;
+			remoteInfo = SwiftDialogExample;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		32CE041919EADAFD00BE3D56 /* SwiftDialog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftDialog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -26,6 +41,14 @@
 		32CE043319EADB4600BE3D56 /* Elements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Elements.swift; sourceTree = "<group>"; };
 		32CE043619EADB7E00BE3D56 /* DialogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogController.swift; sourceTree = "<group>"; };
 		32CE043819EADBAF00BE3D56 /* ModalDialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalDialogViewController.swift; sourceTree = "<group>"; };
+		32CE043E19EADD7200BE3D56 /* SwiftDialogExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDialogExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		32CE044119EADD7200BE3D56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32CE044219EADD7200BE3D56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		32CE044919EADD7200BE3D56 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		32CE044C19EADD7200BE3D56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		32CE045219EADD7200BE3D56 /* SwiftDialogExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftDialogExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		32CE045719EADD7200BE3D56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32CE045819EADD7200BE3D56 /* SwiftDialogExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDialogExampleTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +66,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		32CE043B19EADD7200BE3D56 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32CE046019EADD9400BE3D56 /* SwiftDialog.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32CE044F19EADD7200BE3D56 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -51,6 +89,8 @@
 			children = (
 				32CE041B19EADAFD00BE3D56 /* SwiftDialog */,
 				32CE042519EADAFD00BE3D56 /* SwiftDialogTests */,
+				32CE043F19EADD7200BE3D56 /* SwiftDialogExample */,
+				32CE045519EADD7200BE3D56 /* SwiftDialogExampleTests */,
 				32CE041A19EADAFD00BE3D56 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,6 +100,8 @@
 			children = (
 				32CE041919EADAFD00BE3D56 /* SwiftDialog.framework */,
 				32CE042419EADAFD00BE3D56 /* SwiftDialogTests.xctest */,
+				32CE043E19EADD7200BE3D56 /* SwiftDialogExample.app */,
+				32CE045219EADD7200BE3D56 /* SwiftDialogExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,6 +140,42 @@
 			isa = PBXGroup;
 			children = (
 				32CE042719EADAFD00BE3D56 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		32CE043F19EADD7200BE3D56 /* SwiftDialogExample */ = {
+			isa = PBXGroup;
+			children = (
+				32CE044219EADD7200BE3D56 /* AppDelegate.swift */,
+				32CE044919EADD7200BE3D56 /* Images.xcassets */,
+				32CE044B19EADD7200BE3D56 /* LaunchScreen.xib */,
+				32CE044019EADD7200BE3D56 /* Supporting Files */,
+			);
+			path = SwiftDialogExample;
+			sourceTree = "<group>";
+		};
+		32CE044019EADD7200BE3D56 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				32CE044119EADD7200BE3D56 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		32CE045519EADD7200BE3D56 /* SwiftDialogExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				32CE045819EADD7200BE3D56 /* SwiftDialogExampleTests.swift */,
+				32CE045619EADD7200BE3D56 /* Supporting Files */,
+			);
+			path = SwiftDialogExampleTests;
+			sourceTree = "<group>";
+		};
+		32CE045619EADD7200BE3D56 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				32CE045719EADD7200BE3D56 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -151,6 +229,41 @@
 			productReference = 32CE042419EADAFD00BE3D56 /* SwiftDialogTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		32CE043D19EADD7200BE3D56 /* SwiftDialogExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32CE045A19EADD7200BE3D56 /* Build configuration list for PBXNativeTarget "SwiftDialogExample" */;
+			buildPhases = (
+				32CE043A19EADD7200BE3D56 /* Sources */,
+				32CE043B19EADD7200BE3D56 /* Frameworks */,
+				32CE043C19EADD7200BE3D56 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftDialogExample;
+			productName = SwiftDialogExample;
+			productReference = 32CE043E19EADD7200BE3D56 /* SwiftDialogExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		32CE045119EADD7200BE3D56 /* SwiftDialogExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32CE045D19EADD7200BE3D56 /* Build configuration list for PBXNativeTarget "SwiftDialogExampleTests" */;
+			buildPhases = (
+				32CE044E19EADD7200BE3D56 /* Sources */,
+				32CE044F19EADD7200BE3D56 /* Frameworks */,
+				32CE045019EADD7200BE3D56 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				32CE045419EADD7200BE3D56 /* PBXTargetDependency */,
+			);
+			name = SwiftDialogExampleTests;
+			productName = SwiftDialogExampleTests;
+			productReference = 32CE045219EADD7200BE3D56 /* SwiftDialogExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -166,6 +279,14 @@
 					32CE042319EADAFD00BE3D56 = {
 						CreatedOnToolsVersion = 6.0;
 					};
+					32CE043D19EADD7200BE3D56 = {
+						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = Y89EMEZCK7;
+					};
+					32CE045119EADD7200BE3D56 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = 32CE043D19EADD7200BE3D56;
+					};
 				};
 			};
 			buildConfigurationList = 32CE041319EADAFD00BE3D56 /* Build configuration list for PBXProject "SwiftDialog" */;
@@ -174,6 +295,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 32CE040F19EADAFD00BE3D56;
 			productRefGroup = 32CE041A19EADAFD00BE3D56 /* Products */;
@@ -182,6 +304,8 @@
 			targets = (
 				32CE041819EADAFD00BE3D56 /* SwiftDialog */,
 				32CE042319EADAFD00BE3D56 /* SwiftDialogTests */,
+				32CE043D19EADD7200BE3D56 /* SwiftDialogExample */,
+				32CE045119EADD7200BE3D56 /* SwiftDialogExampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -195,6 +319,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		32CE042219EADAFD00BE3D56 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32CE043C19EADD7200BE3D56 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32CE044D19EADD7200BE3D56 /* LaunchScreen.xib in Resources */,
+				32CE044A19EADD7200BE3D56 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32CE045019EADD7200BE3D56 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -223,7 +363,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		32CE043A19EADD7200BE3D56 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32CE044319EADD7200BE3D56 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32CE044E19EADD7200BE3D56 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32CE045919EADD7200BE3D56 /* SwiftDialogExampleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		32CE045419EADD7200BE3D56 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 32CE043D19EADD7200BE3D56 /* SwiftDialogExample */;
+			targetProxy = 32CE045319EADD7200BE3D56 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		32CE044B19EADD7200BE3D56 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32CE044C19EADD7200BE3D56 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		32CE042A19EADAFD00BE3D56 /* Debug */ = {
@@ -373,6 +548,66 @@
 			};
 			name = Release;
 		};
+		32CE045B19EADD7200BE3D56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SwiftDialogExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		32CE045C19EADD7200BE3D56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = SwiftDialogExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		32CE045E19EADD7200BE3D56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SwiftDialogExampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftDialogExample.app/SwiftDialogExample";
+			};
+			name = Debug;
+		};
+		32CE045F19EADD7200BE3D56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SwiftDialogExampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftDialogExample.app/SwiftDialogExample";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -398,6 +633,22 @@
 			buildConfigurations = (
 				32CE043019EADAFD00BE3D56 /* Debug */,
 				32CE043119EADAFD00BE3D56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		32CE045A19EADD7200BE3D56 /* Build configuration list for PBXNativeTarget "SwiftDialogExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32CE045B19EADD7200BE3D56 /* Debug */,
+				32CE045C19EADD7200BE3D56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		32CE045D19EADD7200BE3D56 /* Build configuration list for PBXNativeTarget "SwiftDialogExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32CE045E19EADD7200BE3D56 /* Debug */,
+				32CE045F19EADD7200BE3D56 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

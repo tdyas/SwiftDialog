@@ -1,9 +1,9 @@
 import UIKit
 
-class Element : NSObject {
-    var parent: Element? = nil
+public class Element : NSObject {
+    public var parent: Element? = nil
     
-    var root: RootElement? {
+    public var root: RootElement? {
         get {
             var elementOpt = self.parent
             
@@ -21,23 +21,23 @@ class Element : NSObject {
         }
     }
     
-    func getCell(tableView: UITableView) -> UITableViewCell! {
+    public func getCell(tableView: UITableView) -> UITableViewCell! {
         fatalError("This method must be overridden")
     }
     
-    func elementSelected(dialogController: DialogController, tableView: UITableView, atPath indexPath: NSIndexPath) {
+    public func elementSelected(dialogController: DialogController, tableView: UITableView, atPath indexPath: NSIndexPath) {
     }
 
-    func elementDeselected(dialogController: DialogController, tableView: UITableView, atPath indexPath: NSIndexPath) {
+    public func elementDeselected(dialogController: DialogController, tableView: UITableView, atPath indexPath: NSIndexPath) {
     }
 }
 
-class RootElement : Element {
+public class RootElement : Element {
     var sections: [SectionElement]
     var title: String = ""
     var dialogController: DialogController?
     
-    init(title: String, sections: [SectionElement]) {
+    public init(title: String, sections: [SectionElement]) {
         self.title = title
         self.sections = sections
         
@@ -49,12 +49,12 @@ class RootElement : Element {
     }
 }
 
-class SectionElement : Element {
+public class SectionElement : Element {
     var elements: [Element]
     var header: String?
     var footer: String?
     
-    init(elements: [Element], withHeader header: String?, withFooter footer: String?) {
+    public init(elements: [Element], withHeader header: String?, withFooter footer: String?) {
         self.elements = elements
         self.header = header
         self.footer = footer
@@ -66,19 +66,19 @@ class SectionElement : Element {
         }
     }
     
-    convenience init(elements: [Element]) {
+    public convenience init(elements: [Element]) {
         self.init(elements: elements, withHeader: nil, withFooter: nil)
     }
 }
 
-class LabelElement : Element {
+public class LabelElement : Element {
     var text: String?
     
-    init(_ text: String) {
+    public init(_ text: String) {
         self.text = text
     }
     
-    override func getCell(tableView: UITableView) -> UITableViewCell! {
+    public override func getCell(tableView: UITableView) -> UITableViewCell! {
         let cellKey = "label"
         var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as UITableViewCell!
         if cell == nil {
@@ -118,11 +118,11 @@ class TextEntryCell : UITableViewCell {
     }
 }
 
-class TextEntryElement : Element, UITextFieldDelegate {
+public class TextEntryElement : Element, UITextFieldDelegate {
     private var cachedText: String = ""
     private var textField: UITextField?
 
-    var text: String {
+    public var text: String {
         get {
             switch (self.textField) {
             case .Some(let textField):
@@ -142,7 +142,7 @@ class TextEntryElement : Element, UITextFieldDelegate {
         }
     }
     
-    init(_ text: String) {
+    public init(_ text: String) {
         super.init()
         self.text = text
     }
@@ -160,7 +160,7 @@ class TextEntryElement : Element, UITextFieldDelegate {
         self.text = textField.text
     }
     
-    override func getCell(tableView: UITableView) -> UITableViewCell! {
+    public override func getCell(tableView: UITableView) -> UITableViewCell! {
         let cellKey = "textEntry"
         
         var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as TextEntryCell!
@@ -189,13 +189,13 @@ class TextEntryElement : Element, UITextFieldDelegate {
     }
 }
 
-class BoolElement : Element {
+public class BoolElement : Element {
     private var switchControl: UISwitch!
     
     var caption: String = ""
     var value: Bool = false
     
-    init(caption: String = "", value: Bool = false) {
+    public init(caption: String = "", value: Bool = false) {
         super.init()
         self.caption = caption
         self.value = value
@@ -205,7 +205,7 @@ class BoolElement : Element {
         self.value = self.switchControl.on
     }
     
-    override func getCell(tableView: UITableView) -> UITableViewCell! {
+    public override func getCell(tableView: UITableView) -> UITableViewCell! {
         let cellKey = "BoolElement"
         
         var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as UITableViewCell!
