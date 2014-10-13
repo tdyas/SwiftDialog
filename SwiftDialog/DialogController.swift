@@ -16,21 +16,20 @@ import Foundation
 import UIKit
 
 public class DialogController : NSObject, UITableViewDataSource, UITableViewDelegate {
-    var rootElement: RootElement!
+    public let root: RootElement
     
-    init(_ rootElement: RootElement!) {
-        self.rootElement = rootElement
+    public init(_ rootElement: RootElement) {
+        self.root = rootElement
     }
     
-    func elementAtIndexPath(indexPath: NSIndexPath!) -> Element {
-        let section = self.rootElement.sections[indexPath.section]
-        return section.elements[indexPath.row]
+    func elementAtIndexPath(indexPath: NSIndexPath!) -> Element! {
+        return self.root.sections[indexPath.section].elements[indexPath.row]
     }
     
     // UITableViewDataSource
     
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.rootElement.sections.count
+        return self.root.sections.count
     }
     
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -39,17 +38,17 @@ public class DialogController : NSObject, UITableViewDataSource, UITableViewDele
     }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection sectionIndex: Int) -> Int {
-        let section = self.rootElement.sections[sectionIndex]
+        let section = self.root.sections[sectionIndex]
         return section.elements.count
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection sectionIndex: Int) -> String! {
-        let section = self.rootElement.sections[sectionIndex]
+        let section = self.root.sections[sectionIndex]
         return section.header
     }
     
     func tableView(tableView: UITableView, titleForFooterInSection sectionIndex: Int) -> String! {
-        let section = self.rootElement.sections[sectionIndex]
+        let section = self.root.sections[sectionIndex]
         return section.footer
     }
     
