@@ -16,7 +16,7 @@ import SwiftDialog
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewControllerDelegate {
     var window: UIWindow?
     var navigationController: UINavigationController!
     var dialogViewController: DialogViewController!
@@ -27,7 +27,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.navigationController = UINavigationController(rootViewController: self.dialogViewController)
         self.window?.rootViewController = self.navigationController
         self.window?.makeKeyAndVisible()
+        
+        self.dialogViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: "Modal",
+            style: .Plain,
+            target: self,
+            action: "modalButtonTapped"
+        )
         return true
+    }
+    
+    func modalButtonTapped() {
+        let modal = ModalDialogViewController(root: getModalRootElement())
+        modal.delegate = self
+        self.navigationController.presentViewController(modal, animated: true, completion: nil)
+    }
+    
+    func dismissModalDialogViewController(modalDialogViewController: ModalDialogViewController) {
+        self.navigationController.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func getRootElement() -> RootElement {
@@ -47,5 +64,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     withFooter: nil
                 )
             ])
+    }
+    
+    func getModalRootElement() -> RootElement {
+        return RootElement(title: "Modal", sections: [
+            SectionElement(elements: [LabelElement("This is a modal.")])
+        ])
     }
 }

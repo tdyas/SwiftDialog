@@ -15,31 +15,24 @@
 import Foundation
 import UIKit
 
-public protocol ModalDialogViewControllerDelegate {
+public protocol ModalDialogViewControllerDelegate : class {
     func dismissModalDialogViewController(modalDialogViewController: ModalDialogViewController) -> Void
 }
 
 public class ModalDialogViewController : UIViewController {
-    var style: UITableViewStyle = .Grouped
-    var delegate: ModalDialogViewControllerDelegate?
-    var dialogViewController: DialogViewController!
-    var childNavigationController: UINavigationController!
+    public let dialogViewController: DialogViewController
+    public let childNavigationController: UINavigationController
+
+    public weak var delegate: ModalDialogViewControllerDelegate?
     
-    var context: AnyObject?
-    
-    public init(root: RootElement!, style: UITableViewStyle) {
-        super.init(nibName: nil, bundle: nil)
-        self.style = style
-        self.dialogViewController = DialogViewController(root: root, style: self.style)
+    public init(root: RootElement, style: UITableViewStyle) {
+        self.dialogViewController = DialogViewController(root: root, style: style)
         self.childNavigationController = UINavigationController(rootViewController: self.dialogViewController)
+        super.init(nibName: nil, bundle: nil)
     }
     
-    public convenience init(root: RootElement!) {
+    public convenience init(root: RootElement) {
         self.init(root: root, style: .Grouped)
-    }
-    
-    public override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
     public required init(coder aDecoder: NSCoder) {
@@ -51,9 +44,7 @@ public class ModalDialogViewController : UIViewController {
     }
     
     public override func loadView() {
-        let bounds = UIScreen.mainScreen().bounds
-        
-        self.view = UIView(frame: bounds)
+        self.view = UIView(frame: UIScreen.mainScreen().bounds)
         self.view.backgroundColor = UIColor.whiteColor()
         self.view.opaque = true
         self.view.autoresizesSubviews = true
