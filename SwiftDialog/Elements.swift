@@ -15,7 +15,7 @@
 import UIKit
 
 public class Element : NSObject {
-    public var parent: Element? = nil
+    public weak var parent: Element? = nil
     
     public var root: RootElement? {
         get {
