@@ -68,7 +68,11 @@ public class SectionElement : Element {
     var header: String?
     var footer: String?
     
-    public init(elements: [Element], withHeader header: String?, withFooter footer: String?) {
+    public init(
+        elements: [Element] = [],
+        header: String? = nil,
+        footer: String? = nil
+    ) {
         self.elements = elements
         self.header = header
         self.footer = footer
@@ -78,10 +82,6 @@ public class SectionElement : Element {
         for element in self.elements {
             element.parent = self
         }
-    }
-    
-    public convenience init(elements: [Element]) {
-        self.init(elements: elements, withHeader: nil, withFooter: nil)
     }
 }
 

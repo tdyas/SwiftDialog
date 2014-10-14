@@ -60,8 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                         BoolElement(caption: "Switch", value: false),
                         
                     ],
-                    withHeader: "Basic",
-                    withFooter: nil
+                    header: "Basic"
                 )
             ])
     }
