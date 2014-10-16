@@ -26,8 +26,8 @@ public class ModalDialogViewController : UIViewController {
     public weak var delegate: ModalDialogViewControllerDelegate?
     
     public init(root: RootElement, style: UITableViewStyle) {
-        self.dialogViewController = DialogViewController(root: root, style: style)
-        self.childNavigationController = UINavigationController(rootViewController: self.dialogViewController)
+        self.dialogViewController = DialogViewController(root: root, style: style)!
+        self.childNavigationController = UINavigationController(rootViewController: self.dialogViewController)!
         super.init(nibName: nil, bundle: nil)
     }
     

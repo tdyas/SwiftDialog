@@ -16,19 +16,17 @@ import Foundation
 import UIKit
 
 public class DialogViewController : UITableViewController {
-    let style: UITableViewStyle = .Grouped
     var rootElement: RootElement!
     var dialogController: DialogController!
 
-    init(root: RootElement!, style: UITableViewStyle) {
-        self.style = style
+    init?(root: RootElement, style: UITableViewStyle) {
         super.init(style: style)
         self.rootElement = root
         self.dialogController = DialogController(self.rootElement)
         self.rootElement.dialogController = self.dialogController
     }
     
-    public convenience init(root: RootElement!) {
+    public convenience init?(root: RootElement) {
         self.init(root: root, style: .Grouped)
     }
     

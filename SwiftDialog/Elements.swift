@@ -89,7 +89,7 @@ class TextEntryCell : UITableViewCell {
     weak var tableView: UITableView!
     var textField: UITextField?
     
-    init(tableView: UITableView, reuseIdentifier: String!) {
+    init?(tableView: UITableView, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
         self.tableView = tableView
     }
