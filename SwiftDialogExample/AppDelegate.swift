@@ -58,7 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                         Value2LabelElement(text: "Value2", detailText: "Detail Text"),
                         SubtitleLabelElement(text: "Subtitle", detailText: "Detail Text"),
                         BoolElement(caption: "Switch", value: false),
-                        
+                        SliderElement(value: 0.5),
+                        SliderElement(text: "Num", value: 0.5),
                     ],
                     header: "Basic"
                 )
