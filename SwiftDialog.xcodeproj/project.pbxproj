@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3231441219F466D500A3F921 /* BoolElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3231441119F466D500A3F921 /* BoolElement.swift */; };
+		3231441419F4677F00A3F921 /* TextEntryElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3231441319F4677F00A3F921 /* TextEntryElement.swift */; };
 		327777CE19EF494F00AB0419 /* SliderElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327777CD19EF494F00AB0419 /* SliderElement.swift */; };
 		327777D219F04FD700AB0419 /* CheckboxElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327777D119F04FD700AB0419 /* CheckboxElement.swift */; };
 		32CE041F19EADAFD00BE3D56 /* SwiftDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CE041E19EADAFD00BE3D56 /* SwiftDialog.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		3231441119F466D500A3F921 /* BoolElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolElement.swift; sourceTree = "<group>"; };
+		3231441319F4677F00A3F921 /* TextEntryElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEntryElement.swift; sourceTree = "<group>"; };
 		327777CD19EF494F00AB0419 /* SliderElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderElement.swift; sourceTree = "<group>"; };
 		327777D119F04FD700AB0419 /* CheckboxElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxElement.swift; sourceTree = "<group>"; };
 		32CE041919EADAFD00BE3D56 /* SwiftDialog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftDialog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +127,7 @@
 				32CE046119EAE0B800BE3D56 /* LabelElements.swift */,
 				32CE043819EADBAF00BE3D56 /* ModalDialogViewController.swift */,
 				327777CD19EF494F00AB0419 /* SliderElement.swift */,
+				3231441319F4677F00A3F921 /* TextEntryElement.swift */,
 				32CE041E19EADAFD00BE3D56 /* SwiftDialog.h */,
 				32CE041C19EADAFD00BE3D56 /* Supporting Files */,
 			);
@@ -365,6 +368,7 @@
 				3231441219F466D500A3F921 /* BoolElement.swift in Sources */,
 				32CE043919EADBAF00BE3D56 /* ModalDialogViewController.swift in Sources */,
 				327777CE19EF494F00AB0419 /* SliderElement.swift in Sources */,
+				3231441419F4677F00A3F921 /* TextEntryElement.swift in Sources */,
 				32CE046219EAE0B800BE3D56 /* LabelElements.swift in Sources */,
 				327777D219F04FD700AB0419 /* CheckboxElement.swift in Sources */,
 				32CE043419EADB4600BE3D56 /* DialogViewController.swift in Sources */,
