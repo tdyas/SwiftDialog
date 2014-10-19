@@ -70,7 +70,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
     
     func getModalRootElement() -> RootElement {
         return RootElement(title: "Modal", sections: [
-            SectionElement(elements: [LabelElement("This is a modal.")])
+            SectionElement(elements: [LabelElement("This is a modal.")]),
+            SectionElement(elements: [LabelElement("Another section.")], header: "Header", footer: "Footer"),
         ])
     }
 }
