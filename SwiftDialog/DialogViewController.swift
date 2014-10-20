@@ -16,14 +16,14 @@ import Foundation
 import UIKit
 
 public class DialogViewController : UITableViewController {
-    var rootElement: RootElement!
-    var dialogController: DialogController!
+    public var root: RootElement!
+    public var dialogController: DialogController!
 
     init?(root: RootElement, style: UITableViewStyle) {
         super.init(style: style)
-        self.rootElement = root
-        self.dialogController = DialogController(self.rootElement)
-        self.rootElement.dialogController = self.dialogController
+        self.root = root
+        self.dialogController = DialogController(self.root)
+        self.root.dialogController = self.dialogController
     }
     
     public convenience init?(root: RootElement) {
@@ -40,9 +40,29 @@ public class DialogViewController : UITableViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.tableView.dataSource = self.dialogController
         self.tableView.delegate = self.dialogController
         
-        self.navigationItem.title = self.rootElement.title
+        self.navigationItem.title = self.root.title
+        
+        if let callback = self.root.onRefresh {
+            self.refreshControl = UIRefreshControl(frame: CGRect.zeroRect)
+            self.refreshControl?.addTarget(self, action: "triggerRefresh", forControlEvents: .ValueChanged)
+        }
+    }
+    
+    func triggerRefresh() {
+        if let callback = self.root.onRefresh {
+            callback(self.root)
+        }
+    }
+
+    public func beginRefreshing() {
+        self.refreshControl?.beginRefreshing()
+    }
+    
+    public func endRefreshing() {
+        self.refreshControl?.endRefreshing()
     }
 }

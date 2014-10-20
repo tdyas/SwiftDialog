@@ -65,7 +65,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                     ],
                     header: "Basic"
                 )
-            ])
+            ],
+            onRefresh: { root in self.displayRefreshAlert() }
+        )
+    }
+    
+    func displayRefreshAlert() {
+        let alert = UIAlertController(title: "Refresh", message: "You triggered a refresh.", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: { action in
+            if let dvc = self.navigationController.topViewController as? DialogViewController {
+                dvc.endRefreshing()
+            }
+            self.navigationController.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        self.navigationController.presentViewController(alert, animated: true, completion: nil)
     }
     
     func getModalRootElement() -> RootElement {

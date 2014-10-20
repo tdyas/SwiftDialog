@@ -13,13 +13,15 @@
 // limitations under the License.
 
 public class RootElement : Element {
-    var sections: [SectionElement]
-    var title: String = ""
-    var dialogController: DialogController?
+    public var sections: [SectionElement]
+    public var title: String = ""
+    public var dialogController: DialogController?
+    public var onRefresh: ((RootElement) -> ())?
     
-    public init(title: String, sections: [SectionElement]) {
+    public init(title: String, sections: [SectionElement], onRefresh: ((RootElement) -> ())? = nil) {
         self.title = title
         self.sections = sections
+        self.onRefresh = onRefresh
         
         super.init()
         
