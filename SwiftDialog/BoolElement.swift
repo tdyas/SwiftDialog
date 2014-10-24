@@ -50,7 +50,7 @@ public class BoolElement : Element {
         }
         cell.accessoryView = switchControl
         
-        cell.textLabel?.text = self.caption
+        cell.textLabel.text = self.caption
         self.switchControl.on = self.value
         
         return cell

@@ -32,7 +32,7 @@ public class CheckboxElement : Element {
             cell.selectionStyle = .Default
         }
         
-        cell.textLabel?.text = self.text
+        cell.textLabel.text = self.text
         if (self.value) {
             cell.accessoryType = .Checkmark
         } else {

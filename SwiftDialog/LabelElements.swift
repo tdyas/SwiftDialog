@@ -39,7 +39,7 @@ public class BaseLabelElement : Element {
             cell.selectionStyle = UITableViewCellSelectionStyle.None
         }
         
-        cell.textLabel?.text = self.text
+        cell.textLabel.text = self.text
         cell.detailTextLabel?.text = self.detailText
         
         return cell
