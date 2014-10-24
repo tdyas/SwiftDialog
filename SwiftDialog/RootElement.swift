@@ -14,13 +14,21 @@
 
 public class RootElement : Element {
     public var sections: [SectionElement]
-    public var title: String = ""
-    public var dialogController: DialogController?
+    public var title: String
+    public var groups: [String: Int]
     public var onRefresh: ((RootElement) -> ())?
+
+    public weak var dialogController: DialogController?
     
-    public init(title: String, sections: [SectionElement], onRefresh: ((RootElement) -> ())? = nil) {
+    public init(
+        title: String,
+        sections: [SectionElement],
+        groups: [String: Int] = [:],
+        onRefresh: ((RootElement) -> ())? = nil
+    ) {
         self.title = title
         self.sections = sections
+        self.groups = groups
         self.onRefresh = onRefresh
         
         super.init()
@@ -28,5 +36,25 @@ public class RootElement : Element {
         for section in self.sections {
             section.parent = self
         }
+    }
+    
+    func indexForRadioElement(radioElement: RadioElement) -> Int? {
+        var index = 0
+        
+        for section in sections {
+            for element in section.elements {
+                if let currentRadioElement = element as? RadioElement {
+                    if currentRadioElement.group == radioElement.group {
+                        if currentRadioElement == radioElement {
+                            return index
+                        }
+
+                        index += 1
+                    }
+                }
+            }
+        }
+        
+        return nil
     }
 }

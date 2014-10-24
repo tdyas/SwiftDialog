@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3224061019FA0CF40022781A /* RadioElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3224060F19FA0CF40022781A /* RadioElement.swift */; };
 		3231441219F466D500A3F921 /* BoolElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3231441119F466D500A3F921 /* BoolElement.swift */; };
 		3231441419F4677F00A3F921 /* TextEntryElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3231441319F4677F00A3F921 /* TextEntryElement.swift */; };
 		3231441619F468D800A3F921 /* RootElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3231441519F468D800A3F921 /* RootElement.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3224060F19FA0CF40022781A /* RadioElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioElement.swift; sourceTree = "<group>"; };
 		3231441119F466D500A3F921 /* BoolElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolElement.swift; sourceTree = "<group>"; };
 		3231441319F4677F00A3F921 /* TextEntryElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEntryElement.swift; sourceTree = "<group>"; };
 		3231441519F468D800A3F921 /* RootElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootElement.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				32CE043319EADB4600BE3D56 /* Element.swift */,
 				32CE046119EAE0B800BE3D56 /* LabelElements.swift */,
 				32CE043819EADBAF00BE3D56 /* ModalDialogViewController.swift */,
+				3224060F19FA0CF40022781A /* RadioElement.swift */,
 				3231441519F468D800A3F921 /* RootElement.swift */,
 				3231441719F4690100A3F921 /* SectionElement.swift */,
 				327777CD19EF494F00AB0419 /* SliderElement.swift */,
@@ -376,6 +379,7 @@
 				32CE043919EADBAF00BE3D56 /* ModalDialogViewController.swift in Sources */,
 				327777CE19EF494F00AB0419 /* SliderElement.swift in Sources */,
 				3231441819F4690100A3F921 /* SectionElement.swift in Sources */,
+				3224061019FA0CF40022781A /* RadioElement.swift in Sources */,
 				3231441419F4677F00A3F921 /* TextEntryElement.swift in Sources */,
 				32CE046219EAE0B800BE3D56 /* LabelElements.swift in Sources */,
 				327777D219F04FD700AB0419 /* CheckboxElement.swift in Sources */,

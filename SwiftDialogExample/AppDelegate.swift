@@ -64,7 +64,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                         SliderElement(text: "Num", value: 0.5),
                     ],
                     header: "Basic"
+                ),
+                SectionElement(
+                    elements: [
+                        RadioElement(text: "Red", group: "colors"),
+                        RadioElement(text: "Green", group: "colors"),
+                        RadioElement(text: "Blue", group: "colors")
+                    ],
+                    header: "Colors"
+                ),
+                SectionElement(
+                    elements: [
+                        RadioElement(text: "Studio", group: "apts"),
+                        RadioElement(text: "1 bedroom", group: "apts"),
+                        RadioElement(text: "2 bedroom", group: "apts"),
+                        RadioElement(text: "3 bedroom", group: "apts")
+                    ],
+                    header: "Apartment Types"
                 )
+            ],
+            groups: [
+                "colors": 1,
+                "apts": 0
             ],
             onRefresh: { root in self.displayRefreshAlert() }
         )
