@@ -12,11 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+@objc
+protocol BooleanValuedElement {
+    var value: Bool { get }
+}
+
+public enum SummarizeBy {
+    case None
+    case RadioGroup(group: String)
+    case Count
+}
+
 public class RootElement : Element {
     public var sections: [SectionElement]
     public var title: String
     public var groups: [String: Int]
     public var onRefresh: ((RootElement) -> ())?
+    public var summary: SummarizeBy
+    public var childStyle: UITableViewStyle
 
     public weak var dialogController: DialogController?
     
@@ -24,12 +37,16 @@ public class RootElement : Element {
         title: String,
         sections: [SectionElement],
         groups: [String: Int] = [:],
-        onRefresh: ((RootElement) -> ())? = nil
+        onRefresh: ((RootElement) -> ())? = nil,
+        summary: SummarizeBy = .None,
+        childStyle: UITableViewStyle = .Grouped
     ) {
         self.title = title
         self.sections = sections
         self.groups = groups
         self.onRefresh = onRefresh
+        self.summary = summary
+        self.childStyle = childStyle
         
         super.init()
         
@@ -56,5 +73,63 @@ public class RootElement : Element {
         }
         
         return nil
+    }
+    
+    public override func getCell(tableView: UITableView) -> UITableViewCell! {
+        let cellKey = "root"
+        
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as UITableViewCell!
+        if cell == nil {
+            cell = UITableViewCell(style: .Value1, reuseIdentifier: cellKey)
+            cell.selectionStyle = .Default
+            cell.accessoryType = .DisclosureIndicator
+        }
+        
+        cell.textLabel.text = title
+        
+        switch summary {
+        case .RadioGroup(let group):
+            if let selectedIndex = groups[group] {
+                var currentIndex = 0
+                for section in sections {
+                    for element in section.elements {
+                        if let currentRadioElement = element as? RadioElement {
+                            if currentRadioElement.group == group {
+                                if currentIndex == selectedIndex {
+                                    cell.detailTextLabel?.text = currentRadioElement.text
+                                }
+                                
+                                currentIndex += 1
+                            }
+                        }
+
+                    }
+                }
+            }
+            
+        case .Count:
+            var count = 0
+            for section in sections {
+                for element in section.elements {
+                    if let boolElement = element as? BooleanValuedElement {
+                        if boolElement.value {
+                            count += 1
+                        }
+                    }
+                }
+            }
+            cell.detailTextLabel?.text = count.description
+            
+        case .None:
+            cell.detailTextLabel?.text = ""
+        }
+        
+        return cell
+    }
+
+    
+    public override func elementSelected(dialogController: DialogController, tableView: UITableView, atPath indexPath: NSIndexPath) {
+        let vc = DialogViewController(root: self, style: childStyle)
+        dialogController.viewController?.navigationController?.pushViewController(vc!, animated: true)
     }
 }

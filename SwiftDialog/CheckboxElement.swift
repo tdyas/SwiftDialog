@@ -14,7 +14,7 @@
 
 import UIKit
 
-public class CheckboxElement : Element {
+public class CheckboxElement : Element, BooleanValuedElement {
     public var text: String
     public var value: Bool
     

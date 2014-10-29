@@ -88,11 +88,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                 ),
                 SectionElement(
                     elements: [
-                        RadioElement(text: "Red", group: "colors"),
-                        RadioElement(text: "Green", group: "colors"),
-                        RadioElement(text: "Blue", group: "colors")
-                    ],
-                    header: "Colors"
+                        RootElement(
+                            title: "Colors",
+                            sections: [
+                                SectionElement(elements: [
+                                    RadioElement(text: "Red", group: "colors"),
+                                    RadioElement(text: "Green", group: "colors"),
+                                    RadioElement(text: "Blue", group: "colors")
+                                ])
+                            ],
+                            groups: ["colors": 0],
+                            summary: .RadioGroup(group: "colors")
+                        ),
+                        RootElement(
+                            title: "Checkboxes",
+                            sections: [
+                                SectionElement(elements: [
+                                    CheckboxElement(text: "First", value: false),
+                                    CheckboxElement(text: "Second", value: false),
+                                    CheckboxElement(text: "Third", value: false),
+                                ]),
+                                SectionElement(elements: [
+                                    BoolElement(caption: "First", value: false),
+                                    BoolElement(caption: "Second", value: false),
+                                    BoolElement(caption: "Third", value: false),
+                                ])
+                            ],
+                            summary: .Count,
+                            childStyle: .Plain
+                        )
+                    ]
                 ),
                 SectionElement(
                     elements: [
@@ -105,7 +130,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                 )
             ],
             groups: [
-                "colors": 1,
                 "apts": 0
             ],
             onRefresh: { root in self.displayRefreshAlert() }

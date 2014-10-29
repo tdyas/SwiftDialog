@@ -23,6 +23,7 @@ public class DialogViewController : UITableViewController {
         super.init(style: style)
         self.root = root
         self.dialogController = DialogController(self.root)
+        self.dialogController.viewController = self
         self.root.dialogController = self.dialogController
     }
     
@@ -50,6 +51,11 @@ public class DialogViewController : UITableViewController {
             self.refreshControl = UIRefreshControl(frame: CGRect.zeroRect)
             self.refreshControl?.addTarget(self, action: "triggerRefresh", forControlEvents: .ValueChanged)
         }
+    }
+    
+    public override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
     }
     
     func triggerRefresh() {

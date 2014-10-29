@@ -17,6 +17,7 @@ import UIKit
 
 public class DialogController : NSObject, UITableViewDataSource, UITableViewDelegate {
     public let root: RootElement
+    public weak var viewController: DialogViewController?
     
     public init(_ rootElement: RootElement) {
         self.root = rootElement
