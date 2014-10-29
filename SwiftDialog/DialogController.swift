@@ -63,4 +63,9 @@ public class DialogController : NSObject, UITableViewDataSource, UITableViewDele
         let element = self.elementAtIndexPath(indexPath)
         element.elementDeselected(self, tableView: tableView, atPath: indexPath)
     }
+    
+    public func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+        let element = self.elementAtIndexPath(indexPath)
+        element.accessoryButtonTapped(self, tableView: tableView, atPath: indexPath)
+    }
 }

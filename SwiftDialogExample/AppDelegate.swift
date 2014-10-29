@@ -47,17 +47,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
         self.navigationController.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func clickMeTapped() {
+        let vc = DialogViewController(root: getModalRootElement())
+        self.navigationController.pushViewController(vc!, animated: true)
+    }
+    
+    func infoTapped() {
+        let alert = UIAlertView(title: "Info", message: "Info was pressed", delegate: nil, cancelButtonTitle: "OK")
+        alert.show()
+    }
+    
     func getRootElement() -> RootElement {
         return RootElement(
             title: "SwiftDialog",
             sections: [
                 SectionElement(
                     elements: [
-                        LabelElement("Label"),
+                        StringElement("Label"),
+                        StringElement("Value1", detailText: "Detail Text"),
+                        Value2StringElement("Value2", detailText: "Detail Text"),
+                        SubtitleStringElement("Subtitle", detailText: "Detail Text"),
+                    ], header: "String Elements"
+                ),
+                SectionElement(
+                    elements: [
+                        StringElement("Click me", onSelect: { element in self.clickMeTapped() }),
+                        StringElement("More info!", onInfo: { element in self.infoTapped() }),
+                        StringElement(
+                            "Two types of taps",
+                            onSelect: { element in self.clickMeTapped() },
+                            onInfo: { element in self.infoTapped() }
+                        ),
                         TextEntryElement(),
-                        Value1LabelElement(text: "Value1", detailText: "Detail Text"),
-                        Value2LabelElement(text: "Value2", detailText: "Detail Text"),
-                        SubtitleLabelElement(text: "Subtitle", detailText: "Detail Text"),
                         BoolElement(caption: "Switch", value: false),
                         CheckboxElement(text: "Checkbox", value: false),
                         SliderElement(value: 0.5),
@@ -104,8 +125,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
     
     func getModalRootElement() -> RootElement {
         return RootElement(title: "Modal", sections: [
-            SectionElement(elements: [LabelElement("This is a modal.")]),
-            SectionElement(elements: [LabelElement("Another section.")], header: "Header", footer: "Footer"),
+            SectionElement(elements: [StringElement("This is a modal.")]),
+            SectionElement(elements: [StringElement("Another section.")], header: "Header", footer: "Footer"),
         ])
     }
 }

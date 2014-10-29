@@ -44,4 +44,7 @@ public class Element : NSObject {
 
     public func elementDeselected(dialogController: DialogController, tableView: UITableView, atPath indexPath: NSIndexPath) {
     }
+    
+    public func accessoryButtonTapped(dialogController: DialogController, tableView: UITableView, atPath indexPath: NSIndexPath) {
+    }
 }
