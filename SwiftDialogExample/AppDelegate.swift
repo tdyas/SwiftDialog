@@ -63,10 +63,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
             sections: [
                 SectionElement(
                     elements: [
-                        StringElement("Label"),
-                        StringElement("Value1", detailText: "Detail Text"),
+                        StringElement("Basic string element"),
+                        StringElement("Text", detailText: "Detail Text"),
                         Value2StringElement("Value2", detailText: "Detail Text"),
-                        SubtitleStringElement("Subtitle", detailText: "Detail Text"),
+                        SubtitleStringElement("Subtitle string element", detailText: "Subtitle"),
                     ], header: "String Elements"
                 ),
                 SectionElement(
@@ -101,18 +101,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                             summary: .RadioGroup(group: "colors")
                         ),
                         RootElement(
-                            title: "Checkboxes",
+                            title: "World of Bool",
                             sections: [
                                 SectionElement(elements: [
                                     CheckboxElement(text: "First", value: false),
                                     CheckboxElement(text: "Second", value: false),
                                     CheckboxElement(text: "Third", value: false),
-                                ]),
+                                ], header: "Checkboxes"),
                                 SectionElement(elements: [
                                     BoolElement(caption: "First", value: false),
                                     BoolElement(caption: "Second", value: false),
                                     BoolElement(caption: "Third", value: false),
-                                ])
+                                ], header: "Switches")
                             ],
                             summary: .Count,
                             childStyle: .Plain
