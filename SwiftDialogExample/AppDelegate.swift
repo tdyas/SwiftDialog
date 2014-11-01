@@ -59,8 +59,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
     
     func getRootElement() -> RootElement {
         let customHeaderLabel = UILabel(frame: CGRect.zeroRect)
+        customHeaderLabel.autoresizingMask = .FlexibleWidth
         customHeaderLabel.text = "Root Elements (+ custom header)"
         customHeaderLabel.font = UIFont(name: "AmericanTypewriter-Bold", size: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline).pointSize)
+        customHeaderLabel.sizeToFit()
+        customHeaderLabel.textAlignment = .Center
         
         return RootElement(
             title: "SwiftDialog",
