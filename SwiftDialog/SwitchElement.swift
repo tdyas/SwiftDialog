@@ -14,7 +14,7 @@
 
 import UIKit
 
-public class BoolElement : Element, BooleanValuedElement {
+public class SwitchElement : Element, BooleanValuedElement {
     private var switchControl: UISwitch!
     
     public var caption: String = ""
