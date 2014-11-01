@@ -27,6 +27,7 @@ public class DialogController : NSObject, UITableViewDataSource, UITableViewDele
         return self.root.sections[indexPath.section].elements[indexPath.row]
     }
     
+    
     // UITableViewDataSource
     
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -43,15 +44,16 @@ public class DialogController : NSObject, UITableViewDataSource, UITableViewDele
         return section.elements.count
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection sectionIndex: Int) -> String! {
+    public func tableView(tableView: UITableView, titleForHeaderInSection sectionIndex: Int) -> String? {
         let section = self.root.sections[sectionIndex]
         return section.header
     }
     
-    func tableView(tableView: UITableView, titleForFooterInSection sectionIndex: Int) -> String! {
+    public func tableView(tableView: UITableView, titleForFooterInSection sectionIndex: Int) -> String? {
         let section = self.root.sections[sectionIndex]
         return section.footer
     }
+    
     
     // UITableViewDelegate
     
@@ -68,5 +70,15 @@ public class DialogController : NSObject, UITableViewDataSource, UITableViewDele
     public func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
         let element = self.elementAtIndexPath(indexPath)
         element.accessoryButtonTapped(self, tableView: tableView, atPath: indexPath)
+    }
+    
+    public func tableView(tableView: UITableView, viewForHeaderInSection sectionIndex: Int) -> UIView? {
+        let section = self.root.sections[sectionIndex]
+        return section.headerView
+    }
+    
+    public func tableView(tableView: UITableView, viewForFooterInSection sectionIndex: Int) -> UIView? {
+        let section = self.root.sections[sectionIndex]
+        return section.footerView
     }
 }

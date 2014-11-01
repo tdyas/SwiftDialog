@@ -16,15 +16,21 @@ public class SectionElement : Element {
     public var elements: [Element]
     public var header: String?
     public var footer: String?
+    public var headerView: UIView?
+    public var footerView: UIView?
     
     public init(
         elements: [Element] = [],
         header: String? = nil,
-        footer: String? = nil
+        footer: String? = nil,
+        headerView: UIView? = nil,
+        footerView: UIView? = nil
     ) {
         self.elements = elements
         self.header = header
         self.footer = footer
+        self.headerView = headerView
+        self.footerView = footerView
 
         super.init()
         

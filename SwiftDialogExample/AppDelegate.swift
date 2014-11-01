@@ -58,6 +58,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
     }
     
     func getRootElement() -> RootElement {
+        let customHeaderLabel = UILabel(frame: CGRect.zeroRect)
+        customHeaderLabel.text = "Root Elements (+ custom header)"
+        customHeaderLabel.font = UIFont(name: "AmericanTypewriter-Bold", size: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline).pointSize)
+        
         return RootElement(
             title: "SwiftDialog",
             sections: [
@@ -117,7 +121,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                             summary: .Count,
                             childStyle: .Plain
                         )
-                    ]
+                    ],
+                    headerView: customHeaderLabel
+                    
                 ),
                 SectionElement(
                     elements: [
