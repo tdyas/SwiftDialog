@@ -33,10 +33,9 @@ public class SliderElement : Element {
             cell = UITableViewCell(style: .Default, reuseIdentifier: cellKey)
             cell.selectionStyle = .None
         }
-        
-        if self.text != "" {
-            cell.textLabel.text = self.text
-        }
+
+        // Setup the text label.
+        cell.textLabel.text = self.text
 
         // Remove any existing slider from the content view.
         if let view = cell.contentView.viewWithTag(sliderTag) {
