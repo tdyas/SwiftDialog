@@ -29,6 +29,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		322406111A05BCFE0022781A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32CE041019EADAFD00BE3D56 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 32CE041819EADAFD00BE3D56;
+			remoteInfo = SwiftDialog;
+		};
 		32CE045319EADD7200BE3D56 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 32CE041019EADAFD00BE3D56 /* Project object */;
@@ -264,6 +271,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				322406121A05BCFE0022781A /* PBXTargetDependency */,
 			);
 			name = SwiftDialogExample;
 			productName = SwiftDialogExample;
@@ -299,6 +307,7 @@
 				TargetAttributes = {
 					32CE041819EADAFD00BE3D56 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = Y89EMEZCK7;
 					};
 					32CE042319EADAFD00BE3D56 = {
 						CreatedOnToolsVersion = 6.0;
@@ -414,6 +423,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		322406121A05BCFE0022781A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 32CE041819EADAFD00BE3D56 /* SwiftDialog */;
+			targetProxy = 322406111A05BCFE0022781A /* PBXContainerItemProxy */;
+		};
 		32CE045419EADD7200BE3D56 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 32CE043D19EADD7200BE3D56 /* SwiftDialogExample */;
@@ -521,6 +535,7 @@
 		32CE042D19EADAFD00BE3D56 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -537,6 +552,7 @@
 		32CE042E19EADAFD00BE3D56 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
