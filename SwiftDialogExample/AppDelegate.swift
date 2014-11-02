@@ -93,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                             onInfo: { element in self.infoTapped() }
                         ),
                         TextEntryElement(text: "", placeholder: "Enter some text here"),
-                        SwitchElement(caption: "Switch", value: false),
+                        SwitchElement(text: "Switch", value: false),
                         CheckboxElement(text: "Checkbox", value: false),
                         SliderElement(value: 0.5),
                         SliderElement(text: "Num", value: 0.5),
@@ -123,9 +123,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                                     CheckboxElement(text: "Third", value: false),
                                 ], header: "Checkboxes"),
                                 SectionElement(elements: [
-                                    SwitchElement(caption: "First", value: false),
-                                    SwitchElement(caption: "Second", value: false),
-                                    SwitchElement(caption: "Third", value: false),
+                                    SwitchElement(text: "First", value: false),
+                                    SwitchElement(text: "Second", value: false),
+                                    SwitchElement(text: "Third", value: false),
                                 ], header: "Switches")
                             ],
                             summary: .Count,

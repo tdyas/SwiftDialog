@@ -17,12 +17,12 @@ import UIKit
 public class SwitchElement : Element, BooleanValuedElement {
     private var switchControl: UISwitch!
     
-    public var caption: String = ""
+    public var text: String = ""
     public var value: Bool = false
     
-    public init(caption: String = "", value: Bool = false) {
+    public init(text: String = "", value: Bool = false) {
         super.init()
-        self.caption = caption
+        self.text = text
         self.value = value
     }
     
@@ -31,7 +31,7 @@ public class SwitchElement : Element, BooleanValuedElement {
     }
     
     public override func getCell(tableView: UITableView) -> UITableViewCell! {
-        let cellKey = "bool"
+        let cellKey = "switch"
         
         var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as UITableViewCell!
         if cell == nil {
@@ -50,7 +50,7 @@ public class SwitchElement : Element, BooleanValuedElement {
         }
         cell.accessoryView = switchControl
         
-        cell.textLabel.text = self.caption
+        cell.textLabel.text = self.text
         self.switchControl.on = self.value
         
         return cell
