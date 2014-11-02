@@ -79,13 +79,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                 SectionElement(
                     elements: [
                         StringElement("Click me", onSelect: { element in self.clickMeTapped() }),
+                        RootElement(
+                            title: "Login test",
+                            sections: [SectionElement(elements: [
+                                TextEntryElement(text: "", placeholder: "User name"),
+                                TextEntryElement(text: "", placeholder: "Password", secureTextEntry: true)
+                            ])
+                        ]),
                         StringElement("More info!", onInfo: { element in self.infoTapped() }),
                         StringElement(
                             "Two types of taps",
                             onSelect: { element in self.clickMeTapped() },
                             onInfo: { element in self.infoTapped() }
                         ),
-                        TextEntryElement(),
+                        TextEntryElement(text: "", placeholder: "Enter some text here"),
                         SwitchElement(caption: "Switch", value: false),
                         CheckboxElement(text: "Checkbox", value: false),
                         SliderElement(value: 0.5),

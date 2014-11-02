@@ -40,9 +40,9 @@ class TextEntryCell : UITableViewCell {
     }
 }
 
-public class TextEntryElement : Element, UITextFieldDelegate {
+public class TextEntryElement : Element, UITextFieldDelegate, UITextInputTraits {
     private var cachedText: String = ""
-    private var textField: UITextField?
+    private var textField: UITextField!
     
     public var text: String {
         get {
@@ -64,8 +64,39 @@ public class TextEntryElement : Element, UITextFieldDelegate {
         }
     }
     
-    public init(_ text: String = "") {
+    public var placeholder: String?
+    
+    // UITextInputTraits
+    
+    public var autocapitalizationType: UITextAutocapitalizationType
+    public var autocorrectionType: UITextAutocorrectionType
+    public var spellCheckingType: UITextSpellCheckingType
+    public var keyboardType: UIKeyboardType
+    public var keyboardAppearance: UIKeyboardAppearance
+    public var secureTextEntry: Bool
+
+    
+    public init(
+        text: String = "",
+        placeholder: String? = nil,
+        autocapitalizationType: UITextAutocapitalizationType = .Sentences,
+        autocorrectionType: UITextAutocorrectionType = .Default,
+        spellCheckingType: UITextSpellCheckingType = .Default,
+        keyboardType: UIKeyboardType = .Default,
+        keyboardAppearance: UIKeyboardAppearance = .Default,
+        secureTextEntry: Bool = false
+    ) {
+        self.placeholder = placeholder
+        
+        self.autocapitalizationType = autocapitalizationType
+        self.autocorrectionType = autocorrectionType
+        self.spellCheckingType = spellCheckingType
+        self.keyboardType = keyboardType
+        self.keyboardAppearance = keyboardAppearance
+        self.secureTextEntry = secureTextEntry
+        
         super.init()
+        
         self.text = text
     }
     
@@ -73,9 +104,10 @@ public class TextEntryElement : Element, UITextFieldDelegate {
         self.text = textField.text
     }
     
-    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+    public func textFieldShouldReturn(textField: UITextField) -> Bool {
+        println("textFieldShouldReturn")
         textField.resignFirstResponder()
-        return true
+        return false
     }
     
     func textFieldDidEndEditing(textField: UITextField!) {
@@ -99,13 +131,26 @@ public class TextEntryElement : Element, UITextFieldDelegate {
             }
         } else {
             let textField = UITextField(frame: CGRect.zeroRect)
+            textField.delegate = self
             textField.text = self.text
+
             cell.contentView.addSubview(textField)
             cell.textField = textField
             self.textField = textField
         }
         
-        self.textField!.text = self.text
+        self.textField.text = self.text
+        self.textField.placeholder = placeholder
+        
+        self.textField.autocapitalizationType = autocapitalizationType
+        self.textField.autocorrectionType = autocorrectionType
+        self.textField.spellCheckingType = spellCheckingType
+        self.textField.keyboardType = keyboardType
+        self.textField.keyboardAppearance = keyboardAppearance
+        self.textField.secureTextEntry = secureTextEntry
+
+        self.textField.returnKeyType = .Done
+        self.textField.enablesReturnKeyAutomatically = false
         
         return cell
     }
