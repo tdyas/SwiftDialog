@@ -56,7 +56,7 @@ public class SliderElement : Element {
         let insets = tableView.separatorInset
         let contentFrame = cell.contentView.bounds.rectByInsetting(dx: insets.left, dy: 0)
         
-        var sliderFrame = CGRect.zeroRect
+        var sliderFrame = contentFrame
         if self.text != "" {
             let textSize = cell.textLabel.intrinsicContentSize()
             sliderFrame = CGRect(
@@ -65,8 +65,6 @@ public class SliderElement : Element {
                 width: contentFrame.width - textSize.width - 10.0,
                 height: contentFrame.height
             )
-        } else {
-            sliderFrame = contentFrame
         }
         
         self.slider?.frame = sliderFrame
