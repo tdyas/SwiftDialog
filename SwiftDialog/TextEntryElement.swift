@@ -16,9 +16,9 @@ import UIKit
 
 class TextEntryCell : UITableViewCell {
     weak var tableView: UITableView!
-    var textField: UITextField?
+    var textField: UITextField!
     
-    init?(tableView: UITableView, reuseIdentifier: String!) {
+    init(tableView: UITableView, reuseIdentifier: String?) {
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
         self.tableView = tableView
     }
@@ -28,19 +28,34 @@ class TextEntryCell : UITableViewCell {
     }
     
     override func layoutSubviews() {
+        let inset = self.tableView.separatorInset
+        let contentFrame = self.contentView.bounds.rectByInsetting(dx: inset.left, dy: 0)
+        
         super.layoutSubviews()
         
-        var frame = self.contentView.bounds
-        let inset = self.tableView.separatorInset
-        frame.origin.x += inset.left
-        frame.size.width -= inset.left
-        frame.size.width -= inset.right
-        
-        self.textField?.frame = frame
+        var textRect = CGRect.zeroRect
+        if let text = textLabel.text {
+            if text != "" {
+                let context = NSStringDrawingContext()
+                let infiniteSize = CGSize(width: CGFloat.max, height: CGFloat.max)
+                textRect = text.boundingRectWithSize(infiniteSize, options: .TruncatesLastVisibleLine, attributes: nil, context: context)
+            }
+
+            let textFieldMinX = contentFrame.minX + textRect.size.width + 20
+            let textFieldFrame = CGRect(
+                x: textFieldMinX,
+                y: contentFrame.origin.y,
+                width: contentFrame.maxX - textFieldMinX,
+                height: contentFrame.size.height
+            )
+            textField.frame = textFieldFrame
+        } else {
+            textField.frame = contentFrame
+        }
     }
 }
 
-public class TextEntryElement : Element, UITextFieldDelegate, UITextInputTraits {
+public class TextEntryElement : Element, UITextFieldDelegate {
     private var cachedText: String = ""
     private var textField: UITextField!
     
@@ -64,9 +79,8 @@ public class TextEntryElement : Element, UITextFieldDelegate, UITextInputTraits 
         }
     }
     
+    public var title: String?
     public var placeholder: String?
-    
-    // UITextInputTraits
     
     public var autocapitalizationType: UITextAutocapitalizationType
     public var autocorrectionType: UITextAutocorrectionType
@@ -74,10 +88,10 @@ public class TextEntryElement : Element, UITextFieldDelegate, UITextInputTraits 
     public var keyboardType: UIKeyboardType
     public var keyboardAppearance: UIKeyboardAppearance
     public var secureTextEntry: Bool
-
     
     public init(
         text: String = "",
+        title: String? = nil,
         placeholder: String? = nil,
         autocapitalizationType: UITextAutocapitalizationType = .Sentences,
         autocorrectionType: UITextAutocorrectionType = .Default,
@@ -86,6 +100,7 @@ public class TextEntryElement : Element, UITextFieldDelegate, UITextInputTraits 
         keyboardAppearance: UIKeyboardAppearance = .Default,
         secureTextEntry: Bool = false
     ) {
+        self.title = title
         self.placeholder = placeholder
         
         self.autocapitalizationType = autocapitalizationType
@@ -105,7 +120,6 @@ public class TextEntryElement : Element, UITextFieldDelegate, UITextInputTraits 
     }
     
     public func textFieldShouldReturn(textField: UITextField) -> Bool {
-        println("textFieldShouldReturn")
         textField.resignFirstResponder()
         return false
     }
@@ -122,6 +136,8 @@ public class TextEntryElement : Element, UITextFieldDelegate, UITextInputTraits 
             cell = TextEntryCell(tableView: tableView, reuseIdentifier: cellKey)
             cell.selectionStyle = .None
         }
+
+        cell.textLabel.text = title
         
         if let textField = self.textField {
             if textField.superview != cell {

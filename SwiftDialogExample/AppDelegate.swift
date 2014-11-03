@@ -93,6 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                             onInfo: { element in self.infoTapped() }
                         ),
                         TextEntryElement(text: "", placeholder: "Enter some text here"),
+                        TextEntryElement(text: "", title: "Entry", placeholder: "Enter more text here"),
                         SwitchElement(text: "Switch", value: false),
                         CheckboxElement(text: "Checkbox", value: false),
                         SliderElement(value: 0.5),
