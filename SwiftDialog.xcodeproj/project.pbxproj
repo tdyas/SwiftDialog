@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3224061019FA0CF40022781A /* RadioElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3224060F19FA0CF40022781A /* RadioElement.swift */; };
+		322406151A07D23F0022781A /* DateTimeElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322406141A07D23F0022781A /* DateTimeElements.swift */; };
 		3231441219F466D500A3F921 /* SwitchElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3231441119F466D500A3F921 /* SwitchElement.swift */; };
 		3231441419F4677F00A3F921 /* TextEntryElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3231441319F4677F00A3F921 /* TextEntryElement.swift */; };
 		3231441619F468D800A3F921 /* RootElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3231441519F468D800A3F921 /* RootElement.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		3224060F19FA0CF40022781A /* RadioElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioElement.swift; sourceTree = "<group>"; };
+		322406141A07D23F0022781A /* DateTimeElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimeElements.swift; sourceTree = "<group>"; };
 		3231441119F466D500A3F921 /* SwitchElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchElement.swift; sourceTree = "<group>"; };
 		3231441319F4677F00A3F921 /* TextEntryElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEntryElement.swift; sourceTree = "<group>"; };
 		3231441519F468D800A3F921 /* RootElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootElement.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				327777D119F04FD700AB0419 /* CheckboxElement.swift */,
+				322406141A07D23F0022781A /* DateTimeElements.swift */,
 				32CE043619EADB7E00BE3D56 /* DialogController.swift */,
 				32CE043219EADB4600BE3D56 /* DialogViewController.swift */,
 				32CE043319EADB4600BE3D56 /* Element.swift */,
@@ -384,6 +387,7 @@
 				3231441619F468D800A3F921 /* RootElement.swift in Sources */,
 				32CE043719EADB7E00BE3D56 /* DialogController.swift in Sources */,
 				32CE043519EADB4600BE3D56 /* Element.swift in Sources */,
+				322406151A07D23F0022781A /* DateTimeElements.swift in Sources */,
 				3231441219F466D500A3F921 /* SwitchElement.swift in Sources */,
 				32CE043919EADBAF00BE3D56 /* ModalDialogViewController.swift in Sources */,
 				327777CE19EF494F00AB0419 /* SliderElement.swift in Sources */,

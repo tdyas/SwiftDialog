@@ -98,6 +98,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                         CheckboxElement(text: "Checkbox", value: false),
                         SliderElement(value: 0.5),
                         SliderElement(text: "Num", value: 0.5),
+                        DateTimeElement(text: "Date/Time Picker", value: NSDate()),
+                        DateElement(text: "Date Picker", value: NSDate()),
+                        TimeElement(text: "Time Picker", value: NSDate())
                     ],
                     header: "Basic"
                 ),
