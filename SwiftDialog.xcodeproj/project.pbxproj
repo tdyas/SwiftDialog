@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3224061019FA0CF40022781A /* RadioElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3224060F19FA0CF40022781A /* RadioElement.swift */; };
 		322406151A07D23F0022781A /* DateTimeElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322406141A07D23F0022781A /* DateTimeElements.swift */; };
+		32286FE81A0FACAC00BEB9AB /* SwiftDialog.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 32CE041919EADAFD00BE3D56 /* SwiftDialog.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3231441219F466D500A3F921 /* SwitchElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3231441119F466D500A3F921 /* SwitchElement.swift */; };
 		3231441419F4677F00A3F921 /* TextEntryElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3231441319F4677F00A3F921 /* TextEntryElement.swift */; };
 		3231441619F468D800A3F921 /* RootElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3231441519F468D800A3F921 /* RootElement.swift */; };
@@ -45,6 +46,19 @@
 			remoteInfo = SwiftDialogExample;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		32286FE71A0FAC8E00BEB9AB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				32286FE81A0FACAC00BEB9AB /* SwiftDialog.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3224060F19FA0CF40022781A /* RadioElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioElement.swift; sourceTree = "<group>"; };
@@ -270,6 +284,7 @@
 				32CE043A19EADD7200BE3D56 /* Sources */,
 				32CE043B19EADD7200BE3D56 /* Frameworks */,
 				32CE043C19EADD7200BE3D56 /* Resources */,
+				32286FE71A0FAC8E00BEB9AB /* CopyFiles */,
 			);
 			buildRules = (
 			);
