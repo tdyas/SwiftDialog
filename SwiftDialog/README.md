@@ -1,11 +1,11 @@
 SwiftDialog
------------
+===========
 
 The SwiftDialog framework allows the easy creation of UITableView's. There are many other such frameworks,
 why write another one in Swift? To discover idiomatic Swift using a non-trivial project.
 
-SwiftDialog is inspired by Miguel de Icaza's MonoTouch.Dialog
-(https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPFrameworks/Tasks/CreatingFrameworks.html).
+SwiftDialog is inspired by Miguel de Icaza's
+[MonoTouch.Dialog](https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPFrameworks/Tasks/CreatingFrameworks.html).
 
 SwiftDialog is licensed under the Apache License, Version 2.0.
 
@@ -20,9 +20,8 @@ Installing SwiftDialog
 3. Drag the project for SwiftDialog (SwiftDialog.xcodeproj) into the workspace.
 
 4. Follow the instructions in the "Embedding a Private Framework in Your Application Bundle"
-section of the following web site:
+section of the [Creating Frameworks](https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPFrameworks/Tasks/CreatingFrameworks.html) site.
 
-https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPFrameworks/Tasks/CreatingFrameworks.html
 
 
 Using SwiftDialog
