@@ -66,7 +66,7 @@ Open Issues
 SwiftDialog is still under development. Parts will change as better ways of using Swift are found.
 Here is a *non-exhaustive* list of open issues:
 
-- Cleanup the SwiftDialogExample application to better organize the examples.
+- Improve the SwiftDialogExample application with more examples.
 
 - Cocoa POD support.
 
