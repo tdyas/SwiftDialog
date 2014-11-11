@@ -66,6 +66,8 @@ Open Issues
 SwiftDialog is still under development. Parts will change as better ways of using Swift are found.
 Here is a *non-exhaustive* list of open issues:
 
+- Document the library, preferably using a method that can generate HTML. 
+
 - Improve the SwiftDialogExample application with more examples.
 
 - Cocoa POD support.
