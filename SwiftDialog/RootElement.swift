@@ -55,6 +55,24 @@ public class RootElement : Element {
         }
     }
     
+    public convenience init(
+        title: String,
+        elements: [Element],
+        groups: [String: Int] = [:],
+        onRefresh: ((RootElement) -> ())? = nil,
+        summary: SummarizeBy = .None,
+        childStyle: UITableViewStyle = .Grouped
+    ) {
+        self.init(
+            title: title,
+            sections: [SectionElement(elements: elements)],
+            groups: groups,
+            onRefresh: onRefresh,
+            summary: summary,
+            childStyle: childStyle
+        )
+    }
+    
     func indexForRadioElement(radioElement: RadioElement) -> Int? {
         var index = 0
         

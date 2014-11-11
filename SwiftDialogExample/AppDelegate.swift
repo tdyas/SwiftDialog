@@ -48,12 +48,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
     }
     
     func clickMeTapped() {
-        let vc = DialogViewController(root: getModalRootElement())
+        let element = getTapRootElement()
+        let vc = DialogViewController(root: element)
         self.navigationController.pushViewController(vc!, animated: true)
     }
     
     func infoTapped() {
-        let alert = UIAlertView(title: "Info", message: "Info was pressed", delegate: nil, cancelButtonTitle: "OK")
+        let alert = UIAlertView(title: "Info", message: "Info was pressed.", delegate: nil, cancelButtonTitle: "OK")
         alert.show()
     }
     
@@ -70,39 +71,91 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
             sections: [
                 SectionElement(
                     elements: [
-                        StringElement("Basic string element"),
-                        StringElement("Text", detailText: "Detail Text"),
-                        Value2StringElement("Value2", detailText: "Detail Text"),
-                        SubtitleStringElement("Subtitle string element", detailText: "Subtitle"),
-                    ], header: "String Elements"
-                ),
-                SectionElement(
-                    elements: [
-                        StringElement("Click me", onSelect: { element in self.clickMeTapped() }),
                         RootElement(
-                            title: "Login test",
-                            sections: [SectionElement(elements: [
-                                TextEntryElement(text: "", placeholder: "User name"),
-                                TextEntryElement(text: "", placeholder: "Password", secureTextEntry: true)
-                            ])
-                        ]),
-                        StringElement("More info!", onInfo: { element in self.infoTapped() }),
-                        StringElement(
-                            "Two types of taps",
-                            onSelect: { element in self.clickMeTapped() },
-                            onInfo: { element in self.infoTapped() }
+                            title: "String elements",
+                            sections: [
+                                SectionElement(
+                                    header: "String Elements",
+                                    elements: [
+                                        StringElement("Basic string element"),
+                                        StringElement("Text", detailText: "Detail Text"),
+                                        Value2StringElement("Value2", detailText: "Detail Text"),
+                                        SubtitleStringElement("Subtitle string element", detailText: "Subtitle")
+                                    ]
+                                ),
+                                SectionElement(
+                                    header: "Tappable",
+                                    elements: [
+                                        StringElement("Tap me", onSelect: { element in self.clickMeTapped() }),
+                                        StringElement("An info button", onInfo: { element in self.infoTapped() }),
+                                        StringElement(
+                                            "Both types of taps",
+                                            onSelect: { element in self.clickMeTapped() },
+                                            onInfo: { element in self.infoTapped() }
+                                        )
+                                    ]
+                                )
+                            ]
                         ),
-                        TextEntryElement(text: "", placeholder: "Enter some text here"),
-                        TextEntryElement(text: "", title: "Entry", placeholder: "Enter more text here"),
-                        SwitchElement(text: "Switch", value: false),
-                        CheckboxElement(text: "Checkbox", value: false),
-                        SliderElement(value: 0.5),
-                        SliderElement(text: "Num", value: 0.5),
-                        DateTimeElement(text: "Date/Time Picker", value: NSDate()),
-                        DateElement(text: "Date Picker", value: NSDate()),
-                        TimeElement(text: "Time Picker", value: NSDate())
-                    ],
-                    header: "Basic"
+                        RootElement(
+                            title: "Text entry elements",
+                            sections: [
+                                SectionElement(
+                                    header: "Basic text entry",
+                                    elements: [
+                                        TextEntryElement(text: "", placeholder: "Enter some text here"),
+                                        TextEntryElement(text: "", title: "Entry", placeholder: "Enter more text here")
+                                    ]
+                                ),
+                                SectionElement(
+                                    header: "Login form",
+                                    elements: [
+                                        TextEntryElement(text: "", placeholder: "User name"),
+                                        TextEntryElement(text: "", placeholder: "Password", secureTextEntry: true)
+                                    ]
+                                )
+                            ]
+                        ),
+                        RootElement(
+                            title: "Boolean elements",
+                            sections: [
+                                SectionElement(
+                                    elements: [
+                                        SwitchElement(text: "Switch", value: false),
+                                        CheckboxElement(text: "Checkbox", value: false)
+                                    ]
+                                ),
+                                SectionElement(
+                                    header: "Radio group",
+                                    elements: [
+                                        RadioElement(text: "Studio", group: "apts"),
+                                        RadioElement(text: "1 bedroom", group: "apts"),
+                                        RadioElement(text: "2 bedroom", group: "apts"),
+                                        RadioElement(text: "3 bedroom", group: "apts")
+                                    ]
+                                )
+                            ]
+                        ),
+                        RootElement(
+                            title: "Sliders",
+                            sections: [
+                                SectionElement(
+                                    elements: [
+                                        SliderElement(value: 0.5),
+                                        SliderElement(text: "Num", value: 0.5)
+                                    ]
+                                )
+                            ]
+                        ),
+                        RootElement(
+                            title: "Date/time elements",
+                            elements: [
+                                DateTimeElement(text: "Date/Time Picker", value: NSDate()),
+                                DateElement(text: "Date Picker", value: NSDate()),
+                                TimeElement(text: "Time Picker", value: NSDate())
+                            ]
+                        )
+                    ]
                 ),
                 SectionElement(
                     elements: [
@@ -139,15 +192,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                     headerView: customHeaderLabel
                     
                 ),
-                SectionElement(
-                    elements: [
-                        RadioElement(text: "Studio", group: "apts"),
-                        RadioElement(text: "1 bedroom", group: "apts"),
-                        RadioElement(text: "2 bedroom", group: "apts"),
-                        RadioElement(text: "3 bedroom", group: "apts")
-                    ],
-                    header: "Apartment Types"
-                )
             ],
             groups: [
                 "apts": 0
@@ -172,5 +216,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
             SectionElement(elements: [StringElement("This is a modal.")]),
             SectionElement(elements: [StringElement("Another section.")], header: "Header", footer: "Footer"),
         ])
+    }
+    
+    func getTapRootElement() -> RootElement {
+        return RootElement(
+            title: "Info",
+            elements: [
+                StringElement("You tapped on a cell.")
+            ]
+        )
     }
 }
