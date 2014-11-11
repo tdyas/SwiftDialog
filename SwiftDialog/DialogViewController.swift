@@ -19,7 +19,7 @@ public class DialogViewController : UITableViewController {
     public var root: RootElement!
     public var dialogController: DialogController!
 
-    init?(root: RootElement, style: UITableViewStyle) {
+    init(root: RootElement, style: UITableViewStyle) {
         super.init(style: style)
         self.root = root
         self.dialogController = DialogController(self.root)
@@ -27,7 +27,7 @@ public class DialogViewController : UITableViewController {
         self.root.dialogController = self.dialogController
     }
     
-    public convenience init?(root: RootElement) {
+    public convenience init(root: RootElement) {
         self.init(root: root, style: .Grouped)
     }
     

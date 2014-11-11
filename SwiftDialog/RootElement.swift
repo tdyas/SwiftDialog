@@ -148,6 +148,6 @@ public class RootElement : Element {
     
     public override func elementSelected(dialogController: DialogController, tableView: UITableView, atPath indexPath: NSIndexPath) {
         let vc = DialogViewController(root: self, style: childStyle)
-        dialogController.viewController?.navigationController?.pushViewController(vc!, animated: true)
+        dialogController.viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
     func clickMeTapped() {
         let element = getTapRootElement()
         let vc = DialogViewController(root: element)
-        self.navigationController.pushViewController(vc!, animated: true)
+        self.navigationController.pushViewController(vc, animated: true)
     }
     
     func infoTapped() {
