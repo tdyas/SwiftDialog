@@ -19,7 +19,7 @@ public class DialogViewController : UITableViewController {
     public var root: RootElement!
     public var dialogController: DialogController!
 
-    init(root: RootElement, style: UITableViewStyle) {
+    public init(root: RootElement, style: UITableViewStyle) {
         super.init(style: style)
         self.root = root
         self.dialogController = DialogController(self.root)
