@@ -33,11 +33,7 @@ public class CheckboxElement : Element, BooleanValuedElement {
         }
         
         cell.textLabel.text = self.text
-        if (self.value) {
-            cell.accessoryType = .Checkmark
-        } else {
-            cell.accessoryType = .None
-        }
+        cell.accessoryType = self.value ? .Checkmark : .None
         
         return cell
     }
@@ -46,11 +42,7 @@ public class CheckboxElement : Element, BooleanValuedElement {
         self.value = !self.value
         
         if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-            if (self.value) {
-                cell.accessoryType = .Checkmark
-            } else {
-                cell.accessoryType = .None
-            }
+            cell.accessoryType = self.value ? .Checkmark : .None
         }
 
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
