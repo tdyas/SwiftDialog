@@ -25,14 +25,10 @@ public class ModalDialogViewController : UIViewController {
 
     public weak var delegate: ModalDialogViewControllerDelegate?
     
-    public init(root: RootElement, style: UITableViewStyle) {
+    public init(root: RootElement, style: UITableViewStyle = .Grouped) {
         self.dialogViewController = DialogViewController(root: root, style: style)
         self.childNavigationController = UINavigationController(rootViewController: self.dialogViewController)
         super.init(nibName: nil, bundle: nil)
-    }
-    
-    public convenience init(root: RootElement) {
-        self.init(root: root, style: .Grouped)
     }
     
     public required init(coder aDecoder: NSCoder) {

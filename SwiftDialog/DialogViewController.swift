@@ -19,16 +19,12 @@ public class DialogViewController : UITableViewController {
     public var root: RootElement!
     public var dialogController: DialogController!
 
-    public init(root: RootElement, style: UITableViewStyle) {
+    public init(root: RootElement, style: UITableViewStyle = .Grouped) {
         super.init(style: style)
         self.root = root
         self.dialogController = DialogController(self.root)
         self.dialogController.viewController = self
         self.root.dialogController = self.dialogController
-    }
-    
-    public convenience init(root: RootElement) {
-        self.init(root: root, style: .Grouped)
     }
     
     public override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
