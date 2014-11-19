@@ -134,7 +134,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                                         RadioElement(text: "3 bedroom", group: "apts")
                                     ]
                                 )
-                            ]
+                            ],
+                            groups: ["apts": 3]
                         ),
                         RootElement(
                             title: "Sliders",
