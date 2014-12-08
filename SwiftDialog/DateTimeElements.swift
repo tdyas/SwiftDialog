@@ -164,7 +164,7 @@ public class DateTimeElement : Element {
             cell.accessoryType = .DisclosureIndicator
         }
         
-        cell.textLabel.text = text
+        cell.textLabel!.text = text
         cell.detailTextLabel!.text = formatDateTime()
         
         return cell

@@ -35,7 +35,7 @@ public class SliderElement : Element {
         }
 
         // Setup the text label.
-        cell.textLabel.text = self.text
+        cell.textLabel!.text = self.text
 
         // Remove any existing slider from the content view.
         if let view = cell.contentView.viewWithTag(sliderTag) {
@@ -58,7 +58,7 @@ public class SliderElement : Element {
         
         var sliderFrame = contentFrame
         if self.text != "" {
-            let textSize = cell.textLabel.intrinsicContentSize()
+            let textSize = cell.textLabel!.intrinsicContentSize()
             sliderFrame = CGRect(
                 x: contentFrame.minX + textSize.width + 10.0,
                 y: contentFrame.minY,

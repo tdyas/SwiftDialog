@@ -50,7 +50,7 @@ public class SwitchElement : Element, BooleanValuedElement {
         }
         cell.accessoryView = switchControl
         
-        cell.textLabel.text = self.text
+        cell.textLabel!.text = self.text
         self.switchControl.on = self.value
         
         return cell

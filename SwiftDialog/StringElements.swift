@@ -61,7 +61,7 @@ public class StringElement : Element {
             }
         }
         
-        cell.textLabel.text = text
+        cell.textLabel!.text = text
         if let t = detailText {
             cell.detailTextLabel?.text = t
         }

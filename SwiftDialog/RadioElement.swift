@@ -32,7 +32,7 @@ public class RadioElement : Element {
             cell.selectionStyle = .Default
         }
         
-        cell.textLabel.text = self.text
+        cell.textLabel!.text = self.text
 
         if let root = self.root {
             let index = root.indexForRadioElement(self)

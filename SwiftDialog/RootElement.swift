@@ -103,7 +103,7 @@ public class RootElement : Element {
             cell.accessoryType = .DisclosureIndicator
         }
         
-        cell.textLabel.text = title
+        cell.textLabel!.text = title
         
         switch summary {
         case .RadioGroup(let group):

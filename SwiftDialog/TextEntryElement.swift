@@ -34,7 +34,7 @@ class TextEntryCell : UITableViewCell {
         super.layoutSubviews()
         
         var textRect = CGRect.zeroRect
-        if let text = textLabel.text {
+        if let text = self.textLabel!.text {
             if text != "" {
                 let context = NSStringDrawingContext()
                 let infiniteSize = CGSize(width: CGFloat.max, height: CGFloat.max)
@@ -137,7 +137,7 @@ public class TextEntryElement : Element, UITextFieldDelegate {
             cell.selectionStyle = .None
         }
 
-        cell.textLabel.text = title
+        cell.textLabel!.text = title
         
         if let textField = self.textField {
             if textField.superview != cell {
