@@ -63,8 +63,6 @@
 		32CE041919EADAFD00BE3D56 /* SwiftDialog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftDialog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32CE041D19EADAFD00BE3D56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32CE041E19EADAFD00BE3D56 /* SwiftDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftDialog.h; sourceTree = "<group>"; };
-		32CE042719EADAFD00BE3D56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		32CE042819EADAFD00BE3D56 /* SwiftDialogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDialogTests.swift; sourceTree = "<group>"; };
 		32CE043219EADB4600BE3D56 /* DialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
 		32CE043319EADB4600BE3D56 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		32CE043619EADB7E00BE3D56 /* DialogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogController.swift; sourceTree = "<group>"; };
@@ -74,8 +72,6 @@
 		32CE044219EADD7200BE3D56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32CE044919EADD7200BE3D56 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		32CE044C19EADD7200BE3D56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		32CE045719EADD7200BE3D56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		32CE045819EADD7200BE3D56 /* SwiftDialogExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDialogExampleTests.swift; sourceTree = "<group>"; };
 		32CE046119EAE0B800BE3D56 /* StringElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringElements.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,9 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				32CE041B19EADAFD00BE3D56 /* SwiftDialog */,
-				32CE042519EADAFD00BE3D56 /* SwiftDialogTests */,
 				32CE043F19EADD7200BE3D56 /* SwiftDialogExample */,
-				32CE045519EADD7200BE3D56 /* SwiftDialogExampleTests */,
 				32CE041A19EADAFD00BE3D56 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -148,23 +142,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		32CE042519EADAFD00BE3D56 /* SwiftDialogTests */ = {
-			isa = PBXGroup;
-			children = (
-				32CE042819EADAFD00BE3D56 /* SwiftDialogTests.swift */,
-				32CE042619EADAFD00BE3D56 /* Supporting Files */,
-			);
-			path = SwiftDialogTests;
-			sourceTree = "<group>";
-		};
-		32CE042619EADAFD00BE3D56 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				32CE042719EADAFD00BE3D56 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		32CE043F19EADD7200BE3D56 /* SwiftDialogExample */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,23 +157,6 @@
 			isa = PBXGroup;
 			children = (
 				32CE044119EADD7200BE3D56 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		32CE045519EADD7200BE3D56 /* SwiftDialogExampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				32CE045819EADD7200BE3D56 /* SwiftDialogExampleTests.swift */,
-				32CE045619EADD7200BE3D56 /* Supporting Files */,
-			);
-			path = SwiftDialogExampleTests;
-			sourceTree = "<group>";
-		};
-		32CE045619EADD7200BE3D56 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				32CE045719EADD7200BE3D56 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
