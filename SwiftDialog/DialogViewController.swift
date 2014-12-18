@@ -15,22 +15,20 @@
 import Foundation
 import UIKit
 
-public class DialogViewController : UITableViewController {
-    public var root: RootElement!
-    public var dialogController: DialogController!
+public class DialogViewController : SwiftTableViewController {
+    public var root: RootElement
+    public var dialogController: DialogController
 
     public init(root: RootElement, style: UITableViewStyle = .Grouped) {
-        super.init(style: style)
         self.root = root
         self.dialogController = DialogController(self.root)
-        self.dialogController.viewController = self
         self.root.dialogController = self.dialogController
+        
+        super.init(style: style)
+
+        self.dialogController.viewController = self
     }
     
-    public override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-
     public required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -44,8 +42,8 @@ public class DialogViewController : UITableViewController {
         self.navigationItem.title = self.root.title
         
         if let callback = self.root.onRefresh {
-            self.refreshControl = UIRefreshControl(frame: CGRect.zeroRect)
-            self.refreshControl?.addTarget(self, action: "triggerRefresh", forControlEvents: .ValueChanged)
+            //self.refreshControl = UIRefreshControl(frame: CGRect.zeroRect)
+            //self.refreshControl?.addTarget(self, action: "triggerRefresh", forControlEvents: .ValueChanged)
         }
     }
     
@@ -61,10 +59,10 @@ public class DialogViewController : UITableViewController {
     }
 
     public func beginRefreshing() {
-        self.refreshControl?.beginRefreshing()
+        //self.refreshControl?.beginRefreshing()
     }
     
     public func endRefreshing() {
-        self.refreshControl?.endRefreshing()
+        //self.refreshControl?.endRefreshing()
     }
 }

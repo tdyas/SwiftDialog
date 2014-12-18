@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3216F1AB1A429C0300862E38 /* SwiftTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3216F1AA1A429C0300862E38 /* SwiftTableViewController.swift */; };
+		3216F1AC1A42A22B00862E38 /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CE043219EADB4600BE3D56 /* DialogViewController.swift */; };
 		3224061019FA0CF40022781A /* RadioElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3224060F19FA0CF40022781A /* RadioElement.swift */; };
 		322406151A07D23F0022781A /* DateTimeElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322406141A07D23F0022781A /* DateTimeElements.swift */; };
 		32286FE81A0FACAC00BEB9AB /* SwiftDialog.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 32CE041919EADAFD00BE3D56 /* SwiftDialog.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -17,7 +19,6 @@
 		327777CE19EF494F00AB0419 /* SliderElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327777CD19EF494F00AB0419 /* SliderElement.swift */; };
 		327777D219F04FD700AB0419 /* CheckboxElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327777D119F04FD700AB0419 /* CheckboxElement.swift */; };
 		32CE041F19EADAFD00BE3D56 /* SwiftDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CE041E19EADAFD00BE3D56 /* SwiftDialog.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32CE043419EADB4600BE3D56 /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CE043219EADB4600BE3D56 /* DialogViewController.swift */; };
 		32CE043519EADB4600BE3D56 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CE043319EADB4600BE3D56 /* Element.swift */; };
 		32CE043719EADB7E00BE3D56 /* DialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CE043619EADB7E00BE3D56 /* DialogController.swift */; };
 		32CE043919EADBAF00BE3D56 /* ModalDialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CE043819EADBAF00BE3D56 /* ModalDialogViewController.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3216F1AA1A429C0300862E38 /* SwiftTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftTableViewController.swift; sourceTree = "<group>"; };
 		3224060F19FA0CF40022781A /* RadioElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioElement.swift; sourceTree = "<group>"; };
 		322406141A07D23F0022781A /* DateTimeElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimeElements.swift; sourceTree = "<group>"; };
 		3231441119F466D500A3F921 /* SwitchElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchElement.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				3231441719F4690100A3F921 /* SectionElement.swift */,
 				327777CD19EF494F00AB0419 /* SliderElement.swift */,
 				32CE046119EAE0B800BE3D56 /* StringElements.swift */,
+				3216F1AA1A429C0300862E38 /* SwiftTableViewController.swift */,
 				3231441119F466D500A3F921 /* SwitchElement.swift */,
 				3231441319F4677F00A3F921 /* TextEntryElement.swift */,
 				32CE041E19EADAFD00BE3D56 /* SwiftDialog.h */,
@@ -275,10 +278,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3231441619F468D800A3F921 /* RootElement.swift in Sources */,
+				3216F1AB1A429C0300862E38 /* SwiftTableViewController.swift in Sources */,
 				32CE043719EADB7E00BE3D56 /* DialogController.swift in Sources */,
 				32CE043519EADB4600BE3D56 /* Element.swift in Sources */,
 				322406151A07D23F0022781A /* DateTimeElements.swift in Sources */,
 				3231441219F466D500A3F921 /* SwitchElement.swift in Sources */,
+				3216F1AC1A42A22B00862E38 /* DialogViewController.swift in Sources */,
 				32CE043919EADBAF00BE3D56 /* ModalDialogViewController.swift in Sources */,
 				327777CE19EF494F00AB0419 /* SliderElement.swift in Sources */,
 				3231441819F4690100A3F921 /* SectionElement.swift in Sources */,
@@ -286,7 +291,6 @@
 				3231441419F4677F00A3F921 /* TextEntryElement.swift in Sources */,
 				32CE046219EAE0B800BE3D56 /* StringElements.swift in Sources */,
 				327777D219F04FD700AB0419 /* CheckboxElement.swift in Sources */,
-				32CE043419EADB4600BE3D56 /* DialogViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
