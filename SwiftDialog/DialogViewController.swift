@@ -42,8 +42,8 @@ public class DialogViewController : SwiftTableViewController {
         self.navigationItem.title = self.root.title
         
         if let callback = self.root.onRefresh {
-            //self.refreshControl = UIRefreshControl(frame: CGRect.zeroRect)
-            //self.refreshControl?.addTarget(self, action: "triggerRefresh", forControlEvents: .ValueChanged)
+            self.refreshControl = UIRefreshControl(frame: CGRect.zeroRect)
+            self.refreshControl!.addTarget(self, action: "triggerRefresh", forControlEvents: .ValueChanged)
         }
     }
     
@@ -59,10 +59,10 @@ public class DialogViewController : SwiftTableViewController {
     }
 
     public func beginRefreshing() {
-        //self.refreshControl?.beginRefreshing()
+        self.refreshControl!.beginRefreshing()
     }
     
     public func endRefreshing() {
-        //self.refreshControl?.endRefreshing()
+        self.refreshControl!.endRefreshing()
     }
 }

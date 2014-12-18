@@ -30,6 +30,19 @@ public class SwiftTableViewController : UIViewController {
     public let style: UITableViewStyle
     public var tableView: UITableView!
     public var clearsSelectionOnViewWillAppear: Bool = true
+    public var refreshControl: UIRefreshControl? {
+        willSet {
+            if let control = refreshControl {
+                control.removeFromSuperview()
+            }
+        }
+
+        didSet {
+            if let control = refreshControl {
+                tableView.addSubview(control)
+            }
+        }
+    }
     
     var hasBeenShownOnce: Bool = false
     var keyboardRectOpt: CGRect?
