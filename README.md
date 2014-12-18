@@ -13,15 +13,20 @@ SwiftDialog is licensed under the Apache License, Version 2.0.
 Installing SwiftDialog
 ----------------------
 
-1. Clone the SwiftDialog git repository.
+Xcode does not currently appear to support Swift and embedded frameworks. The easiest
+solution is to just add the SwiftDialog files directly to your application:
 
-2. Create a workspace for your existing application target.
+1. Add SwiftDialog as a GIT submodule by running:
 
-3. Drag the project for SwiftDialog (SwiftDialog.xcodeproj) into the workspace.
+```git submodule add https://github.com/SwiftDialog/SwiftDialog.git
+```
 
-4. Follow the instructions in the "Embedding a Private Framework in Your Application Bundle"
-section of the [Creating Frameworks](https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPFrameworks/Tasks/CreatingFrameworks.html) site.
+2. Add the SwiftDialog files to your project. Choose File then "Add Files to ...".
+   In the resulting dialog, choose the SwiftDialog/SwiftDialog directory with all of
+   the Swift source files, ensure "Create groups" is selected, select the relevant 
+   targets, and click OK.
 
+3. Commit the changes to your repository.
 
 
 Using SwiftDialog
