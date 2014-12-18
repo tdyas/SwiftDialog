@@ -16,11 +16,7 @@ Installing SwiftDialog
 Xcode does not currently appear to support Swift and embedded frameworks. The easiest
 solution is to just add the SwiftDialog files directly to your application:
 
-1. Add SwiftDialog as a GIT submodule by running:
-
-```
-git submodule add https://github.com/SwiftDialog/SwiftDialog.git
-```
+1. Add SwiftDialog as a GIT submodule by running: `git submodule add https://github.com/SwiftDialog/SwiftDialog.git`
 
 2. Add the SwiftDialog files to your project. Choose File then "Add Files to ...".
    In the resulting dialog, choose the SwiftDialog/SwiftDialog directory with all of
