@@ -22,12 +22,18 @@ public protocol ModalDialogViewControllerDelegate : class {
 public class ModalDialogViewController : UIViewController {
     public let dialogViewController: DialogViewController
     public let childNavigationController: UINavigationController
+    public var doneButtonItem: UIBarButtonItem
 
     public weak var delegate: ModalDialogViewControllerDelegate?
     
-    public init(root: RootElement, style: UITableViewStyle = .Grouped) {
-        self.dialogViewController = DialogViewController(root: root, style: style)
-        self.childNavigationController = UINavigationController(rootViewController: self.dialogViewController)
+    public init(
+        root: RootElement,
+        style: UITableViewStyle = .Grouped,
+        doneButtonItem: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: nil, action: nil)
+    ) {
+        dialogViewController = DialogViewController(root: root, style: style)
+        childNavigationController = UINavigationController(rootViewController: self.dialogViewController)
+        self.doneButtonItem = doneButtonItem
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -35,7 +41,7 @@ public class ModalDialogViewController : UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func doneTapped() {
+    public func dismiss() {
         self.delegate?.dismissModalDialogViewController(self)
     }
     
@@ -48,12 +54,13 @@ public class ModalDialogViewController : UIViewController {
         
         self.addChildViewController(self.childNavigationController)
         self.view.addSubview(self.childNavigationController.view)
-        
-        let doneItem = UIBarButtonItem(
-            barButtonSystemItem: UIBarButtonSystemItem.Done,
-            target: self,
-            action: "doneTapped"
-        )
-        self.dialogViewController.navigationItem.rightBarButtonItem = doneItem
+    }
+    
+    public override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        doneButtonItem.target = self
+        doneButtonItem.action = "dismiss"
+        dialogViewController.navigationItem.rightBarButtonItem = doneButtonItem
     }
 }
