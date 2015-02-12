@@ -33,7 +33,7 @@ public class SwitchElement : Element, BooleanValuedElement {
     public override func getCell(tableView: UITableView) -> UITableViewCell! {
         let cellKey = "switch"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as UITableViewCell!
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as! UITableViewCell!
         if cell == nil {
             cell = UITableViewCell(style: .Default, reuseIdentifier: cellKey)
             cell.selectionStyle = .None

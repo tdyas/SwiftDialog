@@ -124,14 +124,14 @@ public class TextEntryElement : Element, UITextFieldDelegate {
         return false
     }
     
-    func textFieldDidEndEditing(textField: UITextField!) {
+    public func textFieldDidEndEditing(textField: UITextField) {
         self.text = textField.text
     }
     
     public override func getCell(tableView: UITableView) -> UITableViewCell! {
         let cellKey = "textEntry"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as TextEntryCell!
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as! TextEntryCell!
         if cell == nil {
             cell = TextEntryCell(tableView: tableView, reuseIdentifier: cellKey)
             cell.selectionStyle = .None

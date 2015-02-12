@@ -157,7 +157,7 @@ public class DateTimeElement : Element {
     public override func getCell(tableView: UITableView) -> UITableViewCell! {
         let cellKey = "datetime"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as UITableViewCell!
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as! UITableViewCell!
         if cell == nil {
             cell = DateTimePickerCell(element: self, style: .Value1, reuseIdentifier: cellKey)
             cell.selectionStyle = .Default
@@ -173,7 +173,7 @@ public class DateTimeElement : Element {
 
     public override func elementSelected(dialogController: DialogController, tableView: UITableView, atPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as DateTimePickerCell!
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! DateTimePickerCell!
         cell.becomeFirstResponder()
     }
 }

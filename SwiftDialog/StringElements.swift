@@ -39,7 +39,7 @@ public class StringElement : Element {
     public override func getCell(tableView: UITableView) -> UITableViewCell! {
         let cellKey = detailText == nil ? "string" : "value1"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as UITableViewCell!
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as! UITableViewCell!
         if cell == nil {
             let cellStyle = detailText == nil ? UITableViewCellStyle.Default : detailCellStyle()
             cell = UITableViewCell(style: cellStyle, reuseIdentifier: cellKey)

@@ -98,7 +98,7 @@ public class RootElement : Element {
     public override func getCell(tableView: UITableView) -> UITableViewCell! {
         let cellKey = "root"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as UITableViewCell!
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as! UITableViewCell!
         if cell == nil {
             cell = UITableViewCell(style: .Value1, reuseIdentifier: cellKey)
             cell.selectionStyle = .Default
