@@ -15,14 +15,14 @@
 import UIKit
 
 public class SectionElement : Element {
-    public var elements: [Element]
+    public var elements: WrappedArray<Element>
     public var header: String?
     public var footer: String?
     public var headerView: UIView?
     public var footerView: UIView?
     
     public init(
-        elements: [Element] = [],
+        elements: WrappedArray<Element> = [],
         header: String? = nil,
         footer: String? = nil,
         headerView: UIView? = nil,

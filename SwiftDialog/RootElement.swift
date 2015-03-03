@@ -26,7 +26,7 @@ public enum SummarizeBy {
 }
 
 public class RootElement : Element {
-    public var sections: [SectionElement]
+    public var sections: WrappedArray<SectionElement>
     public var title: String
     public var groups: [String: Int]
     public var onRefresh: ((RootElement) -> ())?
@@ -37,7 +37,7 @@ public class RootElement : Element {
     
     public init(
         title: String,
-        sections: [SectionElement],
+        sections: WrappedArray<SectionElement>,
         groups: [String: Int] = [:],
         onRefresh: ((RootElement) -> ())? = nil,
         summary: SummarizeBy = .None,
@@ -59,7 +59,7 @@ public class RootElement : Element {
     
     public convenience init(
         title: String,
-        elements: [Element],
+        elements: WrappedArray<Element>,
         groups: [String: Int] = [:],
         onRefresh: ((RootElement) -> ())? = nil,
         summary: SummarizeBy = .None,
