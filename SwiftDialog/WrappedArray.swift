@@ -70,7 +70,7 @@ extension WrappedArray : CollectionType, MutableCollectionType {
     }
 }
 
-extension WrappedArray : ExtensibleCollectionType {
+extension WrappedArray : RangeReplaceableCollectionType {
     public func reserveCapacity(n: Index.Distance) {
         self.elements.reserveCapacity(n)
     }
@@ -82,9 +82,7 @@ extension WrappedArray : ExtensibleCollectionType {
     public func extend<S : SequenceType where Generator.Element == S.Generator.Element>(newElements: S) {
         self.elements.extend(newElements)
     }
-}
 
-extension WrappedArray : RangeReplaceableCollectionType {
     public func replaceRange<C : CollectionType where Generator.Element == C.Generator.Element>(subRange: Range<Index>, with newElements: C) {
         self.elements.replaceRange(subRange, with: newElements)
     }
@@ -105,7 +103,7 @@ extension WrappedArray : RangeReplaceableCollectionType {
         self.elements.removeRange(subRange)
     }
     
-    public func removeAll(#keepCapacity: Bool) {
+    public func removeAll(keepCapacity keepCapacity: Bool) {
         self.elements.removeAll(keepCapacity: keepCapacity)
     }
 }

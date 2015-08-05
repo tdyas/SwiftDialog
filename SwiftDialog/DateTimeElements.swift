@@ -24,7 +24,7 @@ class DateTimePickerCell : UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -63,7 +63,7 @@ class DateTimePickerCell : UITableViewCell {
         picker = UIDatePicker(frame: CGRect.zeroRect)
         let pickerIntrinsicSize = picker.intrinsicContentSize()
         
-        picker.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        picker.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         picker.datePickerMode = element.datePickerMode()
         picker.date = element.value ?? NSDate()
         
@@ -79,7 +79,7 @@ class DateTimePickerCell : UITableViewCell {
         let view = UIView(frame: viewFrame)
         view.backgroundColor = UIColor.whiteColor()
         view.opaque = true
-        view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         
         toolbar.frame = CGRect(x: 0, y: 0, width: viewFrame.width, height: toolbarIntrinsicSize.height)
         view.addSubview(toolbar)
@@ -157,7 +157,7 @@ public class DateTimeElement : Element {
     public override func getCell(tableView: UITableView) -> UITableViewCell! {
         let cellKey = "datetime"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as! UITableViewCell!
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as UITableViewCell!
         if cell == nil {
             cell = DateTimePickerCell(element: self, style: .Value1, reuseIdentifier: cellKey)
             cell.selectionStyle = .Default

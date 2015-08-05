@@ -23,7 +23,7 @@ class TextEntryCell : UITableViewCell {
         self.tableView = tableView
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -64,8 +64,8 @@ public class TextEntryElement : Element, UITextFieldDelegate {
             switch (self.textField) {
             case .Some(let textField):
                 let text = textField.text
-                self.cachedText = text
-                return text
+                self.cachedText = text!
+                return text!
                 
             case .None:
                 return self.cachedText
@@ -116,7 +116,7 @@ public class TextEntryElement : Element, UITextFieldDelegate {
     }
     
     func valueChanged(textField: UITextField!) {
-        self.text = textField.text
+        self.text = textField.text!
     }
     
     public func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -125,7 +125,7 @@ public class TextEntryElement : Element, UITextFieldDelegate {
     }
     
     public func textFieldDidEndEditing(textField: UITextField) {
-        self.text = textField.text
+        self.text = textField.text!
     }
     
     public override func getCell(tableView: UITableView) -> UITableViewCell! {

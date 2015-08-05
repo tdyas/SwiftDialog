@@ -28,7 +28,7 @@ public class SliderElement : Element {
         let cellKey = "slider"
         let sliderTag = 500
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as! UITableViewCell!
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as UITableViewCell!
         if cell == nil {
             cell = UITableViewCell(style: .Default, reuseIdentifier: cellKey)
             cell.selectionStyle = .None

@@ -26,7 +26,7 @@ public class CheckboxElement : Element, BooleanValuedElement {
     public override func getCell(tableView: UITableView) -> UITableViewCell! {
         let cellKey = "checkbox"
 
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as! UITableViewCell!
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as UITableViewCell!
         if cell == nil {
             cell = UITableViewCell(style: .Default, reuseIdentifier: cellKey)
             cell.selectionStyle = .Default

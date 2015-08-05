@@ -37,7 +37,7 @@ public class ModalDialogViewController : UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    public required init(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -50,7 +50,7 @@ public class ModalDialogViewController : UIViewController {
         self.view.backgroundColor = UIColor.whiteColor()
         self.view.opaque = true
         self.view.autoresizesSubviews = true
-        self.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        self.view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         
         self.addChildViewController(self.childNavigationController)
         self.view.addSubview(self.childNavigationController.view)

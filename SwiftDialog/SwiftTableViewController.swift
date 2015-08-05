@@ -58,7 +58,7 @@ public class SwiftTableViewController : UIViewController {
         notificationCenter.removeObserver(self)
     }
 
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -66,10 +66,10 @@ public class SwiftTableViewController : UIViewController {
         let screenBounds = UIScreen.mainScreen().bounds
         
         self.view = UIView(frame: screenBounds)
-        self.view.autoresizingMask = .FlexibleHeight | .FlexibleWidth
+        self.view.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
 
         self.tableView = UITableView(frame: screenBounds, style: style)
-        self.tableView.autoresizingMask = .FlexibleHeight | .FlexibleWidth
+        self.tableView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
         self.view.addSubview(tableView)
     }
     
@@ -100,11 +100,9 @@ public class SwiftTableViewController : UIViewController {
         }
         
         if clearsSelectionOnViewWillAppear {
-            if let untypedIndexPaths = tableView.indexPathsForSelectedRows() {
-                if let indexPaths = untypedIndexPaths as? [NSIndexPath] {
-                    for indexPath in indexPaths {
-                        tableView.deselectRowAtIndexPath(indexPath, animated: animated)
-                    }
+            if let indexPaths = tableView.indexPathsForSelectedRows {
+                for indexPath in indexPaths {
+                    tableView.deselectRowAtIndexPath(indexPath, animated: animated)
                 }
             }
         }

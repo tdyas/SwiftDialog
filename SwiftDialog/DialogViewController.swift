@@ -29,7 +29,7 @@ public class DialogViewController : SwiftTableViewController {
         self.dialogController.viewController = self
     }
     
-    public required init(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -41,7 +41,7 @@ public class DialogViewController : SwiftTableViewController {
         
         self.navigationItem.title = self.root.title
         
-        if let callback = self.root.onRefresh {
+        if let _ = self.root.onRefresh {
             self.refreshControl = UIRefreshControl(frame: CGRect.zeroRect)
             self.refreshControl!.addTarget(self, action: "triggerRefresh", forControlEvents: .ValueChanged)
         }
