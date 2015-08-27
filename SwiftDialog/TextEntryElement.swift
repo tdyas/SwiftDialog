@@ -29,11 +29,11 @@ class TextEntryCell : UITableViewCell {
     
     override func layoutSubviews() {
         let inset = self.tableView.separatorInset
-        let contentFrame = self.contentView.bounds.rectByInsetting(dx: inset.left, dy: 0)
+        let contentFrame = self.contentView.bounds.insetBy(dx: inset.left, dy: 0)
         
         super.layoutSubviews()
         
-        var textRect = CGRect.zeroRect
+        var textRect = CGRect.zero
         if let text = self.textLabel!.text {
             if text != "" {
                 let context = NSStringDrawingContext()
@@ -146,7 +146,7 @@ public class TextEntryElement : Element, UITextFieldDelegate {
                 cell.textField = textField
             }
         } else {
-            let textField = UITextField(frame: CGRect.zeroRect)
+            let textField = UITextField(frame: CGRect.zero)
             textField.delegate = self
             textField.text = self.text
 

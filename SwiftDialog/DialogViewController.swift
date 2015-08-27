@@ -42,7 +42,7 @@ public class DialogViewController : SwiftTableViewController {
         self.navigationItem.title = self.root.title
         
         if let _ = self.root.onRefresh {
-            self.refreshControl = UIRefreshControl(frame: CGRect.zeroRect)
+            self.refreshControl = UIRefreshControl(frame: CGRect.zero)
             self.refreshControl!.addTarget(self, action: "triggerRefresh", forControlEvents: .ValueChanged)
         }
     }

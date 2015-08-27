@@ -80,7 +80,7 @@ extension WrappedArray : RangeReplaceableCollectionType {
     }
     
     public func extend<S : SequenceType where Generator.Element == S.Generator.Element>(newElements: S) {
-        self.elements.extend(newElements)
+        self.elements.appendContentsOf(newElements)
     }
 
     public func replaceRange<C : CollectionType where Generator.Element == C.Generator.Element>(subRange: Range<Index>, with newElements: C) {
@@ -92,7 +92,7 @@ extension WrappedArray : RangeReplaceableCollectionType {
     }
     
     public func splice<S : CollectionType where Generator.Element == S.Generator.Element>(newElements: S, atIndex i: Index) {
-        self.elements.splice(newElements, atIndex: i)
+        self.elements.insertContentsOf(newElements, at: i)
     }
     
     public func removeAtIndex(i: Index) -> Generator.Element {

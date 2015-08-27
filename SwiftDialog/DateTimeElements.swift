@@ -38,7 +38,7 @@ class DateTimePickerCell : UITableViewCell {
     }
     
     func makeInputView() -> UIView {
-        let toolbar = UIToolbar(frame: CGRect.zeroRect)
+        let toolbar = UIToolbar(frame: CGRect.zero)
         toolbar.autoresizingMask = .FlexibleWidth
         let toolbarIntrinsicSize = toolbar.intrinsicContentSize()
 
@@ -60,7 +60,7 @@ class DateTimePickerCell : UITableViewCell {
             UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismissPicker")
         ]
 
-        picker = UIDatePicker(frame: CGRect.zeroRect)
+        picker = UIDatePicker(frame: CGRect.zero)
         let pickerIntrinsicSize = picker.intrinsicContentSize()
         
         picker.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]

@@ -45,7 +45,7 @@ public class SliderElement : Element {
         if let slider = self.slider {
             cell.contentView.addSubview(slider)
         } else {
-            let slider = UISlider(frame: CGRect.zeroRect)
+            let slider = UISlider(frame: CGRect.zero)
             slider.tag = sliderTag
             slider.autoresizingMask = .FlexibleWidth
             slider.addTarget(self, action: "valueChanged:", forControlEvents: .ValueChanged)
@@ -54,7 +54,7 @@ public class SliderElement : Element {
         }
         
         let insets = tableView.separatorInset
-        let contentFrame = cell.contentView.bounds.rectByInsetting(dx: insets.left, dy: 0)
+        let contentFrame = cell.contentView.bounds.insetBy(dx: insets.left, dy: 0)
         
         var sliderFrame = contentFrame
         if self.text != "" {
