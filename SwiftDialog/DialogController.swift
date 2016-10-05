@@ -81,4 +81,19 @@ public class DialogController : NSObject, UITableViewDataSource, UITableViewDele
         let section = self.root.sections[sectionIndex]
         return section.footerView
     }
+    
+    // Table Modifications
+    
+    public func beginUpdates() {
+        self.viewController!.tableView!.beginUpdates()
+    }
+    
+    public func endUpdates() {
+        self.viewController!.tableView!.endUpdates()
+    }
+    
+    public func insertElements(elements: [Element], atIndexPath indexPath: NSIndexPath, withRowAnimation animation: UITableViewRowAnimation) {
+        
+    }
+
 }
