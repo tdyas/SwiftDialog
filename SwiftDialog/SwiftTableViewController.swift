@@ -26,11 +26,11 @@ import UIKit
 //
 // This basic reimplementation of UITableViewController fixes the issue.
 //
-public class SwiftTableViewController : UIViewController {
-    public let style: UITableViewStyle
-    public var tableView: UITableView!
-    public var clearsSelectionOnViewWillAppear: Bool = true
-    public var refreshControl: UIRefreshControl? {
+open class SwiftTableViewController : UIViewController {
+    open let style: UITableViewStyle
+    open var tableView: UITableView!
+    open var clearsSelectionOnViewWillAppear: Bool = true
+    open var refreshControl: UIRefreshControl? {
         willSet {
             if let control = refreshControl {
                 control.removeFromSuperview()
@@ -54,7 +54,7 @@ public class SwiftTableViewController : UIViewController {
     }
     
     deinit {
-        let notificationCenter = NSNotificationCenter.defaultCenter()
+        let notificationCenter = NotificationCenter.default
         notificationCenter.removeObserver(self)
     }
 
@@ -62,26 +62,26 @@ public class SwiftTableViewController : UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func loadView() {
-        let screenBounds = UIScreen.mainScreen().bounds
+    open override func loadView() {
+        let screenBounds = UIScreen.main.bounds
         
         self.view = UIView(frame: screenBounds)
-        self.view.autoresizingMask = .FlexibleHeight | .FlexibleWidth
+        self.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
         self.tableView = UITableView(frame: screenBounds, style: style)
-        self.tableView.autoresizingMask = .FlexibleHeight | .FlexibleWidth
+        self.tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.view.addSubview(tableView)
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: "willShowKeyboard:", name: UIKeyboardWillShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: "willHideKeyboard:", name: UIKeyboardWillHideNotification, object: nil)
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(SwiftTableViewController.willShowKeyboard(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(SwiftTableViewController.willHideKeyboard(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    public override func viewWillLayoutSubviews() {
+    open override func viewWillLayoutSubviews() {
         var bounds = view.bounds
         
         if let keyboardRect = self.keyboardRectOpt {
@@ -91,7 +91,7 @@ public class SwiftTableViewController : UIViewController {
         tableView.frame = bounds
     }
 
-    public override func viewWillAppear(animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         if !hasBeenShownOnce {
@@ -100,43 +100,41 @@ public class SwiftTableViewController : UIViewController {
         }
         
         if clearsSelectionOnViewWillAppear {
-            if let untypedIndexPaths = tableView.indexPathsForSelectedRows() {
-                if let indexPaths = untypedIndexPaths as? [NSIndexPath] {
-                    for indexPath in indexPaths {
-                        tableView.deselectRowAtIndexPath(indexPath, animated: animated)
-                    }
+            if let indexPaths = tableView.indexPathsForSelectedRows {
+                for indexPath in indexPaths {
+                    tableView.deselectRow(at: indexPath, animated: animated)
                 }
             }
         }
     }
     
-    public override func viewDidAppear(animated: Bool) {
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         tableView.flashScrollIndicators()
         isVisible = true
     }
     
-    public override func viewDidDisappear(animated: Bool) {
+    open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         isVisible = false
     }
     
-    public override func setEditing(editing: Bool, animated: Bool) {
+    open override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: animated)
     }
     
-    func willShowKeyboard(notification: NSNotification!) {
+    func willShowKeyboard(_ notification: Notification!) {
         let userInfo = notification.userInfo
         
         if let keyboardRectValue = userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
-            keyboardRectOpt = self.view.convertRect(keyboardRectValue.CGRectValue(), fromView: nil)
+            keyboardRectOpt = self.view.convert(keyboardRectValue.cgRectValue, from: nil)
             
             if isVisible {
                 let animationDurationOpt = userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber
                 let animationDuration = animationDurationOpt?.doubleValue ?? 1.0
                 
-                UIView.animateWithDuration(animationDuration, animations: {
+                UIView.animate(withDuration: animationDuration, animations: {
                     self.view.setNeedsLayout()
                     self.view.layoutIfNeeded()
                 })
@@ -146,7 +144,7 @@ public class SwiftTableViewController : UIViewController {
         }
     }
     
-    func willHideKeyboard(notification: NSNotification!) {
+    func willHideKeyboard(_ notification: Notification!) {
         keyboardRectOpt = nil
         
         if isVisible {
@@ -154,7 +152,7 @@ public class SwiftTableViewController : UIViewController {
             let animationDurationOpt = userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber
             let animationDuration = animationDurationOpt?.doubleValue ?? 1.0
             
-            UIView.animateWithDuration(animationDuration, animations: {
+            UIView.animate(withDuration: animationDuration, animations: {
                 self.view.setNeedsLayout()
                 self.view.layoutIfNeeded()
             })

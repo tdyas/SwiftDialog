@@ -14,37 +14,37 @@
 
 import UIKit
 
-public class CheckboxElement : Element, BooleanValuedElement {
-    public var text: String
-    public var value: Bool
+open class CheckboxElement : Element, BooleanValuedElement {
+    open var text: String
+    open var value: Bool
     
     public init(text: String = "", value: Bool = false) {
         self.text = text
         self.value = value
     }
     
-    public override func getCell(tableView: UITableView) -> UITableViewCell! {
+    open override func getCell(_ tableView: UITableView) -> UITableViewCell! {
         let cellKey = "checkbox"
 
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as! UITableViewCell!
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellKey) as UITableViewCell!
         if cell == nil {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: cellKey)
-            cell.selectionStyle = .Default
+            cell = UITableViewCell(style: .default, reuseIdentifier: cellKey)
+            cell?.selectionStyle = .default
         }
         
-        cell.textLabel!.text = self.text
-        cell.accessoryType = self.value ? .Checkmark : .None
+        cell?.textLabel!.text = self.text
+        cell?.accessoryType = self.value ? .checkmark : .none
         
         return cell
     }
     
-    public override func elementSelected(dialogController: DialogController, tableView: UITableView, atPath indexPath: NSIndexPath) {
+    open override func elementSelected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
         self.value = !self.value
         
-        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-            cell.accessoryType = self.value ? .Checkmark : .None
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.accessoryType = self.value ? .checkmark : .none
         }
 
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

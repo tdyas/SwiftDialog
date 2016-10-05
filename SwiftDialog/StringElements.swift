@@ -14,11 +14,11 @@
 
 import UIKit
 
-public class StringElement : Element {
-    public var text: String
-    public var detailText: String?
-    public var onSelect: ((StringElement) -> ())?
-    public var onInfo: ((StringElement) -> ())?
+open class StringElement : Element {
+    open var text: String
+    open var detailText: String?
+    open var onSelect: ((StringElement) -> ())?
+    open var onInfo: ((StringElement) -> ())?
     
     public init(
         _ text: String = "",
@@ -33,56 +33,56 @@ public class StringElement : Element {
     }
 
     func detailCellStyle() -> UITableViewCellStyle {
-        return .Value1
+        return .value1
     }
     
-    public override func getCell(tableView: UITableView) -> UITableViewCell! {
+    open override func getCell(_ tableView: UITableView) -> UITableViewCell! {
         let cellKey = detailText == nil ? "string" : "value1"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as! UITableViewCell!
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellKey) as UITableViewCell!
         if cell == nil {
-            let cellStyle = detailText == nil ? UITableViewCellStyle.Default : detailCellStyle()
+            let cellStyle = detailText == nil ? UITableViewCellStyle.default : detailCellStyle()
             cell = UITableViewCell(style: cellStyle, reuseIdentifier: cellKey)
         }
 
         if onSelect != nil {
-            cell.selectionStyle = .Default
+            cell?.selectionStyle = .default
             if onInfo != nil {
-                cell.accessoryType = .DetailDisclosureButton
+                cell?.accessoryType = .detailDisclosureButton
             } else {
-                cell.accessoryType = .DisclosureIndicator
+                cell?.accessoryType = .disclosureIndicator
             }
         } else {
-            cell.selectionStyle = .None
+            cell?.selectionStyle = .none
             if onInfo != nil {
-                cell.accessoryType = .DetailButton
+                cell?.accessoryType = .detailButton
             } else {
-                cell.accessoryType = .None
+                cell?.accessoryType = .none
             }
         }
         
-        cell.textLabel!.text = text
+        cell?.textLabel!.text = text
         if let t = detailText {
-            cell.detailTextLabel?.text = t
+            cell?.detailTextLabel?.text = t
         }
         
         return cell
     }
     
-    public override func elementSelected(dialogController: DialogController, tableView: UITableView, atPath indexPath: NSIndexPath) {
+    open override func elementSelected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
         if let callback = onSelect {
             callback(self)
         }
     }
     
-    public override func accessoryButtonTapped(dialogController: DialogController, tableView: UITableView, atPath indexPath: NSIndexPath) {
+    open override func accessoryButtonTapped(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
         if let callback = onInfo {
             callback(self)
         }
     }
 }
 
-public class Value2StringElement : StringElement {
+open class Value2StringElement : StringElement {
     public override init(
         _ text: String = "",
         detailText: String? = nil,
@@ -93,11 +93,11 @@ public class Value2StringElement : StringElement {
     }
     
     override func detailCellStyle() -> UITableViewCellStyle {
-        return .Value2
+        return .value2
     }
 }
 
-public class SubtitleStringElement : StringElement {
+open class SubtitleStringElement : StringElement {
     public override init(
         _ text: String = "",
         detailText: String? = nil,
@@ -108,6 +108,6 @@ public class SubtitleStringElement : StringElement {
     }
     
     override func detailCellStyle() -> UITableViewCellStyle {
-        return .Subtitle
+        return .subtitle
     }
 }

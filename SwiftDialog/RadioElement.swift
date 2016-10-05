@@ -14,33 +14,33 @@
 
 import UIKit
 
-public class RadioElement : Element {
-    public var text: String
-    public let group: String
+open class RadioElement : Element {
+    open var text: String
+    open let group: String
     
     public init(text: String, group: String) {
         self.text = text
         self.group = group
     }
     
-    public override func getCell(tableView: UITableView) -> UITableViewCell! {
+    open override func getCell(_ tableView: UITableView) -> UITableViewCell! {
         let cellKey = "radio"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as! UITableViewCell!
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellKey) as UITableViewCell!
         if cell == nil {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: cellKey)
-            cell.selectionStyle = .Default
+            cell = UITableViewCell(style: .default, reuseIdentifier: cellKey)
+            cell?.selectionStyle = .default
         }
         
-        cell.textLabel!.text = self.text
+        cell?.textLabel!.text = self.text
 
         if let root = self.root {
             let index = root.indexForRadioElement(self)
             if let selectedIndex = root.groups[group] {
                 if index == selectedIndex {
-                    cell.accessoryType = .Checkmark
+                    cell?.accessoryType = .checkmark
                 } else {
-                    cell.accessoryType = .None
+                    cell?.accessoryType = .none
                 }
             }
         }
@@ -48,9 +48,9 @@ public class RadioElement : Element {
         return cell
     }
     
-    public override func elementSelected(dialogController: DialogController, tableView: UITableView, atPath indexPath: NSIndexPath) {
-        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-            cell.accessoryType = .Checkmark
+    open override func elementSelected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.accessoryType = .checkmark
         }
 
         if let root = self.root {
@@ -63,10 +63,10 @@ public class RadioElement : Element {
                 for element in section.elements {
                     if let radioElement = element as? RadioElement {
                         if radioElement.group == self.group {
-                            let otherIndexPath = NSIndexPath(forRow: elementIndex, inSection: sectionIndex)
+                            let otherIndexPath = IndexPath(row: elementIndex, section: sectionIndex)
                             if otherIndexPath != indexPath {
-                                if let otherCell = tableView.cellForRowAtIndexPath(otherIndexPath) {
-                                    otherCell.accessoryType = .None
+                                if let otherCell = tableView.cellForRow(at: otherIndexPath) {
+                                    otherCell.accessoryType = .none
                                 }
                             }
                         }
@@ -78,6 +78,6 @@ public class RadioElement : Element {
 
         }
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

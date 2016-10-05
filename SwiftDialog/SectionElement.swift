@@ -14,12 +14,12 @@
 
 import UIKit
 
-public class SectionElement : Element {
-    public var elements: WrappedArray<Element>
-    public var header: String?
-    public var footer: String?
-    public var headerView: UIView?
-    public var footerView: UIView?
+open class SectionElement : Element {
+    open var elements: WrappedArray<Element>
+    open var header: String?
+    open var footer: String?
+    open var headerView: UIView?
+    open var footerView: UIView?
     
     public init(
         elements: WrappedArray<Element> = [],

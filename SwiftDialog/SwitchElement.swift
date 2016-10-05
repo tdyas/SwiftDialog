@@ -14,11 +14,11 @@
 
 import UIKit
 
-public class SwitchElement : Element, BooleanValuedElement {
-    private var switchControl: UISwitch!
+open class SwitchElement : Element, BooleanValuedElement {
+    fileprivate var switchControl: UISwitch!
     
-    public var text: String = ""
-    public var value: Bool = false
+    open var text: String = ""
+    open var value: Bool = false
     
     public init(text: String = "", value: Bool = false) {
         super.init()
@@ -27,31 +27,31 @@ public class SwitchElement : Element, BooleanValuedElement {
     }
     
     func valueChanged() {
-        self.value = self.switchControl.on
+        self.value = self.switchControl.isOn
     }
     
-    public override func getCell(tableView: UITableView) -> UITableViewCell! {
+    open override func getCell(_ tableView: UITableView) -> UITableViewCell! {
         let cellKey = "switch"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as! UITableViewCell!
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellKey) as UITableViewCell!
         if cell == nil {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: cellKey)
-            cell.selectionStyle = .None
+            cell = UITableViewCell(style: .default, reuseIdentifier: cellKey)
+            cell?.selectionStyle = .none
         }
         
         if self.switchControl == nil {
             self.switchControl = UISwitch()
-            self.switchControl.backgroundColor = UIColor.clearColor()
-            self.switchControl.addTarget(self, action: "valueChanged", forControlEvents: .ValueChanged)
+            self.switchControl.backgroundColor = UIColor.clear
+            self.switchControl.addTarget(self, action: #selector(SwitchElement.valueChanged), for: .valueChanged)
         }
         
-        if !self.switchControl.isDescendantOfView(cell)  {
+        if !self.switchControl.isDescendant(of: cell!)  {
             switchControl.removeFromSuperview()
         }
-        cell.accessoryView = switchControl
+        cell?.accessoryView = switchControl
         
-        cell.textLabel!.text = self.text
-        self.switchControl.on = self.value
+        cell?.textLabel!.text = self.text
+        self.switchControl.isOn = self.value
         
         return cell
     }

@@ -31,21 +31,31 @@ public final class WrappedArray<T> {
     }
 }
 
-extension WrappedArray : ArrayLiteralConvertible {
+extension WrappedArray : ExpressibleByArrayLiteral {
     public convenience init(arrayLiteral elements: T...) {
         self.init(Array(elements))
     }
 }
 
-extension WrappedArray : SequenceType {
-    public typealias Generator = Array<T>.Generator
+extension WrappedArray : Sequence {
+    public typealias Iterator = Array<T>.Iterator
+    public typealias SubSequence = Array<T>.SubSequence
     
-    public func generate() -> Generator {
-        return self.elements.generate()
+    public func makeIterator() -> Iterator {
+        return self.elements.makeIterator()
     }
 }
 
-extension WrappedArray : CollectionType, MutableCollectionType {
+extension WrappedArray : Collection, MutableCollection {
+    public subscript(bounds: Range<Int>) -> ArraySlice<T> {
+        get {
+            return self.elements[bounds]
+        }
+        set(newValue) {
+            self.elements[bounds] = newValue
+        }
+    }
+
     public typealias Index = Array<T>.Index
     
     public var startIndex: Index {
@@ -68,44 +78,46 @@ extension WrappedArray : CollectionType, MutableCollectionType {
             self.elements[i] = newValue
         }
     }
+
+    public func index(after i: Int) -> Int {
+        return self.elements.index(after: i)
+    }
 }
 
-extension WrappedArray : ExtensibleCollectionType {
-    public func reserveCapacity(n: Index.Distance) {
+extension WrappedArray : RangeReplaceableCollection {
+    public func reserveCapacity(n: WrappedArray.IndexDistance) {
         self.elements.reserveCapacity(n)
     }
     
-    public func append(x: Generator.Element) {
+    public func append(_ x: Iterator.Element) {
         self.elements.append(x)
     }
     
-    public func extend<S : SequenceType where Generator.Element == S.Generator.Element>(newElements: S) {
-        self.elements.extend(newElements)
+    public func extend<S : Sequence>(_ newElements: S) where Iterator.Element == S.Iterator.Element {
+        self.elements.append(contentsOf: newElements)
     }
-}
 
-extension WrappedArray : RangeReplaceableCollectionType {
-    public func replaceRange<C : CollectionType where Generator.Element == C.Generator.Element>(subRange: Range<Index>, with newElements: C) {
-        self.elements.replaceRange(subRange, with: newElements)
+    public func replaceSubrange<C : Collection>(_ subRange: Range<Index>, with newElements: C) where Iterator.Element == C.Iterator.Element {
+        self.elements.replaceSubrange(subRange, with: newElements)
     }
     
-    public func insert(newElement: Generator.Element, atIndex i: Index) {
-        self.elements.insert(newElement, atIndex: i)
+    public func insert(newElement: Iterator.Element, at i: Index) {
+        self.elements.insert(newElement, at: i)
     }
     
-    public func splice<S : CollectionType where Generator.Element == S.Generator.Element>(newElements: S, atIndex i: Index) {
-        self.elements.splice(newElements, atIndex: i)
+//    public func insert<S: Collection>(contentsOf xs: S, at i: Index) where S.Iterator.Element == T {
+//        self.elements.insert(xs, at: i)
+//    }
+    
+    public func remove(at i: Index) -> Iterator.Element {
+        return self.elements.remove(at: i)
     }
     
-    public func removeAtIndex(i: Index) -> Generator.Element {
-        return self.elements.removeAtIndex(i)
+    public func removeSubrange(_ subRange: Range<Index>) {
+        self.elements.removeSubrange(subRange)
     }
     
-    public func removeRange(subRange: Range<Index>) {
-        self.elements.removeRange(subRange)
-    }
-    
-    public func removeAll(#keepCapacity: Bool) {
-        self.elements.removeAll(keepCapacity: keepCapacity)
+    public func removeAll(keepingCapacity: Bool) {
+        self.elements.removeAll(keepingCapacity: keepingCapacity)
     }
 }

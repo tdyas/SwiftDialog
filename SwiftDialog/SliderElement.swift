@@ -14,7 +14,7 @@
 
 import UIKit
 
-public class SliderElement : Element {
+open class SliderElement : Element {
     var text: String
     var value: Float
     var slider: UISlider?
@@ -24,56 +24,56 @@ public class SliderElement : Element {
         self.value = value
     }
     
-    public override func getCell(tableView: UITableView) -> UITableViewCell! {
+    open override func getCell(_ tableView: UITableView) -> UITableViewCell! {
         let cellKey = "slider"
         let sliderTag = 500
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as! UITableViewCell!
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellKey) as UITableViewCell!
         if cell == nil {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: cellKey)
-            cell.selectionStyle = .None
+            cell = UITableViewCell(style: .default, reuseIdentifier: cellKey)
+            cell?.selectionStyle = .none
         }
 
         // Setup the text label.
-        cell.textLabel!.text = self.text
+        cell?.textLabel!.text = self.text
 
         // Remove any existing slider from the content view.
-        if let view = cell.contentView.viewWithTag(sliderTag) {
+        if let view = cell?.contentView.viewWithTag(sliderTag) {
             view.removeFromSuperview()
         }
         
         if let slider = self.slider {
-            cell.contentView.addSubview(slider)
+            cell?.contentView.addSubview(slider)
         } else {
-            let slider = UISlider(frame: CGRect.zeroRect)
+            let slider = UISlider(frame: CGRect.zero)
             slider.tag = sliderTag
-            slider.autoresizingMask = .FlexibleWidth
-            slider.addTarget(self, action: "valueChanged:", forControlEvents: .ValueChanged)
-            cell.contentView.addSubview(slider)
+            slider.autoresizingMask = .flexibleWidth
+            slider.addTarget(self, action: #selector(SliderElement.valueChanged(_:)), for: .valueChanged)
+            cell!.contentView.addSubview(slider)
             self.slider = slider
         }
         
         let insets = tableView.separatorInset
-        let contentFrame = cell.contentView.bounds.rectByInsetting(dx: insets.left, dy: 0)
+        let contentFrame = cell?.contentView.bounds.insetBy(dx: insets.left, dy: 0)
         
         var sliderFrame = contentFrame
         if self.text != "" {
-            let textSize = cell.textLabel!.intrinsicContentSize()
+            let textSize = cell?.textLabel!.intrinsicContentSize
             sliderFrame = CGRect(
-                x: contentFrame.minX + textSize.width + 10.0,
-                y: contentFrame.minY,
-                width: contentFrame.width - textSize.width - 10.0,
-                height: contentFrame.height
+                x: (contentFrame?.minX)! + (textSize?.width)! + 10.0,
+                y: (contentFrame?.minY)!,
+                width: (contentFrame?.width)! - (textSize?.width)! - 10.0,
+                height: (contentFrame?.height)!
             )
         }
         
-        self.slider?.frame = sliderFrame
+        self.slider?.frame = sliderFrame!
         self.slider?.value = self.value
         
         return cell
     }
     
-    func valueChanged(slider: UISlider!) {
+    func valueChanged(_ slider: UISlider!) {
         self.value = slider.value
     }
 }

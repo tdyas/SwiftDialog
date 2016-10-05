@@ -19,26 +19,26 @@ class TextEntryCell : UITableViewCell {
     var textField: UITextField!
     
     init(tableView: UITableView, reuseIdentifier: String?) {
-        super.init(style: .Default, reuseIdentifier: reuseIdentifier)
+        super.init(style: .default, reuseIdentifier: reuseIdentifier)
         self.tableView = tableView
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     override func layoutSubviews() {
         let inset = self.tableView.separatorInset
-        let contentFrame = self.contentView.bounds.rectByInsetting(dx: inset.left, dy: 0)
+        let contentFrame = self.contentView.bounds.insetBy(dx: inset.left, dy: 0)
         
         super.layoutSubviews()
         
-        var textRect = CGRect.zeroRect
+        var textRect = CGRect.zero
         if let text = self.textLabel!.text {
             if text != "" {
                 let context = NSStringDrawingContext()
-                let infiniteSize = CGSize(width: CGFloat.max, height: CGFloat.max)
-                textRect = text.boundingRectWithSize(infiniteSize, options: .TruncatesLastVisibleLine, attributes: nil, context: context)
+                let infiniteSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
+                textRect = text.boundingRect(with: infiniteSize, options: .truncatesLastVisibleLine, attributes: nil, context: context)
             }
 
             let textFieldMinX = contentFrame.minX + textRect.size.width + 20
@@ -55,19 +55,19 @@ class TextEntryCell : UITableViewCell {
     }
 }
 
-public class TextEntryElement : Element, UITextFieldDelegate {
-    private var cachedText: String = ""
-    private var textField: UITextField!
+open class TextEntryElement : Element, UITextFieldDelegate {
+    fileprivate var cachedText: String = ""
+    fileprivate var textField: UITextField!
     
-    public var text: String {
+    open var text: String {
         get {
             switch (self.textField) {
-            case .Some(let textField):
+            case .some(let textField):
                 let text = textField.text
-                self.cachedText = text
-                return text
+                self.cachedText = text!
+                return text!
                 
-            case .None:
+            case .none:
                 return self.cachedText
             }
         }
@@ -79,25 +79,25 @@ public class TextEntryElement : Element, UITextFieldDelegate {
         }
     }
     
-    public var title: String?
-    public var placeholder: String?
+    open var title: String?
+    open var placeholder: String?
     
-    public var autocapitalizationType: UITextAutocapitalizationType
-    public var autocorrectionType: UITextAutocorrectionType
-    public var spellCheckingType: UITextSpellCheckingType
-    public var keyboardType: UIKeyboardType
-    public var keyboardAppearance: UIKeyboardAppearance
-    public var secureTextEntry: Bool
+    open var autocapitalizationType: UITextAutocapitalizationType
+    open var autocorrectionType: UITextAutocorrectionType
+    open var spellCheckingType: UITextSpellCheckingType
+    open var keyboardType: UIKeyboardType
+    open var keyboardAppearance: UIKeyboardAppearance
+    open var secureTextEntry: Bool
     
     public init(
         text: String = "",
         title: String? = nil,
         placeholder: String? = nil,
-        autocapitalizationType: UITextAutocapitalizationType = .Sentences,
-        autocorrectionType: UITextAutocorrectionType = .Default,
-        spellCheckingType: UITextSpellCheckingType = .Default,
-        keyboardType: UIKeyboardType = .Default,
-        keyboardAppearance: UIKeyboardAppearance = .Default,
+        autocapitalizationType: UITextAutocapitalizationType = .sentences,
+        autocorrectionType: UITextAutocorrectionType = .default,
+        spellCheckingType: UITextSpellCheckingType = .default,
+        keyboardType: UIKeyboardType = .default,
+        keyboardAppearance: UIKeyboardAppearance = .default,
         secureTextEntry: Bool = false
     ) {
         self.title = title
@@ -115,43 +115,43 @@ public class TextEntryElement : Element, UITextFieldDelegate {
         self.text = text
     }
     
-    func valueChanged(textField: UITextField!) {
-        self.text = textField.text
+    func valueChanged(_ textField: UITextField!) {
+        self.text = textField.text!
     }
     
-    public func textFieldShouldReturn(textField: UITextField) -> Bool {
+    open func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false
     }
     
-    public func textFieldDidEndEditing(textField: UITextField) {
-        self.text = textField.text
+    open func textFieldDidEndEditing(_ textField: UITextField) {
+        self.text = textField.text!
     }
     
-    public override func getCell(tableView: UITableView) -> UITableViewCell! {
+    open override func getCell(_ tableView: UITableView) -> UITableViewCell! {
         let cellKey = "textEntry"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as! TextEntryCell!
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellKey) as! TextEntryCell!
         if cell == nil {
             cell = TextEntryCell(tableView: tableView, reuseIdentifier: cellKey)
-            cell.selectionStyle = .None
+            cell?.selectionStyle = .none
         }
 
-        cell.textLabel!.text = title
+        cell?.textLabel!.text = title
         
         if let textField = self.textField {
             if textField.superview != cell {
                 textField.removeFromSuperview()
-                cell.contentView.addSubview(textField)
-                cell.textField = textField
+                cell?.contentView.addSubview(textField)
+                cell?.textField = textField
             }
         } else {
-            let textField = UITextField(frame: CGRect.zeroRect)
+            let textField = UITextField(frame: CGRect.zero)
             textField.delegate = self
             textField.text = self.text
 
-            cell.contentView.addSubview(textField)
-            cell.textField = textField
+            cell?.contentView.addSubview(textField)
+            cell?.textField = textField
             self.textField = textField
         }
         
@@ -163,9 +163,9 @@ public class TextEntryElement : Element, UITextFieldDelegate {
         self.textField.spellCheckingType = spellCheckingType
         self.textField.keyboardType = keyboardType
         self.textField.keyboardAppearance = keyboardAppearance
-        self.textField.secureTextEntry = secureTextEntry
+        self.textField.isSecureTextEntry = secureTextEntry
 
-        self.textField.returnKeyType = .Done
+        self.textField.returnKeyType = .done
         self.textField.enablesReturnKeyAutomatically = false
         
         return cell
