@@ -21,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
     var navigationController: UINavigationController!
     var dialogViewController: DialogViewController!
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        self.window = UIWindow(frame: UIScreen.main.bounds)
         self.dialogViewController = DialogViewController(root: getRootElement())
         self.navigationController = UINavigationController(rootViewController: self.dialogViewController)
         self.window?.rootViewController = self.navigationController
@@ -30,9 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
         
         self.dialogViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(
             title: "Modal",
-            style: .Plain,
+            style: .plain,
             target: self,
-            action: "modalButtonTapped"
+            action: #selector(AppDelegate.modalButtonTapped)
         )
         return true
     }
@@ -40,11 +40,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
     func modalButtonTapped() {
         let modal = ModalDialogViewController(root: getModalRootElement())
         modal.delegate = self
-        self.navigationController.presentViewController(modal, animated: true, completion: nil)
+        self.navigationController.present(modal, animated: true, completion: nil)
     }
     
-    func dismissModalDialogViewController(modalDialogViewController: ModalDialogViewController) {
-        self.navigationController.dismissViewControllerAnimated(true, completion: nil)
+    func dismissModalDialogViewController(_ modalDialogViewController: ModalDialogViewController) {
+        self.navigationController.dismiss(animated: true, completion: nil)
     }
     
     func clickMeTapped() {
@@ -59,12 +59,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
     }
     
     func getRootElement() -> RootElement {
-        let customHeaderLabel = UILabel(frame: CGRect.zeroRect)
-        customHeaderLabel.autoresizingMask = .FlexibleWidth
+        let customHeaderLabel = UILabel(frame: CGRect.zero)
+        customHeaderLabel.autoresizingMask = .flexibleWidth
         customHeaderLabel.text = "Root Elements (+ custom header)"
-        customHeaderLabel.font = UIFont(name: "AmericanTypewriter-Bold", size: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline).pointSize)
+        customHeaderLabel.font = UIFont(name: "AmericanTypewriter-Bold", size: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline).pointSize)
         customHeaderLabel.sizeToFit()
-        customHeaderLabel.textAlignment = .Center
+        customHeaderLabel.textAlignment = .center
         
         return RootElement(
             title: "SwiftDialog",
@@ -75,16 +75,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                             title: "String elements",
                             sections: [
                                 SectionElement(
-                                    header: "String Elements",
                                     elements: [
                                         StringElement("Basic string element"),
                                         StringElement("Text", detailText: "Detail Text"),
                                         Value2StringElement("Value2", detailText: "Detail Text"),
                                         SubtitleStringElement("Subtitle string element", detailText: "Subtitle")
-                                    ]
+                                    ],
+                                    header: "String Elements"
                                 ),
                                 SectionElement(
-                                    header: "Tappable",
                                     elements: [
                                         StringElement("Tap me", onSelect: { element in self.clickMeTapped() }),
                                         StringElement("An info button", onInfo: { element in self.infoTapped() }),
@@ -93,7 +92,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                                             onSelect: { element in self.clickMeTapped() },
                                             onInfo: { element in self.infoTapped() }
                                         )
-                                    ]
+                                    ],
+                                    header: "Tappable"
                                 )
                             ]
                         ),
@@ -101,18 +101,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                             title: "Text entry elements",
                             sections: [
                                 SectionElement(
-                                    header: "Basic text entry",
                                     elements: [
                                         TextEntryElement(text: "", placeholder: "Enter some text here"),
                                         TextEntryElement(text: "", title: "Entry", placeholder: "Enter more text here")
-                                    ]
+                                    ],
+                                    header: "Basic text entry"
                                 ),
                                 SectionElement(
-                                    header: "Login form",
                                     elements: [
                                         TextEntryElement(text: "", placeholder: "User name"),
                                         TextEntryElement(text: "", placeholder: "Password", secureTextEntry: true)
-                                    ]
+                                    ],
+                                    header: "Login form"
                                 )
                             ]
                         ),
@@ -126,13 +126,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                                     ]
                                 ),
                                 SectionElement(
-                                    header: "Radio group",
                                     elements: [
                                         RadioElement(text: "Studio", group: "apts"),
                                         RadioElement(text: "1 bedroom", group: "apts"),
                                         RadioElement(text: "2 bedroom", group: "apts"),
                                         RadioElement(text: "3 bedroom", group: "apts")
-                                    ]
+                                    ],
+                                    header: "Radio group"
                                 )
                             ],
                             groups: ["apts": 3]
@@ -151,9 +151,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                         RootElement(
                             title: "Date/time elements",
                             elements: [
-                                DateTimeElement(text: "Date/Time Picker", value: NSDate()),
-                                DateElement(text: "Date Picker", value: NSDate()),
-                                TimeElement(text: "Time Picker", value: NSDate())
+                                DateTimeElement(text: "Date/Time Picker", value: NSDate() as Date),
+                                DateElement(text: "Date Picker", value: NSDate() as Date),
+                                TimeElement(text: "Time Picker", value: NSDate() as Date)
                             ]
                         )
                     ]
@@ -170,7 +170,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                                 ])
                             ],
                             groups: ["colors": 0],
-                            summary: .RadioGroup(group: "colors")
+                            summary: .radioGroup(group: "colors")
                         ),
                         RootElement(
                             title: "World of Bool",
@@ -186,8 +186,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                                     SwitchElement(text: "Third", value: false),
                                 ], header: "Switches")
                             ],
-                            summary: .Count,
-                            childStyle: .Plain
+                            summary: .count,
+                            childStyle: .plain
                         )
                     ],
                     headerView: customHeaderLabel
@@ -202,14 +202,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
     }
     
     func displayRefreshAlert() {
-        let alert = UIAlertController(title: "Refresh", message: "You triggered a refresh.", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: { action in
+        let alert = UIAlertController(title: "Refresh", message: "You triggered a refresh.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
             if let dvc = self.navigationController.topViewController as? DialogViewController {
                 dvc.endRefreshing()
             }
-            self.navigationController.dismissViewControllerAnimated(true, completion: nil)
+            self.navigationController.dismiss(animated: true, completion: nil)
         }))
-        self.navigationController.presentViewController(alert, animated: true, completion: nil)
+        self.navigationController.present(alert, animated: true, completion: nil)
     }
     
     func getModalRootElement() -> RootElement {

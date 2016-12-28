@@ -16,20 +16,20 @@ import Foundation
 import UIKit
 
 public protocol ModalDialogViewControllerDelegate : class {
-    func dismissModalDialogViewController(modalDialogViewController: ModalDialogViewController) -> Void
+    func dismissModalDialogViewController(_ modalDialogViewController: ModalDialogViewController) -> Void
 }
 
-public class ModalDialogViewController : UIViewController {
-    public let dialogViewController: DialogViewController
-    public let childNavigationController: UINavigationController
-    public var doneButtonItem: UIBarButtonItem
+open class ModalDialogViewController : UIViewController {
+    open let dialogViewController: DialogViewController
+    open let childNavigationController: UINavigationController
+    open var doneButtonItem: UIBarButtonItem
 
-    public weak var delegate: ModalDialogViewControllerDelegate?
+    open weak var delegate: ModalDialogViewControllerDelegate?
     
     public init(
         root: RootElement,
-        style: UITableViewStyle = .Grouped,
-        doneButtonItem: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: nil, action: nil)
+        style: UITableViewStyle = .grouped,
+        doneButtonItem: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
     ) {
         dialogViewController = DialogViewController(root: root, style: style)
         childNavigationController = UINavigationController(rootViewController: self.dialogViewController)
@@ -41,26 +41,26 @@ public class ModalDialogViewController : UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func dismiss() {
+    open func dismiss() {
         self.delegate?.dismissModalDialogViewController(self)
     }
     
-    public override func loadView() {
-        self.view = UIView(frame: UIScreen.mainScreen().bounds)
-        self.view.backgroundColor = UIColor.whiteColor()
-        self.view.opaque = true
+    open override func loadView() {
+        self.view = UIView(frame: UIScreen.main.bounds)
+        self.view.backgroundColor = UIColor.white
+        self.view.isOpaque = true
         self.view.autoresizesSubviews = true
-        self.view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        self.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         self.addChildViewController(self.childNavigationController)
         self.view.addSubview(self.childNavigationController.view)
     }
     
-    public override func viewWillAppear(animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         doneButtonItem.target = self
-        doneButtonItem.action = "dismiss"
+        doneButtonItem.action = #selector(ModalDialogViewController.dismiss as (ModalDialogViewController) -> () -> ())
         dialogViewController.navigationItem.rightBarButtonItem = doneButtonItem
     }
 }

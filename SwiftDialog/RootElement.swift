@@ -20,28 +20,28 @@ protocol BooleanValuedElement {
 }
 
 public enum SummarizeBy {
-    case None
-    case RadioGroup(group: String)
-    case Count
+    case none
+    case radioGroup(group: String)
+    case count
 }
 
-public class RootElement : Element {
-    public var sections: WrappedArray<SectionElement>
-    public var title: String
-    public var groups: [String: Int]
-    public var onRefresh: ((RootElement) -> ())?
-    public var summary: SummarizeBy
-    public var childStyle: UITableViewStyle
+open class RootElement : Element {
+    open var sections: WrappedArray<SectionElement>
+    open var title: String
+    open var groups: [String: Int]
+    open var onRefresh: ((RootElement) -> ())?
+    open var summary: SummarizeBy
+    open var childStyle: UITableViewStyle
 
-    public weak var dialogController: DialogController?
+    open weak var dialogController: DialogController?
     
     public init(
         title: String,
         sections: WrappedArray<SectionElement>,
         groups: [String: Int] = [:],
         onRefresh: ((RootElement) -> ())? = nil,
-        summary: SummarizeBy = .None,
-        childStyle: UITableViewStyle = .Grouped
+        summary: SummarizeBy = .none,
+        childStyle: UITableViewStyle = .grouped
     ) {
         self.title = title
         self.sections = sections
@@ -62,8 +62,8 @@ public class RootElement : Element {
         elements: WrappedArray<Element>,
         groups: [String: Int] = [:],
         onRefresh: ((RootElement) -> ())? = nil,
-        summary: SummarizeBy = .None,
-        childStyle: UITableViewStyle = .Grouped
+        summary: SummarizeBy = .none,
+        childStyle: UITableViewStyle = .grouped
     ) {
         self.init(
             title: title,
@@ -75,7 +75,7 @@ public class RootElement : Element {
         )
     }
     
-    func indexForRadioElement(radioElement: RadioElement) -> Int? {
+    func indexForRadioElement(_ radioElement: RadioElement) -> Int? {
         var index = 0
         
         for section in sections {
@@ -95,20 +95,20 @@ public class RootElement : Element {
         return nil
     }
     
-    public override func getCell(tableView: UITableView) -> UITableViewCell! {
+    open override func getCell(_ tableView: UITableView) -> UITableViewCell! {
         let cellKey = "root"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as UITableViewCell!
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellKey) as UITableViewCell!
         if cell == nil {
-            cell = UITableViewCell(style: .Value1, reuseIdentifier: cellKey)
-            cell.selectionStyle = .Default
-            cell.accessoryType = .DisclosureIndicator
+            cell = UITableViewCell(style: .value1, reuseIdentifier: cellKey)
+            cell?.selectionStyle = .default
+            cell?.accessoryType = .disclosureIndicator
         }
         
-        cell.textLabel!.text = title
+        cell?.textLabel!.text = title
         
         switch summary {
-        case .RadioGroup(let group):
+        case .radioGroup(let group):
             if let selectedIndex = groups[group] {
                 var currentIndex = 0
                 for section in sections {
@@ -116,7 +116,7 @@ public class RootElement : Element {
                         if let currentRadioElement = element as? RadioElement {
                             if currentRadioElement.group == group {
                                 if currentIndex == selectedIndex {
-                                    cell.detailTextLabel?.text = currentRadioElement.text
+                                    cell?.detailTextLabel?.text = currentRadioElement.text
                                 }
                                 
                                 currentIndex += 1
@@ -127,7 +127,7 @@ public class RootElement : Element {
                 }
             }
             
-        case .Count:
+        case .count:
             var count = 0
             for section in sections {
                 for element in section.elements {
@@ -138,17 +138,17 @@ public class RootElement : Element {
                     }
                 }
             }
-            cell.detailTextLabel?.text = count.description
+            cell?.detailTextLabel?.text = count.description
             
-        case .None:
-            cell.detailTextLabel?.text = ""
+        case .none:
+            cell?.detailTextLabel?.text = ""
         }
         
         return cell
     }
 
     
-    public override func elementSelected(dialogController: DialogController, tableView: UITableView, atPath indexPath: NSIndexPath) {
+    open override func elementSelected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
         let vc = DialogViewController(root: self, style: childStyle)
         dialogController.viewController?.navigationController?.pushViewController(vc, animated: true)
     }

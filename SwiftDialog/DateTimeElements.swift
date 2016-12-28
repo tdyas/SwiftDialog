@@ -39,35 +39,34 @@ class DateTimePickerCell : UITableViewCell {
     
     func makeInputView() -> UIView {
         let toolbar = UIToolbar(frame: CGRect.zero)
-        toolbar.autoresizingMask = .FlexibleWidth
-        let toolbarIntrinsicSize = toolbar.intrinsicContentSize()
+        toolbar.autoresizingMask = .flexibleWidth
+        let toolbarIntrinsicSize = toolbar.intrinsicContentSize
 
         var titleForSetCurrentButton = ""
         switch element.datePickerMode() {
-        case .DateAndTime:
+        case .dateAndTime:
             titleForSetCurrentButton = "Now"
-        case .Date:
+        case .date:
             titleForSetCurrentButton = "Today"
-        case .Time:
+        case .time:
             titleForSetCurrentButton = "Now"
         default:
             fatalError("Unsupported date picker mode.")
         }
         
         toolbar.items = [
-            UIBarButtonItem(title: titleForSetCurrentButton, style: .Plain, target: self, action: "setCurrent"),
-            UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismissPicker")
+            UIBarButtonItem(title: titleForSetCurrentButton, style: .plain, target: self, action: #selector(DateTimePickerCell.setCurrent)),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(DateTimePickerCell.dismissPicker))
         ]
 
         picker = UIDatePicker(frame: CGRect.zero)
-        let pickerIntrinsicSize = picker.intrinsicContentSize()
+        let pickerIntrinsicSize = picker.intrinsicContentSize
         
-        picker.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        picker.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         picker.datePickerMode = element.datePickerMode()
-        picker.date = element.value ?? NSDate()
-        
-        picker.addTarget(self, action: "dateTimeChanged:", forControlEvents: .ValueChanged)
+        picker.date = element.value
+        picker.addTarget(self, action: #selector(DateTimePickerCell.dateTimeChanged(_:)), for: .valueChanged)
         
         let viewFrame = CGRect(
             x: 0,
@@ -77,9 +76,9 @@ class DateTimePickerCell : UITableViewCell {
         )
         
         let view = UIView(frame: viewFrame)
-        view.backgroundColor = UIColor.whiteColor()
-        view.opaque = true
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.backgroundColor = UIColor.white
+        view.isOpaque = true
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         toolbar.frame = CGRect(x: 0, y: 0, width: viewFrame.width, height: toolbarIntrinsicSize.height)
         view.addSubview(toolbar)
@@ -90,17 +89,17 @@ class DateTimePickerCell : UITableViewCell {
         return view
     }
     
-    override func canBecomeFirstResponder() -> Bool {
+    override var canBecomeFirstResponder : Bool {
         return true
     }
     
-    func dateTimeChanged(picker: UIDatePicker) {
+    func dateTimeChanged(_ picker: UIDatePicker) {
         element.value = picker.date
         detailTextLabel!.text = element.formatDateTime()
     }
     
     func setCurrent() {
-        let now = NSDate()
+        let now = Date()
         picker.setDate(now, animated: true)
         element.value = now
         detailTextLabel!.text = element.formatDateTime()
@@ -111,25 +110,25 @@ class DateTimePickerCell : UITableViewCell {
     }
 }
 
-public class DateTimeElement : Element {
+open class DateTimeElement : Element {
     var text: String
-    var value: NSDate
+    var value: Date
 
-    lazy var formatter: NSDateFormatter = {
-        let formatter = NSDateFormatter()
+    lazy var formatter: DateFormatter = {
+        let formatter = DateFormatter()
         
         switch self.datePickerMode() {
-        case .Date:
-            formatter.dateStyle = .ShortStyle
-            formatter.timeStyle = .NoStyle
+        case .date:
+            formatter.dateStyle = .short
+            formatter.timeStyle = .none
             
-        case .Time:
-            formatter.dateStyle = .NoStyle
-            formatter.timeStyle = .ShortStyle
+        case .time:
+            formatter.dateStyle = .none
+            formatter.timeStyle = .short
             
-        case .DateAndTime:
-            formatter.dateStyle = .ShortStyle
-            formatter.timeStyle = .ShortStyle
+        case .dateAndTime:
+            formatter.dateStyle = .short
+            formatter.timeStyle = .short
            
         default:
             fatalError("Unsupported date picker mode.")
@@ -140,52 +139,52 @@ public class DateTimeElement : Element {
     
     public init(
         text: String = "",
-        value: NSDate
+        value: Date
     ) {
         self.text = text
         self.value = value
     }
     
     func datePickerMode() -> UIDatePickerMode {
-        return .DateAndTime
+        return .dateAndTime
     }
     
     func formatDateTime() -> String {
-        return formatter.stringFromDate(value)
+        return formatter.string(from: value)
     }
     
-    public override func getCell(tableView: UITableView) -> UITableViewCell! {
+    open override func getCell(_ tableView: UITableView) -> UITableViewCell! {
         let cellKey = "datetime"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellKey) as UITableViewCell!
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellKey) as UITableViewCell!
         if cell == nil {
-            cell = DateTimePickerCell(element: self, style: .Value1, reuseIdentifier: cellKey)
-            cell.selectionStyle = .Default
-            cell.accessoryType = .DisclosureIndicator
+            cell = DateTimePickerCell(element: self, style: .value1, reuseIdentifier: cellKey)
+            cell?.selectionStyle = .default
+            cell?.accessoryType = .disclosureIndicator
         }
         
-        cell.textLabel!.text = text
-        cell.detailTextLabel!.text = formatDateTime()
+        cell?.textLabel!.text = text
+        cell?.detailTextLabel!.text = formatDateTime()
         
         return cell
     }
     
 
-    public override func elementSelected(dialogController: DialogController, tableView: UITableView, atPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! DateTimePickerCell!
-        cell.becomeFirstResponder()
+    open override func elementSelected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let cell = tableView.cellForRow(at: indexPath) as! DateTimePickerCell!
+        cell?.becomeFirstResponder()
     }
 }
 
-public class DateElement : DateTimeElement {
+open class DateElement : DateTimeElement {
     override func datePickerMode() -> UIDatePickerMode {
-        return .Date
+        return .date
     }
 }
 
-public class TimeElement : DateTimeElement {
+open class TimeElement : DateTimeElement {
     override func datePickerMode() -> UIDatePickerMode {
-        return .Time
+        return .time
     }
 }

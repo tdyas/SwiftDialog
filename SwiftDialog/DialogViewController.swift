@@ -15,11 +15,11 @@
 import Foundation
 import UIKit
 
-public class DialogViewController : SwiftTableViewController {
-    public var root: RootElement
-    public var dialogController: DialogController
+open class DialogViewController : SwiftTableViewController {
+    open var root: RootElement
+    open var dialogController: DialogController
 
-    public init(root: RootElement, style: UITableViewStyle = .Grouped) {
+    public init(root: RootElement, style: UITableViewStyle = .grouped) {
         self.root = root
         self.dialogController = DialogController(self.root)
         self.root.dialogController = self.dialogController
@@ -33,7 +33,7 @@ public class DialogViewController : SwiftTableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.dataSource = self.dialogController
@@ -41,13 +41,13 @@ public class DialogViewController : SwiftTableViewController {
         
         self.navigationItem.title = self.root.title
         
-        if let _ = self.root.onRefresh {
+        if self.root.onRefresh != nil {
             self.refreshControl = UIRefreshControl(frame: CGRect.zero)
-            self.refreshControl!.addTarget(self, action: "triggerRefresh", forControlEvents: .ValueChanged)
+            self.refreshControl!.addTarget(self, action: #selector(DialogViewController.triggerRefresh), for: .valueChanged)
         }
     }
     
-    public override func viewWillAppear(animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
     }
@@ -58,11 +58,11 @@ public class DialogViewController : SwiftTableViewController {
         }
     }
 
-    public func beginRefreshing() {
+    open func beginRefreshing() {
         self.refreshControl!.beginRefreshing()
     }
     
-    public func endRefreshing() {
+    open func endRefreshing() {
         self.refreshControl!.endRefreshing()
     }
 }

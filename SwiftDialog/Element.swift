@@ -14,10 +14,10 @@
 
 import UIKit
 
-public class Element : NSObject {
-    public weak var parent: Element? = nil
+open class Element : NSObject {
+    open weak var parent: Element? = nil
     
-    public var root: RootElement? {
+    open var root: RootElement? {
         get {
             var elementOpt = self.parent
             
@@ -35,16 +35,16 @@ public class Element : NSObject {
         }
     }
     
-    public func getCell(tableView: UITableView) -> UITableViewCell! {
+    open func getCell(_ tableView: UITableView) -> UITableViewCell! {
         fatalError("This method must be overridden")
     }
     
-    public func elementSelected(dialogController: DialogController, tableView: UITableView, atPath indexPath: NSIndexPath) {
+    open func elementSelected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
     }
 
-    public func elementDeselected(dialogController: DialogController, tableView: UITableView, atPath indexPath: NSIndexPath) {
+    open func elementDeselected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
     }
     
-    public func accessoryButtonTapped(dialogController: DialogController, tableView: UITableView, atPath indexPath: NSIndexPath) {
+    open func accessoryButtonTapped(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
     }
 }
