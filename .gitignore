@@ -7,3 +7,7 @@ build/*
 # Ignore Mac OS X noise
 .DS_Store
 profile
+
+# Ignore Carthage-related files
+Carthage/Build
+
