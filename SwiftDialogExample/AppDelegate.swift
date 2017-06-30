@@ -59,7 +59,88 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
         alert.show()
     }
     
-    func getRootElement() -> RootElement {
+    func buildStringElements() -> RootElement {
+        return RootElement.builder()
+            .title("String elements")
+            .section(SectionElement.builder()
+                .header("String Elements")
+                .element(StringElement("Basic string element"))
+                .element(StringElement("Text", detailText: "Detail Text"))
+                .element(Value2StringElement("Value2", detailText: "Detail Text"))
+                .element(SubtitleStringElement("Subtitle string element", detailText: "Subtitle"))
+                .build())
+            .section(SectionElement.builder()
+                .header("Tappable")
+                .element(StringElement("Tap me", onSelect: { element in self.clickMeTapped() }))
+                .element(StringElement("An info button", onInfo: { element in self.infoTapped() }))
+                .element(StringElement(
+                    "Both types of taps",
+                    onSelect: { element in self.clickMeTapped() },
+                    onInfo: { element in self.infoTapped() }))
+                .build())
+            .build()
+    }
+    
+    func buildTextEntryElements() -> RootElement {
+        return RootElement.builder()
+            .title("Text entry elements")
+            .section(SectionElement.builder()
+                .header("Basic text entry")
+                .element(TextEntryElement(text: "", placeholder: "Enter some text here"))
+                .element(TextEntryElement(text: "", title: "Entry", placeholder: "Enter more text here"))
+                .build())
+            .section(SectionElement.builder()
+                .header("Login form")
+                .element(TextEntryElement(text: "", placeholder: "User name"))
+                .element(TextEntryElement(text: "", placeholder: "Password", secureTextEntry: true))
+                .build())
+            .build()
+    }
+    
+    func buildBooleanElements() -> RootElement {
+        return RootElement.builder()
+            .title("Boolean elements")
+            .section(SectionElement.builder()
+                .element(SwitchElement(text: "Switch", value: false))
+                .element(CheckboxElement(text: "Checkbox", value: false))
+                .build())
+            .section(SectionElement.builder()
+                .header("Radio group")
+                .element(RadioElement(text: "Studio", group: "apts"))
+                .element(RadioElement(text: "1 bedroom", group: "apts"))
+                .element(RadioElement(text: "2 bedroom", group: "apts"))
+                .element(RadioElement(text: "3 bedroom", group: "apts"))
+                .build())
+            .groups(["apts": 3])
+            .build()
+    }
+    
+    func buildSliderElements() -> RootElement {
+        return RootElement(
+            title: "Sliders",
+            sections: [
+                SectionElement(
+                    elements: [
+                        SliderElement(value: 0.5),
+                        SliderElement(text: "Num", value: 0.5)
+                    ]
+                )
+            ]
+        )
+    }
+    
+    func buildDateTimeElements() -> RootElement {
+        return RootElement(
+            title: "Date/time elements",
+            elements: [
+                DateTimeElement(text: "Date/Time Picker", value: NSDate() as Date),
+                DateElement(text: "Date Picker", value: NSDate() as Date),
+                TimeElement(text: "Time Picker", value: NSDate() as Date)
+            ]
+        )
+    }
+    
+    func buildRootElementsSection() -> SectionElement {
         let customHeaderLabel = UILabel(frame: CGRect.zero)
         customHeaderLabel.autoresizingMask = .flexibleWidth
         customHeaderLabel.text = "Root Elements (+ custom header)"
@@ -67,139 +148,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
         customHeaderLabel.sizeToFit()
         customHeaderLabel.textAlignment = .center
         
-        return RootElement(
-            title: "SwiftDialog",
-            sections: [
-                SectionElement(
-                    elements: [
-                        RootElement(
-                            title: "String elements",
-                            sections: [
-                                SectionElement(
-                                    elements: [
-                                        StringElement("Basic string element"),
-                                        StringElement("Text", detailText: "Detail Text"),
-                                        Value2StringElement("Value2", detailText: "Detail Text"),
-                                        SubtitleStringElement("Subtitle string element", detailText: "Subtitle")
-                                    ],
-                                    header: "String Elements"
-                                ),
-                                SectionElement(
-                                    elements: [
-                                        StringElement("Tap me", onSelect: { element in self.clickMeTapped() }),
-                                        StringElement("An info button", onInfo: { element in self.infoTapped() }),
-                                        StringElement(
-                                            "Both types of taps",
-                                            onSelect: { element in self.clickMeTapped() },
-                                            onInfo: { element in self.infoTapped() }
-                                        )
-                                    ],
-                                    header: "Tappable"
-                                )
-                            ]
-                        ),
-                        RootElement(
-                            title: "Text entry elements",
-                            sections: [
-                                SectionElement(
-                                    elements: [
-                                        TextEntryElement(text: "", placeholder: "Enter some text here"),
-                                        TextEntryElement(text: "", title: "Entry", placeholder: "Enter more text here")
-                                    ],
-                                    header: "Basic text entry"
-                                ),
-                                SectionElement(
-                                    elements: [
-                                        TextEntryElement(text: "", placeholder: "User name"),
-                                        TextEntryElement(text: "", placeholder: "Password", secureTextEntry: true)
-                                    ],
-                                    header: "Login form"
-                                )
-                            ]
-                        ),
-                        RootElement(
-                            title: "Boolean elements",
-                            sections: [
-                                SectionElement(
-                                    elements: [
-                                        SwitchElement(text: "Switch", value: false),
-                                        CheckboxElement(text: "Checkbox", value: false)
-                                    ]
-                                ),
-                                SectionElement(
-                                    elements: [
-                                        RadioElement(text: "Studio", group: "apts"),
-                                        RadioElement(text: "1 bedroom", group: "apts"),
-                                        RadioElement(text: "2 bedroom", group: "apts"),
-                                        RadioElement(text: "3 bedroom", group: "apts")
-                                    ],
-                                    header: "Radio group"
-                                )
-                            ],
-                            groups: ["apts": 3]
-                        ),
-                        RootElement(
-                            title: "Sliders",
-                            sections: [
-                                SectionElement(
-                                    elements: [
-                                        SliderElement(value: 0.5),
-                                        SliderElement(text: "Num", value: 0.5)
-                                    ]
-                                )
-                            ]
-                        ),
-                        RootElement(
-                            title: "Date/time elements",
-                            elements: [
-                                DateTimeElement(text: "Date/Time Picker", value: NSDate() as Date),
-                                DateElement(text: "Date Picker", value: NSDate() as Date),
-                                TimeElement(text: "Time Picker", value: NSDate() as Date)
-                            ]
-                        )
-                    ]
-                ),
-                SectionElement(
-                    elements: [
-                        RootElement(
-                            title: "Colors",
-                            sections: [
-                                SectionElement(elements: [
-                                    RadioElement(text: "Red", group: "colors"),
-                                    RadioElement(text: "Green", group: "colors"),
-                                    RadioElement(text: "Blue", group: "colors")
-                                ])
-                            ],
-                            groups: ["colors": 0],
-                            summary: .radioGroup(group: "colors")
-                        ),
-                        RootElement(
-                            title: "World of Bool",
-                            sections: [
-                                SectionElement(elements: [
-                                    CheckboxElement(text: "First", value: false),
-                                    CheckboxElement(text: "Second", value: false),
-                                    CheckboxElement(text: "Third", value: false),
-                                ], header: "Checkboxes"),
-                                SectionElement(elements: [
-                                    SwitchElement(text: "First", value: false),
-                                    SwitchElement(text: "Second", value: false),
-                                    SwitchElement(text: "Third", value: false),
-                                ], header: "Switches")
-                            ],
-                            summary: .count,
-                            childStyle: .plain
-                        )
-                    ],
-                    headerView: customHeaderLabel
-                    
-                ),
-            ],
-            groups: [
-                "apts": 0
-            ],
-            onRefresh: { root in self.displayRefreshAlert() }
-        )
+        return SectionElement.builder()
+            .element(RootElement.builder()
+                .title("Colors")
+                .section(SectionElement.builder()
+                    .element(RadioElement(text: "Red", group: "colors"))
+                    .element(RadioElement(text: "Green", group: "colors"))
+                    .element(RadioElement(text: "Blue", group: "colors"))
+                    .build())
+                .groups(["colors": 0])
+                .summary(.radioGroup(group: "colors"))
+                .build())
+            .element(RootElement.builder()
+                .title("World of Bool")
+                .section(SectionElement.builder()
+                    .header("Checkboxes")
+                    .element(CheckboxElement(text: "First", value: false))
+                    .element(CheckboxElement(text: "Second", value: false))
+                    .element(CheckboxElement(text: "Third", value: false))
+                    .build())
+                .section(SectionElement.builder()
+                    .header("Switches")
+                    .element(SwitchElement(text: "First", value: false))
+                    .element(SwitchElement(text: "Second", value: false))
+                    .element(SwitchElement(text: "Third", value: false))
+                    .build())
+                .summary(.count)
+                .childStyle(.plain)
+                .build())
+            .headerView(customHeaderLabel)
+            .build()
+    }
+    
+    func getRootElement() -> RootElement {
+        return RootElement.builder()
+            .title("SwiftDialog")
+            .section(SectionElement.builder()
+                .element(buildStringElements())
+                .element(buildTextEntryElements())
+                .element(buildBooleanElements())
+                .element(buildSliderElements())
+                .element(buildDateTimeElements())
+                .build())
+            .section(buildRootElementsSection())
+            .groups(["apts": 0])
+            .onRefresh({ root in self.displayRefreshAlert() })
+            .build()
     }
     
     func displayRefreshAlert() {

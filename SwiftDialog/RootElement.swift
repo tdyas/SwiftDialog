@@ -152,3 +152,76 @@ open class RootElement : Element {
         dialogController.viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }
+
+public protocol RootElementBuilder {
+    func title(_ title: String) -> RootElementBuilder
+    func sections(_ sections: WrappedArray<SectionElement>) -> RootElementBuilder
+    func section(_ section: SectionElement) -> RootElementBuilder
+    func groups(_ groups: [String: Int]) -> RootElementBuilder
+    func onRefresh(_ closure: @escaping (RootElement) -> ()) -> RootElementBuilder
+    func summary(_ summary: SummarizeBy) -> RootElementBuilder
+    func childStyle(_ childStyle: UITableViewStyle) -> RootElementBuilder
+    func build() -> RootElement
+}
+
+extension RootElement {
+    public static func builder() -> RootElementBuilder {
+        return BuilderImpl()
+    }
+
+    class BuilderImpl : RootElementBuilder {
+        private var _title: String = ""
+        private var _sections: WrappedArray<SectionElement> = WrappedArray<SectionElement>()
+        private var _groups: [String: Int] = [:]
+        private var _onRefresh: ((RootElement) -> ())?
+        private var _summary: SummarizeBy = .none
+        private var _childStyle: UITableViewStyle = .grouped
+        
+        func title(_ title: String) -> RootElementBuilder {
+            _title = title
+            return self
+        }
+        
+        func sections(_ sections: WrappedArray<SectionElement>) -> RootElementBuilder {
+            _sections = sections
+            return self
+        }
+        
+        func section(_ section: SectionElement) -> RootElementBuilder {
+            _sections.append(section)
+            return self
+        }
+        
+        func groups(_ groups: [String: Int]) -> RootElementBuilder {
+            _groups = groups
+            return self
+        }
+        
+        func onRefresh(_ closure: @escaping (RootElement) -> ()) -> RootElementBuilder {
+            _onRefresh = closure
+            return self
+        }
+        
+        func summary(_ summary: SummarizeBy) -> RootElementBuilder {
+            _summary = summary
+            return self
+        }
+        
+        func childStyle(_ childStyle: UITableViewStyle) -> RootElementBuilder {
+            _childStyle = childStyle
+            return self
+        }
+        
+        func build() -> RootElement {
+            return RootElement(
+                title: _title,
+                sections: _sections,
+                groups: _groups,
+                onRefresh: _onRefresh,
+                summary: _summary,
+                childStyle: _childStyle
+            )
+        }
+    }
+}
+

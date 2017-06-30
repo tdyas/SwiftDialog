@@ -41,3 +41,67 @@ open class SectionElement : Element {
         }
     }
 }
+
+public protocol SectionElementBuilder {
+    func elements(_ elements: WrappedArray<Element>) -> SectionElementBuilder
+    func element(_ element: Element) -> SectionElementBuilder
+    func header(_ header: String) -> SectionElementBuilder
+    func headerView(_ headerView: UIView) -> SectionElementBuilder
+    func footer(_ footer: String) -> SectionElementBuilder
+    func footerView(_ footerView: UIView) -> SectionElementBuilder
+    func build() -> SectionElement
+}
+
+extension SectionElement {
+    public static func builder() -> SectionElementBuilder {
+        return BuilderImpl()
+    }
+    
+    class BuilderImpl : SectionElementBuilder {
+        var elements: WrappedArray<Element> = []
+        var header: String?
+        var footer: String?
+        var headerView: UIView?
+        var footerView: UIView?
+        
+        func elements(_ elements: WrappedArray<Element>) -> SectionElementBuilder {
+            self.elements = elements
+            return self
+        }
+        
+        func element(_ element: Element) -> SectionElementBuilder {
+            self.elements.append(element)
+            return self
+        }
+        
+        func header(_ header: String) -> SectionElementBuilder {
+            self.header = header
+            return self
+        }
+        
+        func headerView(_ headerView: UIView) -> SectionElementBuilder {
+            self.headerView = headerView
+            return self
+        }
+        
+        func footer(_ footer: String) -> SectionElementBuilder {
+            self.footer = footer
+            return self
+        }
+        
+        func footerView(_ footerView: UIView) -> SectionElementBuilder {
+            self.footerView = footerView
+            return self
+        }
+        
+        func build() -> SectionElement {
+            return SectionElement(
+                elements: elements,
+                header: header,
+                footer: footer,
+                headerView: headerView,
+                footerView: footerView
+            )
+        }
+    }
+}
