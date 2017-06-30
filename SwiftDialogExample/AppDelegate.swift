@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
         return true
     }
     
+    @objc
     func modalButtonTapped() {
         let modal = ModalDialogViewController(root: getModalRootElement())
         modal.delegate = self

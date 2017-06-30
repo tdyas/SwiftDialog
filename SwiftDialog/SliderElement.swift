@@ -73,7 +73,7 @@ open class SliderElement : Element {
         return cell
     }
     
-    func valueChanged(_ slider: UISlider!) {
+    @objc func valueChanged(_ slider: UISlider!) {
         self.value = slider.value
     }
 }

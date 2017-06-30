@@ -93,11 +93,13 @@ class DateTimePickerCell : UITableViewCell {
         return true
     }
     
+    @objc
     func dateTimeChanged(_ picker: UIDatePicker) {
         element.value = picker.date
         detailTextLabel!.text = element.formatDateTime()
     }
     
+    @objc
     func setCurrent() {
         let now = Date()
         picker.setDate(now, animated: true)
@@ -105,6 +107,7 @@ class DateTimePickerCell : UITableViewCell {
         detailTextLabel!.text = element.formatDateTime()
     }
     
+    @objc
     func dismissPicker() {
         resignFirstResponder()
     }

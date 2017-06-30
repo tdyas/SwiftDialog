@@ -41,6 +41,7 @@ open class ModalDialogViewController : UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc
     open func dismiss() {
         self.delegate?.dismissModalDialogViewController(self)
     }

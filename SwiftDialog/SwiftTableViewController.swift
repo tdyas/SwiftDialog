@@ -124,6 +124,7 @@ open class SwiftTableViewController : UIViewController {
         tableView.setEditing(editing, animated: animated)
     }
     
+    @objc
     func willShowKeyboard(_ notification: Notification!) {
         let userInfo = notification.userInfo
         
@@ -144,6 +145,7 @@ open class SwiftTableViewController : UIViewController {
         }
     }
     
+    @objc
     func willHideKeyboard(_ notification: Notification!) {
         keyboardRectOpt = nil
         

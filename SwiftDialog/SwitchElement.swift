@@ -26,6 +26,7 @@ open class SwitchElement : Element, BooleanValuedElement {
         self.value = value
     }
     
+    @objc
     func valueChanged() {
         self.value = self.switchControl.isOn
     }

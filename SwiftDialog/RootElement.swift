@@ -14,7 +14,6 @@
 
 import UIKit
 
-@objc
 protocol BooleanValuedElement {
     var value: Bool { get }
 }

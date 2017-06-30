@@ -52,7 +52,7 @@ open class DialogViewController : SwiftTableViewController {
         self.tableView.reloadData()
     }
     
-    func triggerRefresh() {
+    @objc func triggerRefresh() {
         if let callback = self.root.onRefresh {
             callback(self.root)
         }
