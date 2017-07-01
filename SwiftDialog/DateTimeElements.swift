@@ -1,4 +1,4 @@
-// Copyright 2014 Thomas K. Dyas
+// Copyright 2014-2017 Thomas K. Dyas
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -113,9 +113,9 @@ class DateTimePickerCell : UITableViewCell {
     }
 }
 
-open class DateTimeElement : Element {
-    var text: String
-    var value: Date
+public class DateTimeElement : BaseElement {
+    public var text: String
+    public var value: Date
 
     lazy var formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -156,7 +156,7 @@ open class DateTimeElement : Element {
         return formatter.string(from: value)
     }
     
-    open override func getCell(_ tableView: UITableView) -> UITableViewCell! {
+    public override func getCell(_ tableView: UITableView) -> UITableViewCell! {
         let cellKey = "datetime"
         
         var cell = tableView.dequeueReusableCell(withIdentifier: cellKey) as UITableViewCell!
@@ -173,20 +173,20 @@ open class DateTimeElement : Element {
     }
     
 
-    open override func elementSelected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
+    public override func elementSelected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let cell = tableView.cellForRow(at: indexPath) as! DateTimePickerCell!
         cell?.becomeFirstResponder()
     }
 }
 
-open class DateElement : DateTimeElement {
+public class DateElement : DateTimeElement {
     override func datePickerMode() -> UIDatePickerMode {
         return .date
     }
 }
 
-open class TimeElement : DateTimeElement {
+public class TimeElement : DateTimeElement {
     override func datePickerMode() -> UIDatePickerMode {
         return .time
     }

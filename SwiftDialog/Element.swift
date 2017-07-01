@@ -14,10 +14,21 @@
 
 import UIKit
 
-open class Element : NSObject {
-    open weak var parent: Element? = nil
+public protocol Element : AnyObject {
+    weak var parent: Element? { get set }
+    var root: RootElement? { get }
     
-    open var root: RootElement? {
+    func getCell(_ tableView: UITableView) -> UITableViewCell!
+    
+    func elementSelected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath)
+    func elementDeselected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath)
+    func accessoryButtonTapped(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath)
+}
+
+public class BaseElement : NSObject, Element {
+    public weak var parent: Element? = nil
+    
+    public var root: RootElement? {
         get {
             var elementOpt = self.parent
             
@@ -26,7 +37,7 @@ open class Element : NSObject {
                     if let elementAsRoot = element as? RootElement {
                         return elementAsRoot
                     }
-
+                    
                     elementOpt = element.parent
                 }
             }
@@ -35,16 +46,17 @@ open class Element : NSObject {
         }
     }
     
-    open func getCell(_ tableView: UITableView) -> UITableViewCell! {
-        fatalError("This method must be overridden")
+    public func getCell(_ tableView: UITableView) -> UITableViewCell! {
+        fatalError("getCell must be overridden")
     }
     
-    open func elementSelected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
-    }
-
-    open func elementDeselected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
+    public func elementSelected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
     }
     
-    open func accessoryButtonTapped(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
+    public func elementDeselected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
+    }
+    
+    public func accessoryButtonTapped(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
     }
 }
+

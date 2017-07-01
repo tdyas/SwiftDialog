@@ -1,4 +1,4 @@
-// Copyright 2014 Thomas K. Dyas
+// Copyright 2014-2017 Thomas K. Dyas
 //   
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,9 +15,9 @@
 import Foundation
 import UIKit
 
-open class DialogController : NSObject, UITableViewDataSource, UITableViewDelegate {
-    open let root: RootElement
-    open weak var viewController: DialogViewController?
+public class DialogController : NSObject, UITableViewDataSource, UITableViewDelegate {
+    public let root: RootElement
+    public weak var viewController: DialogViewController?
     
     public init(_ rootElement: RootElement) {
         self.root = rootElement
@@ -30,26 +30,26 @@ open class DialogController : NSObject, UITableViewDataSource, UITableViewDelega
     
     // UITableViewDataSource
     
-    open func numberOfSections(in tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         return self.root.sections.count
     }
     
-    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let element = elementAtIndexPath(indexPath)
         return element!.getCell(tableView)
     }
     
-    open func tableView(_ tableView: UITableView, numberOfRowsInSection sectionIndex: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection sectionIndex: Int) -> Int {
         let section = self.root.sections[sectionIndex]
         return section.elements.count
     }
     
-    open func tableView(_ tableView: UITableView, titleForHeaderInSection sectionIndex: Int) -> String? {
+    public func tableView(_ tableView: UITableView, titleForHeaderInSection sectionIndex: Int) -> String? {
         let section = self.root.sections[sectionIndex]
         return section.header
     }
     
-    open func tableView(_ tableView: UITableView, titleForFooterInSection sectionIndex: Int) -> String? {
+    public func tableView(_ tableView: UITableView, titleForFooterInSection sectionIndex: Int) -> String? {
         let section = self.root.sections[sectionIndex]
         return section.footer
     }
@@ -57,43 +57,41 @@ open class DialogController : NSObject, UITableViewDataSource, UITableViewDelega
     
     // UITableViewDelegate
     
-    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let element = self.elementAtIndexPath(indexPath)
         element?.elementSelected(self, tableView: tableView, atPath: indexPath)
     }
     
-    open func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let element = self.elementAtIndexPath(indexPath)
         element?.elementDeselected(self, tableView: tableView, atPath: indexPath)
     }
     
-    open func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         let element = self.elementAtIndexPath(indexPath)
         element?.accessoryButtonTapped(self, tableView: tableView, atPath: indexPath)
     }
     
-    open func tableView(_ tableView: UITableView, viewForHeaderInSection sectionIndex: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection sectionIndex: Int) -> UIView? {
         let section = self.root.sections[sectionIndex]
         return section.headerView
     }
     
-    open func tableView(_ tableView: UITableView, viewForFooterInSection sectionIndex: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForFooterInSection sectionIndex: Int) -> UIView? {
         let section = self.root.sections[sectionIndex]
         return section.footerView
     }
     
     // Table Modifications
     
-    open func beginUpdates() {
+    public func beginUpdates() {
         self.viewController!.tableView!.beginUpdates()
     }
     
-    open func endUpdates() {
+    public func endUpdates() {
         self.viewController!.tableView!.endUpdates()
     }
     
-    open func insertElements(_ elements: [Element], atIndexPath indexPath: IndexPath, withRowAnimation animation: UITableViewRowAnimation) {
-        
+    public func insertElements(_ elements: [Element], atIndexPath indexPath: IndexPath, withRowAnimation animation: UITableViewRowAnimation) {
     }
-
 }

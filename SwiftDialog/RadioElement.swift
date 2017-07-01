@@ -14,16 +14,16 @@
 
 import UIKit
 
-open class RadioElement : Element {
-    open var text: String
-    open let group: String
+public class RadioElement : BaseElement {
+    public var text: String
+    public let group: String
     
     public init(text: String, group: String) {
         self.text = text
         self.group = group
     }
     
-    open override func getCell(_ tableView: UITableView) -> UITableViewCell! {
+    public override func getCell(_ tableView: UITableView) -> UITableViewCell! {
         let cellKey = "radio"
         
         var cell = tableView.dequeueReusableCell(withIdentifier: cellKey) as UITableViewCell!
@@ -48,7 +48,7 @@ open class RadioElement : Element {
         return cell
     }
     
-    open override func elementSelected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
+    public override func elementSelected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
         }

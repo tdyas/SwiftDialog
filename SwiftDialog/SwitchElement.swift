@@ -14,11 +14,11 @@
 
 import UIKit
 
-open class SwitchElement : Element, BooleanValuedElement {
+public class SwitchElement : BaseElement, BooleanValuedElement {
     fileprivate var switchControl: UISwitch!
     
-    open var text: String = ""
-    open var value: Bool = false
+    public var text: String = ""
+    public var value: Bool = false
     
     public init(text: String = "", value: Bool = false) {
         super.init()
@@ -31,7 +31,7 @@ open class SwitchElement : Element, BooleanValuedElement {
         self.value = self.switchControl.isOn
     }
     
-    open override func getCell(_ tableView: UITableView) -> UITableViewCell! {
+    public override func getCell(_ tableView: UITableView) -> UITableViewCell! {
         let cellKey = "switch"
         
         var cell = tableView.dequeueReusableCell(withIdentifier: cellKey) as UITableViewCell!

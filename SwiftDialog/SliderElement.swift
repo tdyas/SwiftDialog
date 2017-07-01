@@ -14,17 +14,17 @@
 
 import UIKit
 
-open class SliderElement : Element {
-    var text: String
-    var value: Float
-    var slider: UISlider?
+public class SliderElement : BaseElement {
+    public var text: String
+    public var value: Float
+    public var slider: UISlider?
     
     public init(text: String = "", value: Float = 0.0) {
         self.text = text
         self.value = value
     }
     
-    open override func getCell(_ tableView: UITableView) -> UITableViewCell! {
+    public override func getCell(_ tableView: UITableView) -> UITableViewCell! {
         let cellKey = "slider"
         let sliderTag = 500
         
@@ -73,7 +73,8 @@ open class SliderElement : Element {
         return cell
     }
     
-    @objc func valueChanged(_ slider: UISlider!) {
+    @objc
+    func valueChanged(_ slider: UISlider!) {
         self.value = slider.value
     }
 }

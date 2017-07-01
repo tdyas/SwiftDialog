@@ -1,4 +1,4 @@
-// Copyright 2014 Thomas K. Dyas
+// Copyright 2014-2017 Thomas K. Dyas
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,16 +14,16 @@
 
 import UIKit
 
-open class CheckboxElement : Element, BooleanValuedElement {
-    open var text: String
-    open var value: Bool
+public class CheckboxElement : BaseElement, BooleanValuedElement {
+    public var text: String
+    public var value: Bool
     
     public init(text: String = "", value: Bool = false) {
         self.text = text
         self.value = value
     }
     
-    open override func getCell(_ tableView: UITableView) -> UITableViewCell! {
+    public override func getCell(_ tableView: UITableView) -> UITableViewCell! {
         let cellKey = "checkbox"
 
         var cell = tableView.dequeueReusableCell(withIdentifier: cellKey) as UITableViewCell!
@@ -38,7 +38,7 @@ open class CheckboxElement : Element, BooleanValuedElement {
         return cell
     }
     
-    open override func elementSelected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
+    public override func elementSelected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
         self.value = !self.value
         
         if let cell = tableView.cellForRow(at: indexPath) {

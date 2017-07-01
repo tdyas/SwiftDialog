@@ -14,11 +14,11 @@
 
 import UIKit
 
-open class StringElement : Element {
-    open var text: String
-    open var detailText: String?
-    open var onSelect: ((StringElement) -> ())?
-    open var onInfo: ((StringElement) -> ())?
+public class StringElement : BaseElement {
+    public var text: String
+    public var detailText: String?
+    public var onSelect: ((StringElement) -> ())?
+    public var onInfo: ((StringElement) -> ())?
     
     public init(
         _ text: String = "",
@@ -36,7 +36,7 @@ open class StringElement : Element {
         return .value1
     }
     
-    open override func getCell(_ tableView: UITableView) -> UITableViewCell! {
+    public override func getCell(_ tableView: UITableView) -> UITableViewCell! {
         let cellKey = detailText == nil ? "string" : "value1"
         
         var cell = tableView.dequeueReusableCell(withIdentifier: cellKey) as UITableViewCell!
@@ -69,20 +69,20 @@ open class StringElement : Element {
         return cell
     }
     
-    open override func elementSelected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
+     public override func elementSelected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
         if let callback = onSelect {
             callback(self)
         }
     }
     
-    open override func accessoryButtonTapped(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
+    public override func accessoryButtonTapped(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
         if let callback = onInfo {
             callback(self)
         }
     }
 }
 
-open class Value2StringElement : StringElement {
+public class Value2StringElement : StringElement {
     public override init(
         _ text: String = "",
         detailText: String? = nil,
@@ -97,7 +97,7 @@ open class Value2StringElement : StringElement {
     }
 }
 
-open class SubtitleStringElement : StringElement {
+public class SubtitleStringElement : StringElement {
     public override init(
         _ text: String = "",
         detailText: String? = nil,

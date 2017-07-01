@@ -55,11 +55,11 @@ class TextEntryCell : UITableViewCell {
     }
 }
 
-open class TextEntryElement : Element, UITextFieldDelegate {
+public class TextEntryElement : BaseElement, UITextFieldDelegate {
     fileprivate var cachedText: String = ""
     fileprivate var textField: UITextField!
     
-    open var text: String {
+    public var text: String {
         get {
             switch (self.textField) {
             case .some(let textField):
@@ -79,15 +79,15 @@ open class TextEntryElement : Element, UITextFieldDelegate {
         }
     }
     
-    open var title: String?
-    open var placeholder: String?
+    public var title: String?
+    public var placeholder: String?
     
-    open var autocapitalizationType: UITextAutocapitalizationType
-    open var autocorrectionType: UITextAutocorrectionType
-    open var spellCheckingType: UITextSpellCheckingType
-    open var keyboardType: UIKeyboardType
-    open var keyboardAppearance: UIKeyboardAppearance
-    open var secureTextEntry: Bool
+    public var autocapitalizationType: UITextAutocapitalizationType
+    public var autocorrectionType: UITextAutocorrectionType
+    public var spellCheckingType: UITextSpellCheckingType
+    public var keyboardType: UIKeyboardType
+    public var keyboardAppearance: UIKeyboardAppearance
+    public var secureTextEntry: Bool
     
     public init(
         text: String = "",
@@ -119,16 +119,16 @@ open class TextEntryElement : Element, UITextFieldDelegate {
         self.text = textField.text!
     }
     
-    open func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false
     }
     
-    open func textFieldDidEndEditing(_ textField: UITextField) {
+    public func textFieldDidEndEditing(_ textField: UITextField) {
         self.text = textField.text!
     }
     
-    open override func getCell(_ tableView: UITableView) -> UITableViewCell! {
+    public override func getCell(_ tableView: UITableView) -> UITableViewCell! {
         let cellKey = "textEntry"
         
         var cell = tableView.dequeueReusableCell(withIdentifier: cellKey) as! TextEntryCell!

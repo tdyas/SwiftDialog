@@ -24,15 +24,15 @@ public enum SummarizeBy {
     case count
 }
 
-open class RootElement : Element {
-    open var sections: WrappedArray<SectionElement>
-    open var title: String
-    open var groups: [String: Int]
-    open var onRefresh: ((RootElement) -> ())?
-    open var summary: SummarizeBy
-    open var childStyle: UITableViewStyle
+public class RootElement : BaseElement {
+    public var sections: WrappedArray<SectionElement>
+    public var title: String
+    public var groups: [String: Int]
+    public var onRefresh: ((RootElement) -> ())?
+    public var summary: SummarizeBy
+    public var childStyle: UITableViewStyle
 
-    open weak var dialogController: DialogController?
+    public weak var dialogController: DialogController?
     
     public init(
         title: String,
@@ -94,7 +94,7 @@ open class RootElement : Element {
         return nil
     }
     
-    open override func getCell(_ tableView: UITableView) -> UITableViewCell! {
+    public override func getCell(_ tableView: UITableView) -> UITableViewCell! {
         let cellKey = "root"
         
         var cell = tableView.dequeueReusableCell(withIdentifier: cellKey) as UITableViewCell!
@@ -146,8 +146,7 @@ open class RootElement : Element {
         return cell
     }
 
-    
-    open override func elementSelected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
+    public override func elementSelected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
         let vc = DialogViewController(root: self, style: childStyle)
         dialogController.viewController?.navigationController?.pushViewController(vc, animated: true)
     }

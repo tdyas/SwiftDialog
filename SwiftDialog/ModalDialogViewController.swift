@@ -19,12 +19,12 @@ public protocol ModalDialogViewControllerDelegate : class {
     func dismissModalDialogViewController(_ modalDialogViewController: ModalDialogViewController) -> Void
 }
 
-open class ModalDialogViewController : UIViewController {
-    open let dialogViewController: DialogViewController
-    open let childNavigationController: UINavigationController
-    open var doneButtonItem: UIBarButtonItem
+public class ModalDialogViewController : UIViewController {
+    public let dialogViewController: DialogViewController
+    public let childNavigationController: UINavigationController
+    public var doneButtonItem: UIBarButtonItem
 
-    open weak var delegate: ModalDialogViewControllerDelegate?
+    public weak var delegate: ModalDialogViewControllerDelegate?
     
     public init(
         root: RootElement,
@@ -42,11 +42,11 @@ open class ModalDialogViewController : UIViewController {
     }
     
     @objc
-    open func dismiss() {
+    func dismiss() {
         self.delegate?.dismissModalDialogViewController(self)
     }
     
-    open override func loadView() {
+    public override func loadView() {
         self.view = UIView(frame: UIScreen.main.bounds)
         self.view.backgroundColor = UIColor.white
         self.view.isOpaque = true
@@ -57,7 +57,7 @@ open class ModalDialogViewController : UIViewController {
         self.view.addSubview(self.childNavigationController.view)
     }
     
-    open override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         doneButtonItem.target = self

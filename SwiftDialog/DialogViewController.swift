@@ -15,9 +15,9 @@
 import Foundation
 import UIKit
 
-open class DialogViewController : SwiftTableViewController {
-    open var root: RootElement
-    open var dialogController: DialogController
+public class DialogViewController : SwiftTableViewController {
+    public let root: RootElement
+    public let dialogController: DialogController
 
     public init(root: RootElement, style: UITableViewStyle = .grouped) {
         self.root = root
@@ -33,7 +33,7 @@ open class DialogViewController : SwiftTableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    open override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.dataSource = self.dialogController
@@ -47,22 +47,23 @@ open class DialogViewController : SwiftTableViewController {
         }
     }
     
-    open override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
     }
     
-    @objc func triggerRefresh() {
+    @objc
+    func triggerRefresh() {
         if let callback = self.root.onRefresh {
             callback(self.root)
         }
     }
 
-    open func beginRefreshing() {
+    public func beginRefreshing() {
         self.refreshControl!.beginRefreshing()
     }
     
-    open func endRefreshing() {
+    public func endRefreshing() {
         self.refreshControl!.endRefreshing()
     }
 }
