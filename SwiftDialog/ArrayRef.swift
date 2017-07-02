@@ -20,10 +20,10 @@ import Foundation
 // pass-by-reference.
 
 public final class ArrayRef<T> {
-    internal var elements: Array<T>
+    internal var array: Array<T>
     
-    public init(_ elements: Array<T>) {
-        self.elements = elements
+    public init(_ array: Array<T>) {
+        self.array = array
     }
     
     public convenience init() {
@@ -42,67 +42,67 @@ extension ArrayRef : Sequence {
     public typealias SubSequence = Array<T>.SubSequence
     
     public func makeIterator() -> Iterator {
-        return self.elements.makeIterator()
+        return self.array.makeIterator()
     }
 }
 
 extension ArrayRef : Collection, MutableCollection {
     public subscript(bounds: Range<Int>) -> ArraySlice<T> {
         get {
-            return self.elements[bounds]
+            return self.array[bounds]
         }
         set(newValue) {
-            self.elements[bounds] = newValue
+            self.array[bounds] = newValue
         }
     }
 
     public typealias Index = Array<T>.Index
     
     public var startIndex: Index {
-        return self.elements.startIndex
+        return self.array.startIndex
     }
 
     public var endIndex: Index {
-        return self.elements.endIndex
+        return self.array.endIndex
     }
     
     public var count: Int {
-        return self.elements.count
+        return self.array.count
     }
     
     public subscript(i: Index) -> T {
         get {
-            return self.elements[i]
+            return self.array[i]
         }
         set {
-            self.elements[i] = newValue
+            self.array[i] = newValue
         }
     }
 
     public func index(after i: Int) -> Int {
-        return self.elements.index(after: i)
+        return self.array.index(after: i)
     }
 }
 
 extension ArrayRef : RangeReplaceableCollection {
     public func reserveCapacity(n: ArrayRef.IndexDistance) {
-        self.elements.reserveCapacity(n)
+        self.array.reserveCapacity(n)
     }
     
     public func append(_ x: Iterator.Element) {
-        self.elements.append(x)
+        self.array.append(x)
     }
     
     public func extend<S : Sequence>(_ newElements: S) where Iterator.Element == S.Iterator.Element {
-        self.elements.append(contentsOf: newElements)
+        self.array.append(contentsOf: newElements)
     }
 
     public func replaceSubrange<C : Collection>(_ subRange: Range<Index>, with newElements: C) where Iterator.Element == C.Iterator.Element {
-        self.elements.replaceSubrange(subRange, with: newElements)
+        self.array.replaceSubrange(subRange, with: newElements)
     }
     
     public func insert(newElement: Iterator.Element, at i: Index) {
-        self.elements.insert(newElement, at: i)
+        self.array.insert(newElement, at: i)
     }
     
 //    public func insert<S: Collection>(contentsOf xs: S, at i: Index) where S.Iterator.Element == T {
@@ -110,14 +110,14 @@ extension ArrayRef : RangeReplaceableCollection {
 //    }
     
     public func remove(at i: Index) -> Iterator.Element {
-        return self.elements.remove(at: i)
+        return self.array.remove(at: i)
     }
     
     public func removeSubrange(_ subRange: Range<Index>) {
-        self.elements.removeSubrange(subRange)
+        self.array.removeSubrange(subRange)
     }
     
     public func removeAll(keepingCapacity: Bool) {
-        self.elements.removeAll(keepingCapacity: keepingCapacity)
+        self.array.removeAll(keepingCapacity: keepingCapacity)
     }
 }
