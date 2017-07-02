@@ -25,7 +25,7 @@ public enum SummarizeBy {
 }
 
 public class RootElement : BaseElement {
-    public var sections: WrappedArray<SectionElement>
+    public var sections: ArrayRef<SectionElement>
     public var title: String
     public var groups: [String: Int]
     public var onRefresh: ((RootElement) -> ())?
@@ -36,7 +36,7 @@ public class RootElement : BaseElement {
     
     public init(
         title: String,
-        sections: WrappedArray<SectionElement>,
+        sections: ArrayRef<SectionElement>,
         groups: [String: Int] = [:],
         onRefresh: ((RootElement) -> ())? = nil,
         summary: SummarizeBy = .none,
@@ -58,7 +58,7 @@ public class RootElement : BaseElement {
     
     public convenience init(
         title: String,
-        elements: WrappedArray<Element>,
+        elements: ArrayRef<Element>,
         groups: [String: Int] = [:],
         onRefresh: ((RootElement) -> ())? = nil,
         summary: SummarizeBy = .none,
@@ -154,7 +154,7 @@ public class RootElement : BaseElement {
 
 public protocol RootElementBuilder {
     func title(_ title: String) -> RootElementBuilder
-    func sections(_ sections: WrappedArray<SectionElement>) -> RootElementBuilder
+    func sections(_ sections: ArrayRef<SectionElement>) -> RootElementBuilder
     func section(_ section: SectionElement) -> RootElementBuilder
     func groups(_ groups: [String: Int]) -> RootElementBuilder
     func onRefresh(_ closure: @escaping (RootElement) -> ()) -> RootElementBuilder
@@ -170,7 +170,7 @@ extension RootElement {
 
     class BuilderImpl : RootElementBuilder {
         private var _title: String = ""
-        private var _sections: WrappedArray<SectionElement> = WrappedArray<SectionElement>()
+        private var _sections: ArrayRef<SectionElement> = ArrayRef<SectionElement>()
         private var _groups: [String: Int] = [:]
         private var _onRefresh: ((RootElement) -> ())?
         private var _summary: SummarizeBy = .none
@@ -181,7 +181,7 @@ extension RootElement {
             return self
         }
         
-        func sections(_ sections: WrappedArray<SectionElement>) -> RootElementBuilder {
+        func sections(_ sections: ArrayRef<SectionElement>) -> RootElementBuilder {
             _sections = sections
             return self
         }

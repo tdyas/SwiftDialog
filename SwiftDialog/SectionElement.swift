@@ -15,14 +15,14 @@
 import UIKit
 
 public class SectionElement : BaseElement {
-    public var elements: WrappedArray<Element>
+    public var elements: ArrayRef<Element>
     public var header: String?
     public var footer: String?
     public var headerView: UIView?
     public var footerView: UIView?
     
     public init(
-        elements: WrappedArray<Element> = [],
+        elements: ArrayRef<Element> = [],
         header: String? = nil,
         footer: String? = nil,
         headerView: UIView? = nil,
@@ -43,7 +43,7 @@ public class SectionElement : BaseElement {
 }
 
 public protocol SectionElementBuilder {
-    func elements(_ elements: WrappedArray<Element>) -> SectionElementBuilder
+    func elements(_ elements: ArrayRef<Element>) -> SectionElementBuilder
     func element(_ element: Element) -> SectionElementBuilder
     func header(_ header: String) -> SectionElementBuilder
     func headerView(_ headerView: UIView) -> SectionElementBuilder
@@ -58,13 +58,13 @@ extension SectionElement {
     }
     
     class BuilderImpl : SectionElementBuilder {
-        var elements: WrappedArray<Element> = []
+        var elements: ArrayRef<Element> = []
         var header: String?
         var footer: String?
         var headerView: UIView?
         var footerView: UIView?
         
-        func elements(_ elements: WrappedArray<Element>) -> SectionElementBuilder {
+        func elements(_ elements: ArrayRef<Element>) -> SectionElementBuilder {
             self.elements = elements
             return self
         }

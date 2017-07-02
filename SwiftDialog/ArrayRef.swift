@@ -19,7 +19,7 @@ import Foundation
 // every row. The WrappedArray collection allows Arrays to be used as
 // pass-by-reference.
 
-public final class WrappedArray<T> {
+public final class ArrayRef<T> {
     internal var elements: Array<T>
     
     public init(_ elements: Array<T>) {
@@ -31,13 +31,13 @@ public final class WrappedArray<T> {
     }
 }
 
-extension WrappedArray : ExpressibleByArrayLiteral {
+extension ArrayRef : ExpressibleByArrayLiteral {
     public convenience init(arrayLiteral elements: T...) {
         self.init(Array(elements))
     }
 }
 
-extension WrappedArray : Sequence {
+extension ArrayRef : Sequence {
     public typealias Iterator = Array<T>.Iterator
     public typealias SubSequence = Array<T>.SubSequence
     
@@ -46,7 +46,7 @@ extension WrappedArray : Sequence {
     }
 }
 
-extension WrappedArray : Collection, MutableCollection {
+extension ArrayRef : Collection, MutableCollection {
     public subscript(bounds: Range<Int>) -> ArraySlice<T> {
         get {
             return self.elements[bounds]
@@ -84,8 +84,8 @@ extension WrappedArray : Collection, MutableCollection {
     }
 }
 
-extension WrappedArray : RangeReplaceableCollection {
-    public func reserveCapacity(n: WrappedArray.IndexDistance) {
+extension ArrayRef : RangeReplaceableCollection {
+    public func reserveCapacity(n: ArrayRef.IndexDistance) {
         self.elements.reserveCapacity(n)
     }
     

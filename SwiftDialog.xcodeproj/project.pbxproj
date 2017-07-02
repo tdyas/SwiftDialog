@@ -16,7 +16,7 @@
 		3231441419F4677F00A3F921 /* TextEntryElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3231441319F4677F00A3F921 /* TextEntryElement.swift */; };
 		3231441619F468D800A3F921 /* RootElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3231441519F468D800A3F921 /* RootElement.swift */; };
 		3231441819F4690100A3F921 /* SectionElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3231441719F4690100A3F921 /* SectionElement.swift */; };
-		326544781AA28D3200F52E15 /* WrappedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326544771AA28D3200F52E15 /* WrappedArray.swift */; };
+		326544781AA28D3200F52E15 /* ArrayRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326544771AA28D3200F52E15 /* ArrayRef.swift */; };
 		327777CE19EF494F00AB0419 /* SliderElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327777CD19EF494F00AB0419 /* SliderElement.swift */; };
 		327777D219F04FD700AB0419 /* CheckboxElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327777D119F04FD700AB0419 /* CheckboxElement.swift */; };
 		32CE041F19EADAFD00BE3D56 /* SwiftDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CE041E19EADAFD00BE3D56 /* SwiftDialog.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -61,7 +61,7 @@
 		3231441319F4677F00A3F921 /* TextEntryElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEntryElement.swift; sourceTree = "<group>"; };
 		3231441519F468D800A3F921 /* RootElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootElement.swift; sourceTree = "<group>"; };
 		3231441719F4690100A3F921 /* SectionElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionElement.swift; sourceTree = "<group>"; };
-		326544771AA28D3200F52E15 /* WrappedArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WrappedArray.swift; sourceTree = "<group>"; };
+		326544771AA28D3200F52E15 /* ArrayRef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayRef.swift; sourceTree = "<group>"; };
 		327777CD19EF494F00AB0419 /* SliderElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderElement.swift; sourceTree = "<group>"; };
 		327777D119F04FD700AB0419 /* CheckboxElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxElement.swift; sourceTree = "<group>"; };
 		32CE041919EADAFD00BE3D56 /* SwiftDialog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftDialog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,7 +133,7 @@
 				3216F1AA1A429C0300862E38 /* SwiftTableViewController.swift */,
 				3231441119F466D500A3F921 /* SwitchElement.swift */,
 				3231441319F4677F00A3F921 /* TextEntryElement.swift */,
-				326544771AA28D3200F52E15 /* WrappedArray.swift */,
+				326544771AA28D3200F52E15 /* ArrayRef.swift */,
 				32CE041E19EADAFD00BE3D56 /* SwiftDialog.h */,
 				32CE041C19EADAFD00BE3D56 /* Supporting Files */,
 			);
@@ -283,7 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3231441619F468D800A3F921 /* RootElement.swift in Sources */,
-				326544781AA28D3200F52E15 /* WrappedArray.swift in Sources */,
+				326544781AA28D3200F52E15 /* ArrayRef.swift in Sources */,
 				3216F1AB1A429C0300862E38 /* SwiftTableViewController.swift in Sources */,
 				32CE043719EADB7E00BE3D56 /* DialogController.swift in Sources */,
 				32CE043519EADB4600BE3D56 /* Element.swift in Sources */,
