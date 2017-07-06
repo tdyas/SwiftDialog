@@ -171,3 +171,94 @@ public class TextEntryElement : BaseElement, UITextFieldDelegate {
         return cell
     }
 }
+
+public protocol TextEntryElementBuilder {
+    func text(_ text: String) -> TextEntryElementBuilder
+    func title(_ title: String) -> TextEntryElementBuilder
+    func placeholder(_ placeholder: String) -> TextEntryElementBuilder
+    func autocapitalizationType(_ autocapitalizationType: UITextAutocapitalizationType) -> TextEntryElementBuilder
+    func autocorrectionType(_ autocorrectionType: UITextAutocorrectionType) -> TextEntryElementBuilder
+    func spellCheckingType(_ spellCheckingType: UITextSpellCheckingType) -> TextEntryElementBuilder
+    func keyboardType(_ keyboardType: UIKeyboardType) -> TextEntryElementBuilder
+    func keyboardAppearance(_ keyboardAppearance: UIKeyboardAppearance) -> TextEntryElementBuilder
+    func secureTextEntry(_ secureTextEntry: Bool) -> TextEntryElementBuilder
+    func build() -> TextEntryElement
+}
+
+extension TextEntryElement {
+    public static func builder() -> TextEntryElementBuilder {
+        return BuilderImpl()
+    }
+    
+    class BuilderImpl : TextEntryElementBuilder {
+        var text: String = ""
+        var title: String? = nil
+        var placeholder: String? = nil
+        var autocapitalizationType: UITextAutocapitalizationType = .sentences
+        var autocorrectionType: UITextAutocorrectionType = .default
+        var spellCheckingType: UITextSpellCheckingType = .default
+        var keyboardType: UIKeyboardType = .default
+        var keyboardAppearance: UIKeyboardAppearance = .default
+        var secureTextEntry: Bool = false
+                
+        func text(_ text: String) -> TextEntryElementBuilder {
+            self.text = text
+            return self
+        }
+        
+        func title(_ title: String) -> TextEntryElementBuilder {
+            self.title = title
+            return self
+        }
+        
+        func placeholder(_ placeholder: String) -> TextEntryElementBuilder {
+            self.placeholder = placeholder
+            return self
+        }
+        
+        func autocapitalizationType(_ autocapitalizationType: UITextAutocapitalizationType) -> TextEntryElementBuilder {
+            self.autocapitalizationType = autocapitalizationType
+            return self
+        }
+        
+        func autocorrectionType(_ autocorrectionType: UITextAutocorrectionType) -> TextEntryElementBuilder {
+            self.autocorrectionType = autocorrectionType
+            return self
+        }
+        
+        func spellCheckingType(_ spellCheckingType: UITextSpellCheckingType) -> TextEntryElementBuilder {
+            self.spellCheckingType = spellCheckingType
+            return self
+        }
+        
+        func keyboardType(_ keyboardType: UIKeyboardType) -> TextEntryElementBuilder {
+            self.keyboardType = keyboardType
+            return self
+        }
+        
+        func keyboardAppearance(_ keyboardAppearance: UIKeyboardAppearance) -> TextEntryElementBuilder {
+            self.keyboardAppearance = keyboardAppearance
+            return self
+        }
+        
+        func secureTextEntry(_ secureTextEntry: Bool) -> TextEntryElementBuilder {
+            self.secureTextEntry = secureTextEntry
+            return self
+        }
+        
+        func build() -> TextEntryElement {
+            return TextEntryElement(
+                text: text,
+                title: title,
+                placeholder: placeholder,
+                autocapitalizationType: autocapitalizationType,
+                autocorrectionType: autocorrectionType,
+                spellCheckingType: spellCheckingType,
+                keyboardType: keyboardType,
+                keyboardAppearance: keyboardAppearance,
+                secureTextEntry: secureTextEntry
+            )
+        }
+    }
+}
+
