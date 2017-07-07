@@ -176,6 +176,17 @@ public class RootElement : BaseElement {
         
         self.dialogController?.viewController?.tableView.reloadRows(at: rowsToReload, with: .none)
     }
+    
+    func insert(section: SectionElement, at index: Int) {
+        sections.insert(newElement: section, at: index)
+        dialogController?.viewController?.tableView.insertSections(IndexSet(integer: index), with: .none)
+    }
+    
+    func remove(section: SectionElement) {
+        guard let index = sections.index(of: section) else { return }
+        let _ = sections.remove(at: index)
+        dialogController?.viewController?.tableView.deleteSections(IndexSet(integer: index), with: .none)
+    }
 }
 
 extension RootElement {
