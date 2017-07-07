@@ -94,6 +94,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                 .element(TextEntryElement(text: "", placeholder: "User name"))
                 .element(TextEntryElement(text: "", placeholder: "Password", secureTextEntry: true))
                 .build())
+            .section(SectionElement.builder()
+                .header("Advanced")
+                .element(TextEntryElement.builder()
+                    .title("URL")
+                    .keyboardType(.URL)
+                    .build())
+                .element(TextEntryElement.builder()
+                    .title("Phone")
+                    .keyboardType(.phonePad)
+                    .build())
+                .build())
             .build()
     }
     
