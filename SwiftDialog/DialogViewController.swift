@@ -15,7 +15,7 @@
 import Foundation
 import UIKit
 
-public class DialogViewController : SwiftTableViewController {
+public class DialogViewController : UITableViewController {
     public let root: RootElement
     public let dialogController: DialogController
 
@@ -49,7 +49,6 @@ public class DialogViewController : SwiftTableViewController {
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView.reloadData()
     }
     
     @objc

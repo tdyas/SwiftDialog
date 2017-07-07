@@ -75,9 +75,10 @@ public class RadioElement : BaseElement {
                 }
                 sectionIndex += 1
             }
-
+            
+            RootElement.invalidateSummarizedRootOf(element: self)
         }
-        
+
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

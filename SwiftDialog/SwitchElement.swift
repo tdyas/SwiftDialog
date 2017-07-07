@@ -29,6 +29,7 @@ public class SwitchElement : BaseElement, BooleanValuedElement {
     @objc
     func valueChanged() {
         self.value = self.switchControl.isOn
+        RootElement.invalidateSummarizedRootOf(element: self)
     }
     
     public override func getCell(_ tableView: UITableView) -> UITableViewCell! {

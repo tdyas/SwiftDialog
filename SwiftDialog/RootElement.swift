@@ -33,7 +33,7 @@ public class RootElement : BaseElement {
     public var childStyle: UITableViewStyle
 
     public weak var dialogController: DialogController?
-    
+
     public init(
         title: String,
         sections: ArrayRef<SectionElement>,
@@ -149,6 +149,44 @@ public class RootElement : BaseElement {
     public override func elementSelected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
         let vc = DialogViewController(root: self, style: childStyle)
         dialogController.viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func invalidateAll() {
+        self.dialogController?.viewController?.tableView.reloadData()
+    }
+    
+    func invalidateElements(_ invalidatedElements: [Element]) {
+        var rowsToReload: [IndexPath] = []
+        
+        outer: for invalidatedElement in invalidatedElements {
+            guard let sectionOfInvalidatedElement = invalidatedElement.parent as? SectionElement else { continue }
+            guard let rootOfInvalidatedElement = sectionOfInvalidatedElement.parent as? RootElement else { continue }
+            if rootOfInvalidatedElement !== self { continue }
+            
+            for (sectionIndex, section) in sections.enumerated() {
+                if section !== sectionOfInvalidatedElement { continue }
+                for (elementIndex, element) in section.elements.enumerated() {
+                    if element === invalidatedElement {
+                        rowsToReload.append(IndexPath(row: elementIndex, section: sectionIndex))
+                        continue outer;
+                    }
+                }
+            }
+        }
+        
+        self.dialogController?.viewController?.tableView.reloadRows(at: rowsToReload, with: .none)
+    }
+}
+
+extension RootElement {
+    public static func invalidateSummarizedRootOf(element: Element) {
+        guard let root = element.root else { return }
+        switch (root.summary) {
+        case .none:
+            return
+        default:
+            root.root?.invalidateElements([root])
+        }
     }
 }
 

@@ -46,5 +46,7 @@ public class CheckboxElement : BaseElement, BooleanValuedElement {
         }
 
         tableView.deselectRow(at: indexPath, animated: true)
+
+        RootElement.invalidateSummarizedRootOf(element: self)
     }
 }
