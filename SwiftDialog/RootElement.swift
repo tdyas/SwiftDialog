@@ -30,7 +30,7 @@ public class RootElement : BaseElement {
     public var groups: [String: Int]
     public var onRefresh: ((RootElement) -> ())?
     public var summary: SummarizeBy
-    public var childStyle: UITableViewStyle
+    public var style: UITableViewStyle
 
     public weak var dialogController: DialogController?
 
@@ -40,14 +40,14 @@ public class RootElement : BaseElement {
         groups: [String: Int] = [:],
         onRefresh: ((RootElement) -> ())? = nil,
         summary: SummarizeBy = .none,
-        childStyle: UITableViewStyle = .grouped
+        style: UITableViewStyle = .grouped
     ) {
         self.title = title
         self.sections = sections
         self.groups = groups
         self.onRefresh = onRefresh
         self.summary = summary
-        self.childStyle = childStyle
+        self.style = style
         
         super.init()
         
@@ -62,7 +62,7 @@ public class RootElement : BaseElement {
         groups: [String: Int] = [:],
         onRefresh: ((RootElement) -> ())? = nil,
         summary: SummarizeBy = .none,
-        childStyle: UITableViewStyle = .grouped
+        style: UITableViewStyle = .grouped
     ) {
         self.init(
             title: title,
@@ -70,7 +70,7 @@ public class RootElement : BaseElement {
             groups: groups,
             onRefresh: onRefresh,
             summary: summary,
-            childStyle: childStyle
+            style: style
         )
     }
     
@@ -147,7 +147,7 @@ public class RootElement : BaseElement {
     }
 
     public override func elementSelected(_ dialogController: DialogController, tableView: UITableView, atPath indexPath: IndexPath) {
-        let vc = DialogViewController(root: self, style: childStyle)
+        let vc = DialogViewController(root: self)
         dialogController.viewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -175,6 +175,20 @@ public class RootElement : BaseElement {
         }
         
         self.dialogController?.viewController?.tableView.reloadRows(at: rowsToReload, with: .none)
+    }
+    
+    public func sectionIndexForElement(_ element: Element) -> Int? {
+        guard let sectionOfElement = element.parent as? SectionElement else { return nil }
+        guard let rootOfElement = sectionOfElement.parent as? RootElement else { return nil }
+        if rootOfElement !== self { return nil }
+        
+        for (sectionIndex, section) in sections.enumerated() {
+            if section === sectionOfElement {
+                return sectionIndex
+            }
+        }
+        
+        return nil
     }
     
     func insert(section: SectionElement, at index: Int) {
@@ -208,7 +222,7 @@ public protocol RootElementBuilder {
     func groups(_ groups: [String: Int]) -> RootElementBuilder
     func onRefresh(_ closure: @escaping (RootElement) -> ()) -> RootElementBuilder
     func summary(_ summary: SummarizeBy) -> RootElementBuilder
-    func childStyle(_ childStyle: UITableViewStyle) -> RootElementBuilder
+    func style(_ style: UITableViewStyle) -> RootElementBuilder
     func build() -> RootElement
 }
 
@@ -223,7 +237,7 @@ extension RootElement {
         private var _groups: [String: Int] = [:]
         private var _onRefresh: ((RootElement) -> ())?
         private var _summary: SummarizeBy = .none
-        private var _childStyle: UITableViewStyle = .grouped
+        private var _style: UITableViewStyle = .grouped
         
         func title(_ title: String) -> RootElementBuilder {
             _title = title
@@ -255,8 +269,8 @@ extension RootElement {
             return self
         }
         
-        func childStyle(_ childStyle: UITableViewStyle) -> RootElementBuilder {
-            _childStyle = childStyle
+        func style(_ style: UITableViewStyle) -> RootElementBuilder {
+            _style = style
             return self
         }
         
@@ -267,7 +281,7 @@ extension RootElement {
                 groups: _groups,
                 onRefresh: _onRefresh,
                 summary: _summary,
-                childStyle: _childStyle
+                style: _style
             )
         }
     }

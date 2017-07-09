@@ -28,10 +28,9 @@ public class ModalDialogViewController : UIViewController {
     
     public init(
         root: RootElement,
-        style: UITableViewStyle = .grouped,
         doneButtonItem: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
     ) {
-        dialogViewController = DialogViewController(root: root, style: style)
+        dialogViewController = DialogViewController(root: root)
         childNavigationController = UINavigationController(rootViewController: self.dialogViewController)
         self.doneButtonItem = doneButtonItem
         super.init(nibName: nil, bundle: nil)

@@ -40,6 +40,25 @@ public class SectionElement : BaseElement {
             element.parent = self
         }
     }
+
+    public func insert(_ newElement: Element, at index: Int, with animation: UITableViewRowAnimation) {
+        newElement.parent = self
+        elements.insert(newElement, at: index)
+        if let sectionIndexOfSelf = root?.sectionIndexForElement(newElement) {
+            let indexPaths = [IndexPath(row: index, section: sectionIndexOfSelf)]
+            root?.dialogController?.viewController?.tableView.insertRows(at: indexPaths, with: animation)
+        }
+    }
+    
+    public func remove(_ elementToRemove: Element, with animation: UITableViewRowAnimation) {
+        let sectionIndexOfSelfOpt = root?.sectionIndexForElement(elementToRemove)
+        guard let index = elements.index(where: { $0 === elementToRemove }) else { return }
+        let _ = elements.remove(at: index)
+        if let sectionIndexOfSelf = sectionIndexOfSelfOpt {
+            let indexPaths = [IndexPath(row: index, section: sectionIndexOfSelf)]
+            root?.dialogController?.viewController?.tableView.deleteRows(at: indexPaths, with: animation)
+        }
+    }
 }
 
 public protocol SectionElementBuilder {

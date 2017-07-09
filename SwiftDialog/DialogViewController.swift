@@ -19,12 +19,12 @@ public class DialogViewController : UITableViewController {
     public let root: RootElement
     public let dialogController: DialogController
 
-    public init(root: RootElement, style: UITableViewStyle = .grouped) {
+    public init(root: RootElement) {
         self.root = root
         self.dialogController = DialogController(self.root)
         self.root.dialogController = self.dialogController
         
-        super.init(style: style)
+        super.init(style: root.style)
 
         self.dialogController.viewController = self
     }

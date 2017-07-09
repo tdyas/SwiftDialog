@@ -77,9 +77,37 @@ public class DialogController : NSObject, UITableViewDataSource, UITableViewDele
         return section.headerView
     }
     
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection sectionIndex: Int) -> CGFloat {
+        let section = root.sections[sectionIndex]
+        if let headerView = section.headerView {
+            return headerView.frame.size.height
+        } else {
+            switch root.style {
+            case .grouped:
+                return UITableViewAutomaticDimension
+            case .plain:
+                return section.header != nil ? UITableViewAutomaticDimension : 0.0
+            }
+        }
+    }
+    
     public func tableView(_ tableView: UITableView, viewForFooterInSection sectionIndex: Int) -> UIView? {
         let section = self.root.sections[sectionIndex]
         return section.footerView
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForFooterInSection sectionIndex: Int) -> CGFloat {
+        let section = root.sections[sectionIndex]
+        if let footerView = section.footerView {
+            return footerView.frame.size.height
+        } else {
+            switch root.style {
+            case .grouped:
+                return UITableViewAutomaticDimension
+            case .plain:
+                return section.footer != nil ? UITableViewAutomaticDimension : 0.0
+            }
+        }
     }
     
     // Table Modifications

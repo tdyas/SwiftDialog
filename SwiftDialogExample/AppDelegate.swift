@@ -152,12 +152,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
     }
     
     func buildRootElementsSection() -> SectionElement {
-        let customHeaderLabel = UILabel(frame: CGRect.zero)
-        customHeaderLabel.autoresizingMask = .flexibleWidth
-        customHeaderLabel.text = "Root Elements (+ custom header)"
-        customHeaderLabel.font = UIFont(name: "AmericanTypewriter-Bold", size: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline).pointSize)
-        customHeaderLabel.sizeToFit()
-        customHeaderLabel.textAlignment = .center
+        let label = UILabel(frame: CGRect.zero)
+        label.autoresizingMask = .flexibleWidth
+        label.text = "Root Elements (+ custom header)"
+        label.font = UIFont(name: "AmericanTypewriter-Bold", size: UIFont.preferredFont(forTextStyle: .headline).pointSize)
+        label.textAlignment = .center
+        label.sizeToFit()
         
         return SectionElement.builder()
             .element(RootElement.builder()
@@ -185,9 +185,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                     .element(SwitchElement(text: "Third", value: false))
                     .build())
                 .summary(.count)
-                .childStyle(.plain)
+                .style(.plain)
                 .build())
-            .headerView(customHeaderLabel)
+            .headerView(label)
             .build()
     }
     
@@ -202,6 +202,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                 .element(buildDateTimeElements())
                 .build())
             .section(buildRootElementsSection())
+            .section(SectionElement.builder()
+                .header("More")
+                .element(StringElement(
+                    "Editable",
+                    onSelect: { _ in
+                        let vc = self.makeEditableListDialog()
+                        self.editableDialogViewController = vc
+                        self.navigationController.pushViewController(vc, animated: true)
+                } ))
+                .build())
             .groups(["apts": 0])
             .onRefresh({ root in self.displayRefreshAlert() })
             .build()
@@ -232,5 +242,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ModalDialogViewController
                 StringElement("You tapped on a cell.")
             ]
         )
+    }
+    
+    var editableDialogViewController: DialogViewController? = nil
+    
+    @objc
+    func appendStringElement() {
+        editableDialogViewController?.root.sections[0].insert(StringElement("new"), at: 0, with: .none)
+    }
+    
+    func makeEditableListDialog() -> DialogViewController {
+        let root = RootElement.builder()
+            .style(.plain)
+            .section(SectionElement.builder()
+                .element(StringElement("foo"))
+                .element(StringElement("bar"))
+                .element(StringElement("ha"))
+                .build())
+            .build()
+        
+        let viewController = DialogViewController(root: root)
+        viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Append",
+            style: .plain,
+            target: self,
+            action: #selector(AppDelegate.appendStringElement)
+        )
+        
+        return viewController
     }
 }
